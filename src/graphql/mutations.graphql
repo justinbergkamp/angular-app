@@ -1,0 +1,40 @@
+# this is an auto generated file. This will be overwritten
+mutation CreateBook(
+  $input: CreateBookInput!
+  $condition: ModelBookConditionInput
+) {
+  createBook(input: $input, condition: $condition) {
+    id
+    name
+    description
+    city
+    createdAt
+    updatedAt
+  }
+}
+mutation UpdateBook(
+  $input: UpdateBookInput!
+  $condition: ModelBookConditionInput
+) {
+  updateBook(input: $input, condition: $condition) {
+    id
+    name
+    description
+    city
+    createdAt
+    updatedAt
+  }
+}
+mutation DeleteBook(
+  $input: DeleteBookInput!
+  $condition: ModelBookConditionInput
+) {
+  deleteBook(input: $input, condition: $condition) {
+    id
+    name
+    description
+    city
+    createdAt
+    updatedAt
+  }
+}
