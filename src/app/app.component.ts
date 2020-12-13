@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { APIService } from './API.service';
 import { Book } from '../types/book';
+
 
 @Component({
   selector: 'app-root',
@@ -14,14 +15,18 @@ export class AppComponent implements OnInit {
   public createForm: FormGroup;
 
   books: Array<Book>;
+  myFlagForButtonToggle: String = "Single";
+  endpointToggleOptions: Array<String> = ["Single", "Multiple"];
 
   constructor(private api: APIService, private fb: FormBuilder) { }
 
   async ngOnInit() {
     this.createForm = this.fb.group({
-      'name': ['', Validators.required],
+      'title': ['', Validators.required],
       'description': ['', Validators.required],
-      'city': ['', Validators.required]
+      'author': ['', Validators.required],
+      'status': ['', Validators.required]
+
     });
 
     this.api.ListBooks().then(event => {
@@ -37,11 +42,15 @@ export class AppComponent implements OnInit {
 
 
 
-
+ public onEndpointValChange(val){
+   console.log(val)
+ }
 
 
   public onCreate(book: Book) {
-    this.api.CreateBook(book).then(event => {
+    console.log(book)
+    const book2 = {title: book.title, description: book.description, author: book.author, status: book.status, queue_pos: 1 }
+    this.api.CreateBook(book2).then(event => {
       console.log('item created!');
       this.createForm.reset();
     })

@@ -8,17 +8,21 @@
 <div class="form-body">
   <form autocomplete="off" [formGroup]="createForm" (ngSubmit)="onCreate(createForm.value)">
     <div>
-      <label>Name: </label>
-      <input type="text" formControlName="name" autocomplete="off">
+      <label>Title: </label>
+      <input type="text" formControlName="title" autocomplete="off">
     </div>
     <div>
       <label>Description: </label>
       <input type="text" formControlName="description" autocomplete="off">
     </div>
     <div>
-      <label>City: </label>
-      <input type="text" formControlName="city" autocomplete="off">
+      <label>Author: </label>
+      <input type="text" formControlName="author" autocomplete="off">
     </div>
+    <mat-button-toggle-group #group="matButtonToggleGroup" (change)="onEndpointValChange(group.value)" multiple="false" formControlName='status'
+     [(ngModel)]="myFlagForButtonToggle">
+        <mat-button-toggle *ngFor="let item of endpointToggleOptions;" [value]="item">{{item}}</mat-button-toggle>
+    </mat-button-toggle-group>
     <button type="submit">Submit</button>
   </form>
 </div>
@@ -28,3 +32,6 @@
   <div>{{ book.name }}</div>
   <div>{{ book.description }}</div>
 </div>
+
+
+<router-outlet></router-outlet>

@@ -2,9 +2,11 @@
 subscription OnCreateBook {
   onCreateBook {
     id
-    name
+    title
     description
-    city
+    author
+    status
+    queue_pos
     createdAt
     updatedAt
   }
@@ -12,9 +14,11 @@ subscription OnCreateBook {
 subscription OnUpdateBook {
   onUpdateBook {
     id
-    name
+    title
     description
-    city
+    author
+    status
+    queue_pos
     createdAt
     updatedAt
   }
@@ -22,9 +26,11 @@ subscription OnUpdateBook {
 subscription OnDeleteBook {
   onDeleteBook {
     id
-    name
+    title
     description
-    city
+    author
+    status
+    queue_pos
     createdAt
     updatedAt
   }

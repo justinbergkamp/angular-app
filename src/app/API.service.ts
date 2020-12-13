@@ -11,15 +11,19 @@ export interface SubscriptionResponse<T> {
 
 export type CreateBookInput = {
   id?: string | null;
-  name: string;
+  title: string;
   description: string;
-  city: string;
+  author: string;
+  status: string;
+  queue_pos: number;
 };
 
 export type ModelBookConditionInput = {
-  name?: ModelStringInput | null;
+  title?: ModelStringInput | null;
   description?: ModelStringInput | null;
-  city?: ModelStringInput | null;
+  author?: ModelStringInput | null;
+  status?: ModelStringInput | null;
+  queue_pos?: ModelIntInput | null;
   and?: Array<ModelBookConditionInput | null> | null;
   or?: Array<ModelBookConditionInput | null> | null;
   not?: ModelBookConditionInput | null;
@@ -64,11 +68,25 @@ export type ModelSizeInput = {
   between?: Array<number | null> | null;
 };
 
+export type ModelIntInput = {
+  ne?: number | null;
+  eq?: number | null;
+  le?: number | null;
+  lt?: number | null;
+  ge?: number | null;
+  gt?: number | null;
+  between?: Array<number | null> | null;
+  attributeExists?: boolean | null;
+  attributeType?: ModelAttributeTypes | null;
+};
+
 export type UpdateBookInput = {
   id: string;
-  name?: string | null;
+  title?: string | null;
   description?: string | null;
-  city?: string | null;
+  author?: string | null;
+  status?: string | null;
+  queue_pos?: number | null;
 };
 
 export type DeleteBookInput = {
@@ -77,9 +95,11 @@ export type DeleteBookInput = {
 
 export type ModelBookFilterInput = {
   id?: ModelIDInput | null;
-  name?: ModelStringInput | null;
+  title?: ModelStringInput | null;
   description?: ModelStringInput | null;
-  city?: ModelStringInput | null;
+  author?: ModelStringInput | null;
+  status?: ModelStringInput | null;
+  queue_pos?: ModelIntInput | null;
   and?: Array<ModelBookFilterInput | null> | null;
   or?: Array<ModelBookFilterInput | null> | null;
   not?: ModelBookFilterInput | null;
@@ -104,9 +124,11 @@ export type ModelIDInput = {
 export type CreateBookMutation = {
   __typename: "Book";
   id: string;
-  name: string;
+  title: string;
   description: string;
-  city: string;
+  author: string;
+  status: string;
+  queue_pos: number;
   createdAt: string;
   updatedAt: string;
 };
@@ -114,9 +136,11 @@ export type CreateBookMutation = {
 export type UpdateBookMutation = {
   __typename: "Book";
   id: string;
-  name: string;
+  title: string;
   description: string;
-  city: string;
+  author: string;
+  status: string;
+  queue_pos: number;
   createdAt: string;
   updatedAt: string;
 };
@@ -124,9 +148,11 @@ export type UpdateBookMutation = {
 export type DeleteBookMutation = {
   __typename: "Book";
   id: string;
-  name: string;
+  title: string;
   description: string;
-  city: string;
+  author: string;
+  status: string;
+  queue_pos: number;
   createdAt: string;
   updatedAt: string;
 };
@@ -134,9 +160,11 @@ export type DeleteBookMutation = {
 export type GetBookQuery = {
   __typename: "Book";
   id: string;
-  name: string;
+  title: string;
   description: string;
-  city: string;
+  author: string;
+  status: string;
+  queue_pos: number;
   createdAt: string;
   updatedAt: string;
 };
@@ -146,9 +174,11 @@ export type ListBooksQuery = {
   items: Array<{
     __typename: "Book";
     id: string;
-    name: string;
+    title: string;
     description: string;
-    city: string;
+    author: string;
+    status: string;
+    queue_pos: number;
     createdAt: string;
     updatedAt: string;
   } | null> | null;
@@ -158,9 +188,11 @@ export type ListBooksQuery = {
 export type OnCreateBookSubscription = {
   __typename: "Book";
   id: string;
-  name: string;
+  title: string;
   description: string;
-  city: string;
+  author: string;
+  status: string;
+  queue_pos: number;
   createdAt: string;
   updatedAt: string;
 };
@@ -168,9 +200,11 @@ export type OnCreateBookSubscription = {
 export type OnUpdateBookSubscription = {
   __typename: "Book";
   id: string;
-  name: string;
+  title: string;
   description: string;
-  city: string;
+  author: string;
+  status: string;
+  queue_pos: number;
   createdAt: string;
   updatedAt: string;
 };
@@ -178,9 +212,11 @@ export type OnUpdateBookSubscription = {
 export type OnDeleteBookSubscription = {
   __typename: "Book";
   id: string;
-  name: string;
+  title: string;
   description: string;
-  city: string;
+  author: string;
+  status: string;
+  queue_pos: number;
   createdAt: string;
   updatedAt: string;
 };
@@ -197,9 +233,11 @@ export class APIService {
         createBook(input: $input, condition: $condition) {
           __typename
           id
-          name
+          title
           description
-          city
+          author
+          status
+          queue_pos
           createdAt
           updatedAt
         }
@@ -223,9 +261,11 @@ export class APIService {
         updateBook(input: $input, condition: $condition) {
           __typename
           id
-          name
+          title
           description
-          city
+          author
+          status
+          queue_pos
           createdAt
           updatedAt
         }
@@ -249,9 +289,11 @@ export class APIService {
         deleteBook(input: $input, condition: $condition) {
           __typename
           id
-          name
+          title
           description
-          city
+          author
+          status
+          queue_pos
           createdAt
           updatedAt
         }
@@ -272,9 +314,11 @@ export class APIService {
         getBook(id: $id) {
           __typename
           id
-          name
+          title
           description
-          city
+          author
+          status
+          queue_pos
           createdAt
           updatedAt
         }
@@ -298,9 +342,11 @@ export class APIService {
           items {
             __typename
             id
-            name
+            title
             description
-            city
+            author
+            status
+            queue_pos
             createdAt
             updatedAt
           }
@@ -330,9 +376,11 @@ export class APIService {
         onCreateBook {
           __typename
           id
-          name
+          title
           description
-          city
+          author
+          status
+          queue_pos
           createdAt
           updatedAt
         }
@@ -348,9 +396,11 @@ export class APIService {
         onUpdateBook {
           __typename
           id
-          name
+          title
           description
-          city
+          author
+          status
+          queue_pos
           createdAt
           updatedAt
         }
@@ -366,9 +416,11 @@ export class APIService {
         onDeleteBook {
           __typename
           id
-          name
+          title
           description
-          city
+          author
+          status
+          queue_pos
           createdAt
           updatedAt
         }

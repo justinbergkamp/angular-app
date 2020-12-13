@@ -5,9 +5,11 @@ mutation CreateBook(
 ) {
   createBook(input: $input, condition: $condition) {
     id
-    name
+    title
     description
-    city
+    author
+    status
+    queue_pos
     createdAt
     updatedAt
   }
@@ -18,9 +20,11 @@ mutation UpdateBook(
 ) {
   updateBook(input: $input, condition: $condition) {
     id
-    name
+    title
     description
-    city
+    author
+    status
+    queue_pos
     createdAt
     updatedAt
   }
@@ -31,9 +35,11 @@ mutation DeleteBook(
 ) {
   deleteBook(input: $input, condition: $condition) {
     id
-    name
+    title
     description
-    city
+    author
+    status
+    queue_pos
     createdAt
     updatedAt
   }

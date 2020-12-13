@@ -1,6 +1,8 @@
 export type Book = {
   id : string,
-  name : string,
+  title : string,
   description : string,
-  city: string
+  author: string,
+  status: string,
+  queue_pos: number
 };

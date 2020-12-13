@@ -2,9 +2,11 @@
 query GetBook($id: ID!) {
   getBook(id: $id) {
     id
-    name
+    title
     description
-    city
+    author
+    status
+    queue_pos
     createdAt
     updatedAt
   }
@@ -17,9 +19,11 @@ query ListBooks(
   listBooks(filter: $filter, limit: $limit, nextToken: $nextToken) {
     items {
       id
-      name
+      title
       description
-      city
+      author
+      status
+      queue_pos
       createdAt
       updatedAt
     }
