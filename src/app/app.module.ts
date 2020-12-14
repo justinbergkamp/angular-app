@@ -11,6 +11,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+
 
 
 
@@ -27,7 +30,9 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    MatButtonToggleModule
+    MatButtonToggleModule,
+    MatFormFieldModule,
+    MatInputModule
 
   ],
   providers: [],

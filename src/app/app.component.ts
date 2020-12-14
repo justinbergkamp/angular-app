@@ -49,8 +49,8 @@ export class AppComponent implements OnInit {
 
   public onCreate(book: Book) {
     console.log(book)
-    const book2 = {title: book.title, description: book.description, author: book.author, status: book.status, queue_pos: 1 }
-    this.api.CreateBook(book2).then(event => {
+    book.queue_pos = 1;
+    this.api.CreateBook(book).then(event => {
       console.log('item created!');
       this.createForm.reset();
     })
