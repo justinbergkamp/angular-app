@@ -5,36 +5,19 @@
   </div>
 </amplify-authenticator> -->
 
-<div class="form-body">
-  <form autocomplete="off" [formGroup]="createForm" (ngSubmit)="onCreate(createForm.value)">
-    <mat-form-field class="form-field" appearance="outline">
-        <mat-label> Title
-        </mat-label>
-        <input matInput formControlName="title" required>
-      </mat-form-field>
-      <mat-form-field class="form-field" appearance="outline">
-        <mat-label> Description
-        </mat-label>
-        <input matInput formControlName="description" >
-      </mat-form-field>
-      <mat-form-field class="form-field" appearance="outline">
-        <mat-label> Author
-        </mat-label>
-        <input matInput formControlName="author" required>
-      </mat-form-field>
-    <mat-button-toggle-group   #group="matButtonToggleGroup" (change)="onEndpointValChange(group.value)" multiple="false" formControlName='status'
-     [(ngModel)]="myFlagForButtonToggle">
-        <mat-button-toggle *ngFor="let item of endpointToggleOptions;" [value]="item">{{item}}</mat-button-toggle>
-    </mat-button-toggle-group>
-    <button class="form-field" type="submit">Submit</button>
-  </form>
-</div>
 
-<div *ngFor="let book of books">
-  <div>{{ book.city }}</div>
-  <div>{{ book.name }}</div>
-  <div>{{ book.description }}</div>
-</div>
 
+
+<h2>My Books</h2>
+<ul class="books">
+  <li *ngFor="let book of books"
+    [class.selected]="book === selectedBook"
+    (click)="onSelect(book)">
+    <span class="badge">{{book.queue_pos}}</span> {{book.title}}
+  </li>
+</ul>
+
+
+<app-book-detail [book]="selectedBook"></app-book-detail>
 
 <router-outlet></router-outlet>

@@ -1,0 +1,14 @@
+
+<div *ngIf="book">
+
+  <h2>{{book.title}} Details</h2>
+  <div>
+    <label>Title:
+      <input [(ngModel)]="book.title" placeholder="Title"/>
+    </label>
+    <div><span>author: </span>{{book.author}}</div>
+  </div>
+
+</div>
+
+<button mat-button color="primary" (click)="updateBook()">Update</button>
