@@ -21,12 +21,7 @@ export class BookDetailComponent implements OnInit {
 
   updateBook(){
     console.log(this.book);
-    // id: string;
-    // title?: string | null;
-    // description?: string | null;
-    // author?: string | null;
-    // status?: string | null;
-    // queue_pos?: number | null;
+
     let updatedBook = {"id":this.book.id, "title":this.book.title, "description":this.book.description, "author":this.book.author, "status":this.book.status, "queue_pos":this.book.queue_pos};
 
     this.api.UpdateBook(updatedBook).then(event => {
