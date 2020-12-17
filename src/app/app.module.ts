@@ -15,6 +15,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import { BookDetailComponent } from './book-detail/book-detail.component';
 import { AddBookComponent } from './add-book/add-book.component';
+import {MatButtonModule} from '@angular/material/button';
 
 
 
@@ -36,7 +37,8 @@ import { AddBookComponent } from './add-book/add-book.component';
     BrowserAnimationsModule,
     MatButtonToggleModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatButtonModule
 
   ],
   providers: [],

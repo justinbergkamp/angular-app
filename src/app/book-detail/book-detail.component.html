@@ -1,14 +1,28 @@
 
 <div *ngIf="book">
-
+<div class="container">
   <h2>{{book.title}} Details</h2>
   <div>
-    <label>Title:
-      <input [(ngModel)]="book.title" placeholder="Title"/>
-    </label>
-    <div><span>author: </span>{{book.author}}</div>
+    <mat-form-field class="form-field" appearance="outline">
+    <mat-label> Title
+    </mat-label>
+    <input matInput [(ngModel)]="book.title" placeholder="Title">
+  </mat-form-field>
   </div>
-
+  <div >
+    <mat-form-field class="form-field" appearance="outline">
+    <mat-label> Author
+    </mat-label>
+    <input matInput [(ngModel)]="book.author" placeholder="Author">
+  </mat-form-field>
+  </div>
+  <div >
+    <mat-form-field class="form-field" appearance="outline">
+    <mat-label> Description
+    </mat-label>
+    <input matInput [(ngModel)]="book.description" placeholder="Description">
+  </mat-form-field>
+  </div>
+  <button mat-stroked-button color="primary" (click)="updateBook()">Update</button>
 </div>
-
-<button mat-button color="primary" (click)="updateBook()">Update</button>
+</div>

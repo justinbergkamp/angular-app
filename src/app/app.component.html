@@ -7,19 +7,29 @@
 
 
 
+<div class="dashboard">
 
-<h2>My Books</h2>
-<ul class="books">
-  <li *ngFor="let book of books"
-    [class.selected]="book === selectedBook"
-    (click)="onSelect(book)">
-    <span class="badge">{{book.queue_pos}}</span> {{book.title}}
-  </li>
-</ul>
+  <div class="queue">
 
+
+    <h2>My Books</h2>
+    <ul class="books">
+      <li *ngFor="let book of books"
+      [class.selected]="book === selectedBook"
+      (click)="onSelect(book)">
+      <span class="badge">{{book.queue_pos}}</span> {{book.title}}
+    </li>
+  </ul>
+</div>
 
 <app-book-detail [book]="selectedBook"></app-book-detail>
 
-<router-outlet></router-outlet>
+<div class="forms">
 
-<li><a routerLink="/add-book" routerLinkActive="active">Add Book</a></li>
+
+
+  <router-outlet></router-outlet>
+
+  <li><a routerLink="/add-book" routerLinkActive="active">Add Book</a></li>
+</div>
+</div>

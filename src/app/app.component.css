@@ -57,3 +57,17 @@
   margin-right: .8em;
   border-radius: 4px 0 0 4px;
 }
+
+.queue {
+  width: 20%;
+}
+
+.forms {
+  width: 20%
+}
+
+.dashboard{
+  display: flex; /* or inline-flex */
+  flex-direction: row ;
+  justify-content:space-between;
+}
