@@ -3,3 +3,10 @@
 .container {
   flex-flow: column wrap;
 }
+
+div {
+}
+
+mat-button-toggle-group {
+  padding-bottom: 5px;
+}

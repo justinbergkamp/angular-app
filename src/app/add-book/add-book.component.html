@@ -24,11 +24,15 @@
       </mat-form-field>
     </div>
     <div class="">
-    <mat-button-toggle-group   #group="matButtonToggleGroup" (change)="onEndpointValChange(group.value)" multiple="false" formControlName='status'
+    <mat-button-toggle-group  #group="matButtonToggleGroup" (change)="onEndpointValChange(group.value)" multiple="false" formControlName='status'
      [(ngModel)]="myFlagForButtonToggle">
         <mat-button-toggle *ngFor="let item of endpointToggleOptions;" [value]="item">{{item}}</mat-button-toggle>
     </mat-button-toggle-group>
   </div>
+  <div class="">
+
     <button mat-stroked-button class="form-field" type="submit">Submit</button>
+  </div>
+
   </form>
 </div>

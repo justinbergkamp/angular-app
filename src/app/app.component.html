@@ -20,7 +20,10 @@
       <span class="badge">{{book.queue_pos}}</span> {{book.title}}
     </li>
   </ul>
+  <li><a routerLink="/add-book" routerLinkActive="active">Add Book</a></li>
+
 </div>
+
 
 <app-book-detail [book]="selectedBook"></app-book-detail>
 
@@ -30,6 +33,5 @@
 
   <router-outlet></router-outlet>
 
-  <li><a routerLink="/add-book" routerLinkActive="active">Add Book</a></li>
 </div>
 </div>
