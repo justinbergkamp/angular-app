@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { APIService } from './API.service';
 import { Book } from '../types/book';
+import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 
 
 @Component({
@@ -48,15 +49,25 @@ export class AppComponent implements OnInit {
     });
 
   }
-
-
-
+  updateOrder(): void {
+    let  ind = 1;
+    for (var book of this.books){
+      let updatedBook = {"id":book.id, "title":book.title, "description":book.description, "author":book.author, "status":book.status, "queue_pos":ind};
+      book.queue_pos = ind;
+      this.api.UpdateBook(updatedBook).then(event => {
+        console.log('Order Updated');
+      })
+      .catch(e => {
+        console.log('error updating order', e);
+      });
+      ind++;
+    }
+  }
 
 
   onSelect(book: Book): void {
     this.selectedBook = book;
   }
-
 
   public onCreate(book: Book) {
     console.log(book)
@@ -69,4 +80,12 @@ export class AppComponent implements OnInit {
       console.log('error creating restaurant...', e);
     });
   }
+
+  drop(event: CdkDragDrop<string[]>) {
+    console.log(this.books)
+    moveItemInArray(this.books, event.previousIndex, event.currentIndex);
+    console.log(this.books)
+    this.updateOrder();
+  }
+
 }

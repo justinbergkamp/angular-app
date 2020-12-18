@@ -17,6 +17,7 @@ import { BookDetailComponent } from './book-detail/book-detail.component';
 import { AddBookComponent } from './add-book/add-book.component';
 import {MatButtonModule} from '@angular/material/button';
 
+import {DragDropModule} from '@angular/cdk/drag-drop';
 
 
 
@@ -38,7 +39,8 @@ import {MatButtonModule} from '@angular/material/button';
     MatButtonToggleModule,
     MatFormFieldModule,
     MatInputModule,
-    MatButtonModule
+    MatButtonModule,
+    DragDropModule
 
   ],
   providers: [],

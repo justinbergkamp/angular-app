@@ -1,37 +1,37 @@
 <!-- <amplify-authenticator>
-  <div>
-    Restaurants App
-    <amplify-sign-out></amplify-sign-out>
-  </div>
+<div>
+Restaurants App
+<amplify-sign-out></amplify-sign-out>
+</div>
 </amplify-authenticator> -->
 
 
 
-<div class="dashboard">
+
+<div cdkDropList class="example-list dashboard" (cdkDropListDropped)="drop($event)">
 
   <div class="queue">
 
-
-    <h2>My Books</h2>
-    <ul class="books">
-      <li *ngFor="let book of books"
-      [class.selected]="book === selectedBook"
-      (click)="onSelect(book)">
-      <span class="badge">{{book.queue_pos}}</span> {{book.title}}
-    </li>
-  </ul>
+      <h2>My Books</h2>
+      <ul class="books">
+          <li *ngFor="let book of books"
+            cdkDrag
+            [class.selected]="book === selectedBook"
+            (click)="onSelect(book)">
+            <span class="badge">{{book.queue_pos}}</span> {{book.title}}
+          </li>
+      </ul>
   <li><a routerLink="/add-book" routerLinkActive="active">Add Book</a></li>
+  <button mat-stroked-button color="primary" (click)="updateOrder()">Update Order</button>
 
-</div>
 
-
-<app-book-detail [book]="selectedBook"></app-book-detail>
-
-<div class="forms">
+  </div>
 
 
 
-  <router-outlet></router-outlet>
+    <app-book-detail [book]="selectedBook"></app-book-detail>
 
-</div>
+    <div class="forms">
+      <router-outlet></router-outlet>
+    </div>
 </div>
