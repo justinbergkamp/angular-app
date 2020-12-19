@@ -17,7 +17,7 @@ export class AppComponent implements OnInit {
 
   books: Array<Book>;
   myFlagForButtonToggle: String = "Single";
-  endpointToggleOptions: Array<String> = ["Single", "Multiple"];
+  endpointToggleOptions: Array<String> = ["To-Read", "Read"];
 
   selectedBook: Book;
 
@@ -67,6 +67,12 @@ export class AppComponent implements OnInit {
 
   onSelect(book: Book): void {
     this.selectedBook = book;
+  }
+
+  public onFilterChange(val){
+    let filteredBooks = this.books.filter(book => book.status == val)
+    this.books = filteredBooks;
+    console.log(val)
   }
 
   public onCreate(book: Book) {

@@ -13,6 +13,10 @@ Restaurants App
   <div class="queue">
 
       <h2>My Books</h2>
+      <mat-button-toggle-group  multiple #group="matButtonToggleGroup" (change)="onFilterChange(group.value)" multiple="false" formControlName='status'
+       [(ngModel)]="myFlagForButtonToggle">
+          <mat-button-toggle *ngFor="let item of endpointToggleOptions;" [value]="item">{{item}}</mat-button-toggle>
+      </mat-button-toggle-group>
       <ul class="books">
           <li *ngFor="let book of books"
             cdkDrag
