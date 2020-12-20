@@ -15,7 +15,8 @@ export class DashboardComponent implements OnInit {
   mode = '';
 
   books: Array<Book>;
-  myFlagForButtonToggle: String = "Single";
+  allBooks: Array<Book>;
+  myFlagForButtonToggle: Array<String> = [];
   endpointToggleOptions: Array<String> = ["To-Read", "Read"];
 
   selectedBook: Book;
@@ -34,7 +35,8 @@ export class DashboardComponent implements OnInit {
 
     this.api.ListBooks().then(event => {
       this.books = event.items;
-      this.books.sort((a, b) => a.queue_pos < b.queue_pos ? -1 : a.queue_pos > b.queue_pos ? 1 : 0)
+      this.books.sort((a, b) => a.queue_pos < b.queue_pos ? -1 : a.queue_pos > b.queue_pos ? 1 : 0);
+      this.allBooks = this.books;
 
     });
 
@@ -44,6 +46,7 @@ export class DashboardComponent implements OnInit {
       const newBook = event.value.data.onCreateBook;
       this.books = [newBook, ...this.books];
       this.books.sort((a, b) => a.queue_pos < b.queue_pos ? -1 : a.queue_pos > b.queue_pos ? 1 : 0)
+      this.allBooks = this.books;
 
     });
 
@@ -74,9 +77,20 @@ export class DashboardComponent implements OnInit {
   }
 
   public onFilterChange(val){
-    let filteredBooks = this.books.filter(book => book.status == val)
-    this.books = filteredBooks;
-    console.log(val)
+
+    let selectedBooks = [];
+    if (val !=''){
+      for(let filter of val){
+
+        let filteredBooks = this.allBooks.filter(book => book.status == filter);
+
+        selectedBooks = selectedBooks.concat(filteredBooks);
+
+      }
+    }else{
+      selectedBooks = this.allBooks;
+    }
+    this.books = selectedBooks;
   }
 
   public onCreate(book: Book) {
