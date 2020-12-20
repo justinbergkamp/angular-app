@@ -14,6 +14,7 @@ import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 export class AppComponent implements OnInit {
   title = 'amplify-angular-app';
   public createForm: FormGroup;
+  mode = '';
 
   books: Array<Book>;
   myFlagForButtonToggle: String = "Single";
@@ -49,6 +50,11 @@ export class AppComponent implements OnInit {
     });
 
   }
+
+  addBook(){
+    this.mode = 'add';
+  }
+
   updateOrder(): void {
     let  ind = 1;
     for (var book of this.books){
@@ -66,6 +72,7 @@ export class AppComponent implements OnInit {
 
 
   onSelect(book: Book): void {
+    this.mode = 'details';
     this.selectedBook = book;
   }
 

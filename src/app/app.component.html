@@ -5,37 +5,43 @@ Restaurants App
 </div>
 </amplify-authenticator> -->
 
+<div class="dashboard">
 
 
 
-<div cdkDropList class="example-list dashboard" (cdkDropListDropped)="drop($event)">
 
-  <div class="queue">
+  <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
 
-      <h2>My Books</h2>
-      <mat-button-toggle-group  multiple #group="matButtonToggleGroup" (change)="onFilterChange(group.value)" multiple="false" formControlName='status'
-       [(ngModel)]="myFlagForButtonToggle">
+    <div class="queue">
+
+        <h2>My Books</h2>
+        <mat-button-toggle-group  multiple #group="matButtonToggleGroup" (change)="onFilterChange(group.value)" multiple="false" formControlName='status'
+          [(ngModel)]="myFlagForButtonToggle">
           <mat-button-toggle *ngFor="let item of endpointToggleOptions;" [value]="item">{{item}}</mat-button-toggle>
-      </mat-button-toggle-group>
-      <ul class="books">
-          <li *ngFor="let book of books"
-            cdkDrag
-            [class.selected]="book === selectedBook"
-            (click)="onSelect(book)">
-            <span class="badge">{{book.queue_pos}}</span> {{book.title}}
-          </li>
-      </ul>
-  <li><a routerLink="/add-book" routerLinkActive="active">Add Book</a></li>
-  <button mat-stroked-button color="primary" (click)="updateOrder()">Update Order</button>
+        </mat-button-toggle-group>
+        <ul class="books">
+            <li *ngFor="let book of books"
+              cdkDrag
+              [class.selected]="book === selectedBook"
+              (click)="onSelect(book)">
+              <span class="badge">{{book.queue_pos}}</span> {{book.title}}
+            </li>
+          </ul>
+        <button mat-stroked-button color="accent" (click)="addBook()">Add Book</button>
+        <button mat-stroked-button color="primary" (click)="updateOrder()">Update Order</button>
+      </div>
+    </div>
 
 
-  </div>
 
-
-
-    <app-book-detail [book]="selectedBook"></app-book-detail>
 
     <div class="forms">
-      <router-outlet></router-outlet>
+      <div *ngIf="mode==='add'">
+        <app-add-book></app-add-book>
+      </div>
+      <div *ngIf="mode==='details'">
+        <app-book-detail [book]="selectedBook"></app-book-detail>
+      </div>
     </div>
-</div>
+
+  </div>
