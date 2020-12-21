@@ -13,6 +13,8 @@ export class BookDetailComponent implements OnInit {
 
   @Input() book: Book;
 
+  myFlagForButtonToggle: String = "Single";
+  endpointToggleOptions: Array<String> = ["To-Read", "Read"];
 
   constructor(private api: APIService) { }
 
@@ -32,4 +34,9 @@ export class BookDetailComponent implements OnInit {
     });
 
   }
+
+  public onEndpointValChange(val){
+    this.book.status = val;
+  }
+
 }

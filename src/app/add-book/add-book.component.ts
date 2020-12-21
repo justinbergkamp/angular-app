@@ -41,7 +41,7 @@ export class AddBookComponent implements OnInit {
     });
   }
   public onEndpointValChange(val){
-    console.log(val)
+    console.log(val);
   }
 
 
