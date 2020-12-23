@@ -18,6 +18,7 @@ import { AddBookComponent } from './add-book/add-book.component';
 import {MatButtonModule} from '@angular/material/button';
 
 import {DragDropModule} from '@angular/cdk/drag-drop';
+import { LibraryComponent } from './library/library.component';
 
 
 
@@ -27,7 +28,8 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
     AppComponent,
     DashboardComponent,
     BookDetailComponent,
-    AddBookComponent
+    AddBookComponent,
+    LibraryComponent
   ],
   imports: [
     BrowserModule,
