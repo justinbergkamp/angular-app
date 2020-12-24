@@ -13,12 +13,19 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
-import { BookDetailComponent } from './book-detail/book-detail.component';
-import { AddBookComponent } from './add-book/add-book.component';
 import {MatButtonModule} from '@angular/material/button';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatIconModule} from '@angular/material/icon';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatCardModule} from '@angular/material/card';
+
 
 import {DragDropModule} from '@angular/cdk/drag-drop';
+
+
 import { LibraryComponent } from './library/library.component';
+import { BookDetailComponent } from './book-detail/book-detail.component';
+import { AddBookComponent } from './add-book/add-book.component';
 
 
 
@@ -42,7 +49,11 @@ import { LibraryComponent } from './library/library.component';
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    DragDropModule
+    DragDropModule,
+    MatIconModule,
+    MatToolbarModule,
+    MatMenuModule,
+    MatCardModule
 
   ],
   providers: [],

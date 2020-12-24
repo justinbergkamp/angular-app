@@ -5,6 +5,7 @@ Restaurants App
 </div>
 </amplify-authenticator> -->
 
+
 <div class="dashboard">
 
 
@@ -15,7 +16,7 @@ Restaurants App
     <div class="queue">
 
         <h2>My Books</h2>
-        <mat-button-toggle-group #group="matButtonToggleGroup" (change)="onFilterChange(group.value)" multiple="true" 
+        <mat-button-toggle-group #group="matButtonToggleGroup" (change)="onFilterChange(group.value)" multiple="true"
           [(ngModel)]="myFlagForButtonToggle">
           <mat-button-toggle *ngFor="let item of endpointToggleOptions;" [value]="item">{{item}}</mat-button-toggle>
         </mat-button-toggle-group>

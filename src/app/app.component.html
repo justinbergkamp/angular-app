@@ -1,1 +1,26 @@
+<p>
+  <mat-toolbar color="primary">
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+        <a routerLink="/library" routerLinkActive="active">
+          <button mat-menu-item>
+            Library
+          </button>
+        </a>
+
+      <button mat-menu-item>Item 2</button>
+    </mat-menu>
+    <span>My App</span>
+    <span class="example-spacer"></span>
+    <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+      <mat-icon>favorite</mat-icon>
+    </button>
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+      <mat-icon>share</mat-icon>
+    </button>
+  </mat-toolbar>
+</p>
+
 <router-outlet></router-outlet>
