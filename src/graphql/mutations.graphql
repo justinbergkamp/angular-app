@@ -8,6 +8,7 @@ mutation CreateBook(
     title
     description
     author
+    tags
     status
     queue_pos
     createdAt
@@ -23,6 +24,7 @@ mutation UpdateBook(
     title
     description
     author
+    tags
     status
     queue_pos
     createdAt
@@ -38,6 +40,7 @@ mutation DeleteBook(
     title
     description
     author
+    tags
     status
     queue_pos
     createdAt

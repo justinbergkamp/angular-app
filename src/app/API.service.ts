@@ -14,6 +14,7 @@ export type CreateBookInput = {
   title: string;
   description: string;
   author: string;
+  tags?: Array<string | null> | null;
   status: string;
   queue_pos: number;
 };
@@ -22,6 +23,7 @@ export type ModelBookConditionInput = {
   title?: ModelStringInput | null;
   description?: ModelStringInput | null;
   author?: ModelStringInput | null;
+  tags?: ModelStringInput | null;
   status?: ModelStringInput | null;
   queue_pos?: ModelIntInput | null;
   and?: Array<ModelBookConditionInput | null> | null;
@@ -85,6 +87,7 @@ export type UpdateBookInput = {
   title?: string | null;
   description?: string | null;
   author?: string | null;
+  tags?: Array<string | null> | null;
   status?: string | null;
   queue_pos?: number | null;
 };
@@ -98,6 +101,7 @@ export type ModelBookFilterInput = {
   title?: ModelStringInput | null;
   description?: ModelStringInput | null;
   author?: ModelStringInput | null;
+  tags?: ModelStringInput | null;
   status?: ModelStringInput | null;
   queue_pos?: ModelIntInput | null;
   and?: Array<ModelBookFilterInput | null> | null;
@@ -127,6 +131,7 @@ export type CreateBookMutation = {
   title: string;
   description: string;
   author: string;
+  tags: Array<string | null> | null;
   status: string;
   queue_pos: number;
   createdAt: string;
@@ -139,6 +144,7 @@ export type UpdateBookMutation = {
   title: string;
   description: string;
   author: string;
+  tags: Array<string | null> | null;
   status: string;
   queue_pos: number;
   createdAt: string;
@@ -151,6 +157,7 @@ export type DeleteBookMutation = {
   title: string;
   description: string;
   author: string;
+  tags: Array<string | null> | null;
   status: string;
   queue_pos: number;
   createdAt: string;
@@ -163,6 +170,7 @@ export type GetBookQuery = {
   title: string;
   description: string;
   author: string;
+  tags: Array<string | null> | null;
   status: string;
   queue_pos: number;
   createdAt: string;
@@ -177,6 +185,7 @@ export type ListBooksQuery = {
     title: string;
     description: string;
     author: string;
+    tags: Array<string | null> | null;
     status: string;
     queue_pos: number;
     createdAt: string;
@@ -191,6 +200,7 @@ export type OnCreateBookSubscription = {
   title: string;
   description: string;
   author: string;
+  tags: Array<string | null> | null;
   status: string;
   queue_pos: number;
   createdAt: string;
@@ -203,6 +213,7 @@ export type OnUpdateBookSubscription = {
   title: string;
   description: string;
   author: string;
+  tags: Array<string | null> | null;
   status: string;
   queue_pos: number;
   createdAt: string;
@@ -215,6 +226,7 @@ export type OnDeleteBookSubscription = {
   title: string;
   description: string;
   author: string;
+  tags: Array<string | null> | null;
   status: string;
   queue_pos: number;
   createdAt: string;
@@ -236,6 +248,7 @@ export class APIService {
           title
           description
           author
+          tags
           status
           queue_pos
           createdAt
@@ -264,6 +277,7 @@ export class APIService {
           title
           description
           author
+          tags
           status
           queue_pos
           createdAt
@@ -292,6 +306,7 @@ export class APIService {
           title
           description
           author
+          tags
           status
           queue_pos
           createdAt
@@ -317,6 +332,7 @@ export class APIService {
           title
           description
           author
+          tags
           status
           queue_pos
           createdAt
@@ -345,6 +361,7 @@ export class APIService {
             title
             description
             author
+            tags
             status
             queue_pos
             createdAt
@@ -379,6 +396,7 @@ export class APIService {
           title
           description
           author
+          tags
           status
           queue_pos
           createdAt
@@ -399,6 +417,7 @@ export class APIService {
           title
           description
           author
+          tags
           status
           queue_pos
           createdAt
@@ -419,6 +438,7 @@ export class APIService {
           title
           description
           author
+          tags
           status
           queue_pos
           createdAt

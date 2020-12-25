@@ -5,6 +5,7 @@ query GetBook($id: ID!) {
     title
     description
     author
+    tags
     status
     queue_pos
     createdAt
@@ -22,6 +23,7 @@ query ListBooks(
       title
       description
       author
+      tags
       status
       queue_pos
       createdAt

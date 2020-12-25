@@ -5,6 +5,7 @@ subscription OnCreateBook {
     title
     description
     author
+    tags
     status
     queue_pos
     createdAt
@@ -17,6 +18,7 @@ subscription OnUpdateBook {
     title
     description
     author
+    tags
     status
     queue_pos
     createdAt
@@ -29,6 +31,7 @@ subscription OnDeleteBook {
     title
     description
     author
+    tags
     status
     queue_pos
     createdAt
