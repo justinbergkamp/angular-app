@@ -32,7 +32,6 @@ export class DashboardComponent implements OnInit {
       'status': ['', Validators.required]
 
     });
-    console.log("JUSTIN");
 
     this.api.ListBooks().then(event => {
       this.books = event.items;
