@@ -1,8 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { APIService } from '../API.service';
 import { Book } from '../../types/book';
-
+import {COMMA, ENTER} from '@angular/cdk/keycodes';
+import {MatAutocompleteSelectedEvent, MatAutocomplete} from '@angular/material/autocomplete';
+import {MatChipInputEvent} from '@angular/material/chips';
+import {Observable} from 'rxjs';
+import {map, startWith} from 'rxjs/operators';
 
 @Component({
   selector: 'app-add-book',
@@ -13,21 +17,39 @@ export class AddBookComponent implements OnInit {
 
   books: Array<Book>;
 
+  visible = true;
+  selectable = true;
+  removable = true;
+  separatorKeysCodes: number[] = [ENTER, COMMA];
+  filteredTags: Observable<string[]>;
+  currentTags: string[] = [];
+  allTags: string[] = ['Science', 'Fantasy', 'History', 'Philosophy', 'Self-Improvement'];
 
-  constructor(private api: APIService, private fb: FormBuilder) { }
+@ViewChild('tagInput') tagInput: ElementRef<HTMLInputElement>;
+@ViewChild('auto') matAutocomplete: MatAutocomplete;
+
+
+
+  constructor(private api: APIService, private fb: FormBuilder) {
+    this.createForm = this.fb.group({
+      'title': ['', Validators.required],
+      'description': ['', Validators.required],
+      'author': ['', Validators.required],
+      'tagControl': [''],
+      'status': ['', Validators.required]
+
+    });
+    this.filteredTags = this.createForm.controls.tagControl.valueChanges.pipe(
+            startWith(null),
+            map((tag: string | null) => tag ? this._filter(tag) : this.allTags.slice()));
+  }
 
   public createForm: FormGroup;
   myFlagForButtonToggle: String = "Single";
   endpointToggleOptions: Array<String> = ["To-Read", "Read"];
 
   ngOnInit(): void {
-    this.createForm = this.fb.group({
-      'title': ['', Validators.required],
-      'description': ['', Validators.required],
-      'author': ['', Validators.required],
-      'status': ['', Validators.required]
 
-    });
 
     this.api.ListBooks().then(event => {
       this.books = event.items;
@@ -56,5 +78,43 @@ export class AddBookComponent implements OnInit {
       console.log('error creating restaurant...', e);
     });
   }
+
+  add(event: MatChipInputEvent): void {
+    const input = event.input;
+    const value = event.value;
+
+    // Add our fruit
+    if ((value || '').trim()) {
+      this.currentTags.push(value.trim());
+    }
+
+    // Reset the input value
+    if (input) {
+      input.value = '';
+    }
+
+    this.createForm.controls.tagControl.setValue(null);
+  }
+
+  remove(fruit: string): void {
+    const index = this.currentTags.indexOf(fruit);
+
+    if (index >= 0) {
+      this.currentTags.splice(index, 1);
+    }
+  }
+
+  selected(event: MatAutocompleteSelectedEvent): void {
+    this.currentTags.push(event.option.viewValue);
+    this.tagInput.nativeElement.value = '';
+    this.createForm.controls.tagControl.setValue(null);
+  }
+
+  private _filter(value: string): string[] {
+    const filterValue = value.toLowerCase();
+
+    return this.allTags.filter(tag => tag.toLowerCase().indexOf(filterValue) === 0);
+  }
+
 
 }

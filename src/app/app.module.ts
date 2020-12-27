@@ -18,6 +18,8 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatCardModule} from '@angular/material/card';
+import {MatChipsModule} from '@angular/material/chips';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 
 
 import {DragDropModule} from '@angular/cdk/drag-drop';
@@ -53,7 +55,9 @@ import { AddBookComponent } from './add-book/add-book.component';
     MatIconModule,
     MatToolbarModule,
     MatMenuModule,
-    MatCardModule
+    MatCardModule,
+    MatChipsModule,
+    MatAutocompleteModule
 
   ],
   providers: [],

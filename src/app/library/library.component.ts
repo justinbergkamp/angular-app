@@ -12,6 +12,7 @@ export class LibraryComponent implements OnInit {
   mode = '';
 
   books: Array<Book>;
+  allBooks: Array<Book>;
   toReadBooks: Array<Book>;
   queuedBooks: Array<Book>;
   completedBooks: Array<Book>;
@@ -26,12 +27,16 @@ export class LibraryComponent implements OnInit {
   ngOnInit(): void {
     this.api.ListBooks().then(event => {
       this.books = event.items;
+      this.books.sort((a, b) => a.queue_pos < b.queue_pos ? -1 : a.queue_pos > b.queue_pos ? 1 : 0);
+      this.allBooks = this.books;
+
     });
 
     this.api.OnCreateBookListener.subscribe( (event: any) => {
       const newBook = event.value.data.onCreateBook;
       this.books = [newBook, ...this.books];
       this.books.sort((a, b) => a.queue_pos < b.queue_pos ? -1 : a.queue_pos > b.queue_pos ? 1 : 0)
+      this.allBooks = this.books;
 
     });
   }
@@ -52,13 +57,13 @@ export class LibraryComponent implements OnInit {
     if (val !=''){
       for(let filter of val){
 
-        let filteredBooks = this.books.filter(book => book.status == filter);
+        let filteredBooks = this.allBooks.filter(book => book.status == filter);
 
         selectedBooks = selectedBooks.concat(filteredBooks);
 
       }
     }else{
-      selectedBooks = this.books;
+      selectedBooks = this.allBooks;
     }
     this.books = selectedBooks;
   }
