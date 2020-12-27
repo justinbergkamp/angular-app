@@ -1,9 +1,11 @@
 .example-card {
   max-width: 400px;
+  outline: 6px black;
 }
 
 .example-header-image {
-  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+
+  background-image: url('../../assets/menu_book.svg');
   background-size: cover;
 }
 
@@ -120,8 +122,4 @@
 
 .example-box:last-child {
   border: none;
-}
-
-.example-list.cdk-drop-list-dragging .example-box:not(.cdk-drag-placeholder) {
-  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }
