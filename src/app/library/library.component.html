@@ -18,23 +18,48 @@
   </mat-card-actions>
 </mat-card> -->
 
-<div class="queue">
+<!-- <amplify-authenticator>
+<div>
+Restaurants App
+<amplify-sign-out></amplify-sign-out>
+</div>
+</amplify-authenticator> -->
 
-    <h2>My Books</h2>
-    <mat-button-toggle-group #group="matButtonToggleGroup" (change)="onFilterChange(group.value)" multiple="true"
-      [(ngModel)]="myFlagForButtonToggle">
-      <mat-button-toggle *ngFor="let item of endpointToggleOptions;" [value]="item">{{item}}</mat-button-toggle>
-    </mat-button-toggle-group>
-    <ul class="books">
-        <li *ngFor="let book of books"
-          cdkDrag
-          [class.selected]="book === selectedBook"
-          (click)="onSelect(book)">
-          {{book.title}}
-        </li>
-      </ul>
-  </div>
 
-  <div *ngIf="mode==='details'">
-    <app-book-detail [book]="selectedBook"></app-book-detail>
+<div class="library">
+
+
+
+
+
+    <div class="queue">
+
+        <h2>My Books</h2>
+        <mat-button-toggle-group #group="matButtonToggleGroup" (change)="onFilterChange(group.value)" multiple="true"
+          [(ngModel)]="myFlagForButtonToggle">
+          <mat-button-toggle *ngFor="let item of endpointToggleOptions;" [value]="item">{{item}}</mat-button-toggle>
+        </mat-button-toggle-group>
+        <ul class="books">
+            <li *ngFor="let book of books"
+              cdkDrag
+              [class.selected]="book === selectedBook"
+              (click)="onSelect(book)">
+              <span class="badge">{{book.queue_pos}}</span> {{book.title}}
+            </li>
+          </ul>
+        <button mat-stroked-button color="accent" (click)="addBook()">Add Book</button>
+      </div>
+
+
+
+
+    <div class="forms">
+      <div *ngIf="mode==='add'">
+        <app-add-book></app-add-book>
+      </div>
+      <div *ngIf="mode==='details'">
+        <app-book-detail [book]="selectedBook"></app-book-detail>
+      </div>
+    </div>
+
   </div>
