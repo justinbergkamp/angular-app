@@ -17,7 +17,7 @@ export class LibraryComponent implements OnInit {
   completedBooks: Array<Book>;
 
   myFlagForButtonToggle: Array<String> = [];
-  endpointToggleOptions: Array<String> = ["To-Read", "Read"];
+  endpointToggleOptions: Array<String> = ["Backlog", "Enqueued", "Current", "Done"];
 
   selectedBook: Book;
 
@@ -40,6 +40,11 @@ export class LibraryComponent implements OnInit {
     this.mode = 'details';
     this.selectedBook = book;
   }
+
+  addBook(){
+    this.mode = 'add';
+  }
+
 
   public onFilterChange(val){
 
