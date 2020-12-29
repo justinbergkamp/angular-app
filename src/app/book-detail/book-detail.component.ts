@@ -14,7 +14,7 @@ export class BookDetailComponent implements OnInit {
   @Input() book: Book;
 
   myFlagForButtonToggle: String = "Single";
-  endpointToggleOptions: Array<String> = ["To-Read", "Read"];
+  endpointToggleOptions: Array<String> = ["Backlog", "Enqueued", "Current", "Done"];
 
   constructor(private api: APIService) { }
 

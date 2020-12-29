@@ -35,11 +35,11 @@ export class AddBookComponent implements OnInit {
       'title': ['', Validators.required],
       'description': ['', Validators.required],
       'author': ['', Validators.required],
-      'tagControl': [''],
+      'tags': [''],
       'status': ['', Validators.required]
 
     });
-    this.filteredTags = this.createForm.controls.tagControl.valueChanges.pipe(
+    this.filteredTags = this.createForm.controls.tags.valueChanges.pipe(
             startWith(null),
             map((tag: string | null) => tag ? this._filter(tag) : this.allTags.slice()));
   }
@@ -93,7 +93,7 @@ export class AddBookComponent implements OnInit {
       input.value = '';
     }
 
-    this.createForm.controls.tagControl.setValue(null);
+    this.createForm.controls.tags.setValue(null);
   }
 
   remove(fruit: string): void {
@@ -107,7 +107,7 @@ export class AddBookComponent implements OnInit {
   selected(event: MatAutocompleteSelectedEvent): void {
     this.currentTags.push(event.option.viewValue);
     this.tagInput.nativeElement.value = '';
-    this.createForm.controls.tagControl.setValue(null);
+    this.createForm.controls.tags.setValue(null);
   }
 
   private _filter(value: string): string[] {
