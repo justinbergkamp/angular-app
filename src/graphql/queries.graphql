@@ -3,11 +3,14 @@ query GetBook($id: ID!) {
   getBook(id: $id) {
     id
     title
-    description
     author
-    tags
     status
+    description
+    pageNumber
+    tags
     queue_pos
+    startDate
+    finishDate
     createdAt
     updatedAt
   }
@@ -21,11 +24,14 @@ query ListBooks(
     items {
       id
       title
-      description
       author
-      tags
       status
+      description
+      pageNumber
+      tags
       queue_pos
+      startDate
+      finishDate
       createdAt
       updatedAt
     }

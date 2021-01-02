@@ -1,9 +1,12 @@
 type Book @model {
   id: ID!
   title: String!
-  description: String!
   author: String!
+  status: Int!
+  description: String
+  pageNumber: Int
   tags: [String]
-  status: String!
-  queue_pos: Int!
+  queue_pos: Int
+  startDate: String
+  finishDate: String
 }

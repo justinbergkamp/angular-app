@@ -20,6 +20,8 @@ import {MatMenuModule} from '@angular/material/menu';
 import {MatCardModule} from '@angular/material/card';
 import {MatChipsModule} from '@angular/material/chips';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 
 import {DragDropModule} from '@angular/cdk/drag-drop';
@@ -57,7 +59,9 @@ import { AddBookComponent } from './add-book/add-book.component';
     MatMenuModule,
     MatCardModule,
     MatChipsModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatDatepickerModule,
+    MatNativeDateModule
 
   ],
   providers: [],
