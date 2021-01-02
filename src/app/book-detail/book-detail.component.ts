@@ -22,6 +22,7 @@ export class BookDetailComponent implements OnInit {
 
   currentStatus = '';
 
+
   visible = true;
   selectable = true;
   removable = true;
@@ -34,7 +35,7 @@ export class BookDetailComponent implements OnInit {
 
   tagSearch = "";
 
-  endpointToggleOptions: Array<String> = ["Backlog", "Enqueued", "Current", "Done"];
+  endpointToggleOptions: Array<String> = ["Backlog", "Groomed", "Current", "Done"];
 
 
   @ViewChild('tagInput') tagInput: ElementRef<HTMLInputElement>;
