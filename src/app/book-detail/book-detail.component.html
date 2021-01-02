@@ -2,6 +2,7 @@
 <div class="outer-container" *ngIf="book">
   <div class="container">
   <h2>{{book.title}} Details</h2>
+
   <div>
     <mat-form-field class="form-field" appearance="outline">
     <mat-label> Title
@@ -23,9 +24,40 @@
     <input matInput [(ngModel)]="book.description" placeholder="Description">
   </mat-form-field>
   </div>
+
   <div class="">
-  <mat-button-toggle-group  #group="matButtonToggleGroup" (change)="onEndpointValChange(group.value)" multiple="false" formControlName='status'
-   [(ngModel)]="myFlagForButtonToggle">
+    <mat-form-field class="example-chip-list">
+      <mat-label>Tags</mat-label>
+      <mat-chip-list #chipList aria-label="Add Tags">
+        <mat-chip
+          *ngFor="let tag of currentTags"
+          [selectable]="selectable"
+          [removable]="removable"
+          (removed)="remove(tag)">
+          {{tag}}
+          <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+        </mat-chip>
+        <input
+          placeholder="Add Tag"
+          #tagInput
+
+          [matAutocomplete]="auto"
+          [matChipInputFor]="chipList"
+          [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+          (matChipInputTokenEnd)="add($event)">
+      </mat-chip-list>
+      <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+        <mat-option *ngFor="let tag of filteredTags | async" [value]="tag">
+          {{tag}}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+  </div>
+
+
+  <div class="">
+  <mat-button-toggle-group  #group="matButtonToggleGroup" (change)="onEndpointValChange(group.value)" multiple="false"
+   [(ngModel)]="book.status">
       <mat-button-toggle *ngFor="let item of endpointToggleOptions;" [value]="item">{{item}}</mat-button-toggle>
   </mat-button-toggle-group>
 </div>
