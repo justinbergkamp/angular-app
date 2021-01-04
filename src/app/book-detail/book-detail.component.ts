@@ -22,6 +22,7 @@ export class BookDetailComponent implements OnInit {
   statusOptions: Array<String> = ["Backlog", "Groomed", "Queued",  "Current", "Done"];
   public updateForm: FormGroup;
 
+  currentStatus = String;
 
  // information needed for the tags
   visible = true;
@@ -53,8 +54,9 @@ export class BookDetailComponent implements OnInit {
       'description': [''],
       'pageNumber': [''],
       'tags': [''],
-      'status': ['', Validators.required]
-
+      'status': ['', Validators.required],
+      'startDate': [''],
+      'finishDate': ['']
     });
 
     this.filteredTags = this.updateForm.controls.tags.valueChanges.pipe(
@@ -86,9 +88,9 @@ export class BookDetailComponent implements OnInit {
   }
 
   public onStatusUpdate(val){
-
-    this.book.status = this.statusOptions.indexOf(val);
-    console.log(this.book.status );
+    console.log(val);
+    this.book.status = val;
+    console.log(this.book.status);
 
   }
 
