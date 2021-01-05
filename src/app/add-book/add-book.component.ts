@@ -73,6 +73,7 @@ export class AddBookComponent implements OnInit {
 
     book.queue_pos = this.books.length+1;
     book.status = 0;
+    book.tags = this.currentTags;
     this.api.CreateBook(book).then(event => {
       console.log('item created!');
       this.createForm.reset();
