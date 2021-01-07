@@ -22,7 +22,6 @@ export class BookDetailComponent implements OnInit {
   statusOptions: Array<String> = ["Backlog", "Groomed", "Queued",  "Current", "Done"];
   public updateForm: FormGroup;
 
-  currentStatus = String;
 
  // information needed for the tags
   visible = true;
@@ -32,6 +31,9 @@ export class BookDetailComponent implements OnInit {
   filteredTags: Observable<string[]>;
   currentTags: string[] = [];
   allTags: string[] = ['Science', 'Fantasy', 'History', 'Philosophy', 'Self-Improvement'];
+
+  currentStatus: String = "Backlog";
+
 
   @ViewChild('tagInput') tagInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto') matAutocomplete: MatAutocomplete;
@@ -63,14 +65,28 @@ export class BookDetailComponent implements OnInit {
             startWith(null),
             map((tag: string | null) => tag ? this._filter(tag) : this.allTags.slice()));
 
+            console.log("AHHHH");
+
+
   }
 
   ngOnInit(): void {
 
     this.updateForm.patchValue({title: this.book.title, author: this.book.author, status: this.book.status});
     this.currentTags = this.book.tags;
+    this.currentStatus = this.statusOptions[this.book.status];
+    console.log("AHHHH");
+    console.log(this.currentStatus);
 
   }
+
+  ngOnChanges(changes: SimpleChanges) {
+
+    console.log("AsasaHHHH");
+    // You can also use categoryId.previousValue and
+    // categoryId.firstChange for comparing old and new values
+
+}
 
 
   updateBook(book: Book){
