@@ -2,6 +2,8 @@ import { Book } from '../../types/book';
 import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 import { APIService } from '../API.service';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { SimpleChanges } from '@angular/core';
+
 
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import {MatAutocompleteSelectedEvent, MatAutocomplete} from '@angular/material/autocomplete';
@@ -72,19 +74,22 @@ export class BookDetailComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.updateForm.patchValue({title: this.book.title, author: this.book.author, status: this.book.status});
-    this.currentTags = this.book.tags;
-    this.currentStatus = this.statusOptions[this.book.status];
-    console.log("AHHHH");
-    console.log(this.currentStatus);
+
 
   }
 
   ngOnChanges(changes: SimpleChanges) {
 
-    console.log("AsasaHHHH");
-    // You can also use categoryId.previousValue and
-    // categoryId.firstChange for comparing old and new values
+    this.updateForm.patchValue({title: this.book.title, author: this.book.author, status: this.book.status,
+    description: this.book.description, pageNumber: this.book.pageNumber,tags: this.book.tags,
+    startDate: this.book.startDate, finishDate: this.book.finishDate});
+    this.currentTags = this.book.tags;
+    if (this.currentTags == null) {
+      this.currentTags = [];
+    }
+
+    this.currentStatus = this.statusOptions[this.book.status];
+
 
 }
 
@@ -93,7 +98,19 @@ export class BookDetailComponent implements OnInit {
     console.log("JUSTIN")
     console.log(this.book);
     console.log(book);
-    let updatedBook = {"id":this.book.id, "title":this.book.title, "description":this.book.description, "author":this.book.author, "status":this.book.status, "queue_pos":this.book.queue_pos, "tags":[]};
+    let updatedBook = {
+      "id": this.book.id,
+      "title": book.title,
+      "author": book.author,
+      "status": book.status,
+      "description": book.description,
+      "pageNumber": book.pageNumber,
+      "queue_pos": this.book.queue_pos,
+      "tags": this.currentTags,
+      "startDate": book.startDate,
+      "finishDate": book.finishDate
+   };
+   console.log(updatedBook);
 
     this.api.UpdateBook(updatedBook).then(event => {
       console.log('item updated!');
@@ -145,7 +162,7 @@ export class BookDetailComponent implements OnInit {
   }
 
   private _filter(value: string): string[] {
-    const filterValue = value.toLowerCase();
+    const filterValue = value.toString().toLowerCase();
 
     return this.allTags.filter(tag => tag.toLowerCase().indexOf(filterValue) === 0);
   }

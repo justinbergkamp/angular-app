@@ -6,6 +6,7 @@ export type Book = {
   tags: Array<string>,
   status: number,
   queue_pos: number,
+  pageNumber: number,
   startDate: string,
   finishDate: string,
 };
