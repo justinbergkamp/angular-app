@@ -9,18 +9,20 @@
         <input matInput formControlName="title" required>
       </mat-form-field>
     </div>
-    <div class="">
-      <mat-form-field class="form-field" appearance="outline">
-        <mat-label> Description
-        </mat-label>
-        <input matInput formControlName="description" >
-      </mat-form-field>
-    </div>
+
     <div class="">
       <mat-form-field class="form-field" appearance="outline">
         <mat-label> Author
         </mat-label>
         <input matInput formControlName="author" required>
+      </mat-form-field>
+    </div>
+
+    <div class="">
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label> Description
+        </mat-label>
+        <input matInput formControlName="description" >
       </mat-form-field>
     </div>
 
@@ -54,12 +56,6 @@
     </div>
 
 
-    <div class="">
-    <mat-button-toggle-group  #group="matButtonToggleGroup" (change)="onEndpointValChange(group.value)" multiple="false" formControlName='status'
-     [(ngModel)]="myFlagForButtonToggle">
-        <mat-button-toggle *ngFor="let item of endpointToggleOptions;" [value]="item">{{item}}</mat-button-toggle>
-    </mat-button-toggle-group>
-  </div>
   <div class="">
 
     <button mat-stroked-button class="form-field" type="submit">Submit</button>

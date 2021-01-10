@@ -40,6 +40,17 @@ export class DashboardComponent implements OnInit {
 
     });
 
+    /* subscribe to new restaurants being created */
+    this.api.OnUpdateBookListener.subscribe( (event: any) => {
+      this.api.ListBooks().then(event => {
+        this.books = event.items;
+        this.books.sort((a, b) => a.queue_pos < b.queue_pos ? -1 : a.queue_pos > b.queue_pos ? 1 : 0);
+        this.allBooks = this.books;
+
+      });
+
+    });
+
 
     /* subscribe to new restaurants being created */
     this.api.OnCreateBookListener.subscribe( (event: any) => {

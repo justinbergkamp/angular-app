@@ -3,11 +3,14 @@ subscription OnCreateBook {
   onCreateBook {
     id
     title
-    description
     author
-    tags
     status
+    description
+    pageNumber
+    tags
     queue_pos
+    startDate
+    finishDate
     createdAt
     updatedAt
   }
@@ -16,11 +19,14 @@ subscription OnUpdateBook {
   onUpdateBook {
     id
     title
-    description
     author
-    tags
     status
+    description
+    pageNumber
+    tags
     queue_pos
+    startDate
+    finishDate
     createdAt
     updatedAt
   }
@@ -29,11 +35,14 @@ subscription OnDeleteBook {
   onDeleteBook {
     id
     title
-    description
     author
-    tags
     status
+    description
+    pageNumber
+    tags
     queue_pos
+    startDate
+    finishDate
     createdAt
     updatedAt
   }

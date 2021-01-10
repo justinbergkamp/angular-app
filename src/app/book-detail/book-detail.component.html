@@ -1,34 +1,97 @@
 
 <div class="outer-container" *ngIf="book">
   <div class="container">
-  <h2>{{book.title}} Details</h2>
-  <div>
-    <mat-form-field class="form-field" appearance="outline">
-    <mat-label> Title
-    </mat-label>
-    <input matInput [(ngModel)]="book.title" placeholder="Title">
-  </mat-form-field>
+    <h2>{{book.title}} Details</h2>
+    <form autocomplete="off" [formGroup]="updateForm" (ngSubmit)="updateBook(updateForm.value)">
+
+      <div>
+        <mat-form-field class="form-field" appearance="outline">
+          <mat-label> Title
+          </mat-label>
+          <input matInput formControlName="title" placeholder="Title">
+        </mat-form-field>
+      </div>
+
+      <div >
+        <mat-form-field class="form-field" appearance="outline">
+          <mat-label> Author
+          </mat-label>
+          <input matInput formControlName="author" placeholder="Author">
+        </mat-form-field>
+      </div>
+
+
+      <div *ngIf="book.status > 0">
+        <!-- <mat-form-field class="form-field" appearance="outline">
+          <mat-label> Description
+          </mat-label>
+          <input matInput formControlName="description" placeholder="Description">
+        </mat-form-field> -->
+
+        <mat-form-field class="form-field" appearance="outline">
+          <mat-label> Pages
+          </mat-label>
+          <input matInput  formControlName="pageNumber" placeholder="Page Number">
+        </mat-form-field>
+
+        <div class="">
+          <mat-form-field class="example-chip-list">
+            <mat-label>Tags</mat-label>
+            <mat-chip-list #chipList aria-label="Add Tags">
+              <mat-chip
+                *ngFor="let tag of currentTags"
+                [selectable]="selectable"
+                [removable]="removable"
+                (removed)="remove(tag)">
+                {{tag}}
+                <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+              </mat-chip>
+              <input
+                placeholder="Add Tag"
+                #tagInput
+                formControlName="tags"
+                [matAutocomplete]="auto"
+                [matChipInputFor]="chipList"
+                [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                (matChipInputTokenEnd)="add($event)">
+            </mat-chip-list>
+            <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+              <mat-option *ngFor="let tag of filteredTags | async" [value]="tag">
+                {{tag}}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+        </div>
+
+      </div>
+
+      <div *ngIf="book.status > 2">
+        <mat-form-field appearance="fill">
+          <mat-label>Choose a date</mat-label>
+          <input matInput formControlName="startDate" [matDatepicker]="picker">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </div>
+
+      <div *ngIf="book.status > 3">
+        <mat-form-field appearance="fill">
+          <mat-label>Choose a date</mat-label>
+          <input matInput formControlName="finishDate" [matDatepicker]="picker">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </div>
+
+
+      <div class="">
+        <mat-button-toggle-group  #group="matButtonToggleGroup" (change)="onStatusUpdate(group.value)" multiple="false"
+        formControlName="status" value = "currentStatus">
+        <mat-button-toggle *ngFor="let item of statusOptions; let i = index" [value]="i">{{item}}</mat-button-toggle>
+      </mat-button-toggle-group>
+    </div>
+    <button mat-stroked-button color="primary"  type="submit">Update</button>
+
+  </form>
   </div>
-  <div >
-    <mat-form-field class="form-field" appearance="outline">
-    <mat-label> Author
-    </mat-label>
-    <input matInput [(ngModel)]="book.author" placeholder="Author">
-  </mat-form-field>
-  </div>
-  <div >
-    <mat-form-field class="form-field" appearance="outline">
-    <mat-label> Description
-    </mat-label>
-    <input matInput [(ngModel)]="book.description" placeholder="Description">
-  </mat-form-field>
-  </div>
-  <div class="">
-  <mat-button-toggle-group  #group="matButtonToggleGroup" (change)="onEndpointValChange(group.value)" multiple="false" formControlName='status'
-   [(ngModel)]="myFlagForButtonToggle">
-      <mat-button-toggle *ngFor="let item of endpointToggleOptions;" [value]="item">{{item}}</mat-button-toggle>
-  </mat-button-toggle-group>
-</div>
-  <button mat-stroked-button color="primary" (click)="updateBook()">Update</button>
-</div>
 </div>

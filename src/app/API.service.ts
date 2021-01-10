@@ -12,20 +12,26 @@ export interface SubscriptionResponse<T> {
 export type CreateBookInput = {
   id?: string | null;
   title: string;
-  description: string;
   author: string;
+  status: number;
+  description?: string | null;
+  pageNumber?: number | null;
   tags?: Array<string | null> | null;
-  status: string;
-  queue_pos: number;
+  queue_pos?: number | null;
+  startDate?: string | null;
+  finishDate?: string | null;
 };
 
 export type ModelBookConditionInput = {
   title?: ModelStringInput | null;
-  description?: ModelStringInput | null;
   author?: ModelStringInput | null;
+  status?: ModelIntInput | null;
+  description?: ModelStringInput | null;
+  pageNumber?: ModelIntInput | null;
   tags?: ModelStringInput | null;
-  status?: ModelStringInput | null;
   queue_pos?: ModelIntInput | null;
+  startDate?: ModelStringInput | null;
+  finishDate?: ModelStringInput | null;
   and?: Array<ModelBookConditionInput | null> | null;
   or?: Array<ModelBookConditionInput | null> | null;
   not?: ModelBookConditionInput | null;
@@ -85,11 +91,14 @@ export type ModelIntInput = {
 export type UpdateBookInput = {
   id: string;
   title?: string | null;
-  description?: string | null;
   author?: string | null;
+  status?: number | null;
+  description?: string | null;
+  pageNumber?: number | null;
   tags?: Array<string | null> | null;
-  status?: string | null;
   queue_pos?: number | null;
+  startDate?: string | null;
+  finishDate?: string | null;
 };
 
 export type DeleteBookInput = {
@@ -99,11 +108,14 @@ export type DeleteBookInput = {
 export type ModelBookFilterInput = {
   id?: ModelIDInput | null;
   title?: ModelStringInput | null;
-  description?: ModelStringInput | null;
   author?: ModelStringInput | null;
+  status?: ModelIntInput | null;
+  description?: ModelStringInput | null;
+  pageNumber?: ModelIntInput | null;
   tags?: ModelStringInput | null;
-  status?: ModelStringInput | null;
   queue_pos?: ModelIntInput | null;
+  startDate?: ModelStringInput | null;
+  finishDate?: ModelStringInput | null;
   and?: Array<ModelBookFilterInput | null> | null;
   or?: Array<ModelBookFilterInput | null> | null;
   not?: ModelBookFilterInput | null;
@@ -129,11 +141,14 @@ export type CreateBookMutation = {
   __typename: "Book";
   id: string;
   title: string;
-  description: string;
   author: string;
+  status: number;
+  description: string | null;
+  pageNumber: number | null;
   tags: Array<string | null> | null;
-  status: string;
-  queue_pos: number;
+  queue_pos: number | null;
+  startDate: string | null;
+  finishDate: string | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -142,11 +157,14 @@ export type UpdateBookMutation = {
   __typename: "Book";
   id: string;
   title: string;
-  description: string;
   author: string;
+  status: number;
+  description: string | null;
+  pageNumber: number | null;
   tags: Array<string | null> | null;
-  status: string;
-  queue_pos: number;
+  queue_pos: number | null;
+  startDate: string | null;
+  finishDate: string | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -155,11 +173,14 @@ export type DeleteBookMutation = {
   __typename: "Book";
   id: string;
   title: string;
-  description: string;
   author: string;
+  status: number;
+  description: string | null;
+  pageNumber: number | null;
   tags: Array<string | null> | null;
-  status: string;
-  queue_pos: number;
+  queue_pos: number | null;
+  startDate: string | null;
+  finishDate: string | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -168,11 +189,14 @@ export type GetBookQuery = {
   __typename: "Book";
   id: string;
   title: string;
-  description: string;
   author: string;
+  status: number;
+  description: string | null;
+  pageNumber: number | null;
   tags: Array<string | null> | null;
-  status: string;
-  queue_pos: number;
+  queue_pos: number | null;
+  startDate: string | null;
+  finishDate: string | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -183,11 +207,14 @@ export type ListBooksQuery = {
     __typename: "Book";
     id: string;
     title: string;
-    description: string;
     author: string;
+    status: number;
+    description: string | null;
+    pageNumber: number | null;
     tags: Array<string | null> | null;
-    status: string;
-    queue_pos: number;
+    queue_pos: number | null;
+    startDate: string | null;
+    finishDate: string | null;
     createdAt: string;
     updatedAt: string;
   } | null> | null;
@@ -198,11 +225,14 @@ export type OnCreateBookSubscription = {
   __typename: "Book";
   id: string;
   title: string;
-  description: string;
   author: string;
+  status: number;
+  description: string | null;
+  pageNumber: number | null;
   tags: Array<string | null> | null;
-  status: string;
-  queue_pos: number;
+  queue_pos: number | null;
+  startDate: string | null;
+  finishDate: string | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -211,11 +241,14 @@ export type OnUpdateBookSubscription = {
   __typename: "Book";
   id: string;
   title: string;
-  description: string;
   author: string;
+  status: number;
+  description: string | null;
+  pageNumber: number | null;
   tags: Array<string | null> | null;
-  status: string;
-  queue_pos: number;
+  queue_pos: number | null;
+  startDate: string | null;
+  finishDate: string | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -224,11 +257,14 @@ export type OnDeleteBookSubscription = {
   __typename: "Book";
   id: string;
   title: string;
-  description: string;
   author: string;
+  status: number;
+  description: string | null;
+  pageNumber: number | null;
   tags: Array<string | null> | null;
-  status: string;
-  queue_pos: number;
+  queue_pos: number | null;
+  startDate: string | null;
+  finishDate: string | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -246,11 +282,14 @@ export class APIService {
           __typename
           id
           title
-          description
           author
-          tags
           status
+          description
+          pageNumber
+          tags
           queue_pos
+          startDate
+          finishDate
           createdAt
           updatedAt
         }
@@ -275,11 +314,14 @@ export class APIService {
           __typename
           id
           title
-          description
           author
-          tags
           status
+          description
+          pageNumber
+          tags
           queue_pos
+          startDate
+          finishDate
           createdAt
           updatedAt
         }
@@ -304,11 +346,14 @@ export class APIService {
           __typename
           id
           title
-          description
           author
-          tags
           status
+          description
+          pageNumber
+          tags
           queue_pos
+          startDate
+          finishDate
           createdAt
           updatedAt
         }
@@ -330,11 +375,14 @@ export class APIService {
           __typename
           id
           title
-          description
           author
-          tags
           status
+          description
+          pageNumber
+          tags
           queue_pos
+          startDate
+          finishDate
           createdAt
           updatedAt
         }
@@ -359,11 +407,14 @@ export class APIService {
             __typename
             id
             title
-            description
             author
-            tags
             status
+            description
+            pageNumber
+            tags
             queue_pos
+            startDate
+            finishDate
             createdAt
             updatedAt
           }
@@ -394,11 +445,14 @@ export class APIService {
           __typename
           id
           title
-          description
           author
-          tags
           status
+          description
+          pageNumber
+          tags
           queue_pos
+          startDate
+          finishDate
           createdAt
           updatedAt
         }
@@ -415,11 +469,14 @@ export class APIService {
           __typename
           id
           title
-          description
           author
-          tags
           status
+          description
+          pageNumber
+          tags
           queue_pos
+          startDate
+          finishDate
           createdAt
           updatedAt
         }
@@ -436,11 +493,14 @@ export class APIService {
           __typename
           id
           title
-          description
           author
-          tags
           status
+          description
+          pageNumber
+          tags
           queue_pos
+          startDate
+          finishDate
           createdAt
           updatedAt
         }
