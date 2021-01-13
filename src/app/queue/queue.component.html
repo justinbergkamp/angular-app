@@ -3,10 +3,6 @@
   <div class="queue">
 
       <h2>My Books</h2>
-      <mat-button-toggle-group #group="matButtonToggleGroup" (change)="onFilterChange(group.value)" multiple="true"
-        [(ngModel)]="myFlagForButtonToggle">
-        <mat-button-toggle *ngFor="let item of endpointToggleOptions;" [value]="item">{{item}}</mat-button-toggle>
-      </mat-button-toggle-group>
       <ul class="books">
           <li *ngFor="let book of books"
             cdkDrag
@@ -15,7 +11,6 @@
             <span class="badge">{{book.queue_pos}}</span> {{book.title}}
           </li>
         </ul>
-      <button mat-stroked-button color="accent" (click)="addBook()">Add Book</button>
       <button mat-stroked-button color="primary" (click)="updateOrder()">Update Order</button>
     </div>
   </div>
