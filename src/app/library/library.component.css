@@ -26,8 +26,6 @@
 
 
 
-
-
 .queue {
   width: 900px;
   background-color: green;
@@ -39,7 +37,7 @@
   flex-direction: row ;
   flex-wrap: wrap;
   justify-content:flex-start;
-  background-color: pink;
+  background-color: gray;
 
 }
 
@@ -60,7 +58,7 @@
   flex-direction: row ;
   flex-wrap: wrap;
   justify-content:space-around;
-  background-color: blue;
+  background-color: lightblue;
 }
 /*
 .example-list {
