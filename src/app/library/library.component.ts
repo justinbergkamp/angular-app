@@ -62,23 +62,18 @@ export class LibraryComponent implements OnInit {
     // need to check user for deletion
     console.log(book);
 
-    this.mode = 'none';
-
-    console.log(this.mode);
-
-
     let deletedBook = {
       "id": book.id
    };
 
-
     this.api.DeleteBook(deletedBook).then(event => {
       console.log('item deleted!');
+      this.mode = 'none';
+
     })
     .catch(e => {
       console.log('error deleting book...', e);
     });
-
 
   }
 
