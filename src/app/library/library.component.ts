@@ -18,24 +18,32 @@ export class LibraryComponent implements OnInit {
   completedBooks: Array<Book>;
 
   myFlagForButtonToggle: Array<String> = [];
-  endpointToggleOptions: Array<String> = ["Backlog", "Enqueued", "Current", "Done"];
+  endpointToggleOptions: Array<String> = ["Backlog", "Ready", "Current", "Done"];
 
   selectedBook: Book;
 
   constructor(private api: APIService) { }
 
   ngOnInit(): void {
-    this.api.ListBooks().then(event => {
-      this.books = event.items;
-      this.books.sort((a, b) => a.queue_pos < b.queue_pos ? -1 : a.queue_pos > b.queue_pos ? 1 : 0);
-      this.allBooks = this.books;
-
-    });
+    this.listBooks();
 
     this.api.OnCreateBookListener.subscribe( (event: any) => {
       const newBook = event.value.data.onCreateBook;
       this.books = [newBook, ...this.books];
       this.books.sort((a, b) => a.queue_pos < b.queue_pos ? -1 : a.queue_pos > b.queue_pos ? 1 : 0)
+      this.allBooks = this.books;
+
+    });
+
+    this.api.OnDeleteBookListener.subscribe( (event: any) => {
+      this.listBooks();
+    });
+  }
+
+  listBooks(): void{
+    this.api.ListBooks().then(event => {
+      this.books = event.items;
+      this.books.sort((a, b) => a.queue_pos < b.queue_pos ? -1 : a.queue_pos > b.queue_pos ? 1 : 0);
       this.allBooks = this.books;
 
     });
@@ -48,6 +56,30 @@ export class LibraryComponent implements OnInit {
 
   addBook(){
     this.mode = 'add';
+  }
+
+  deleteBook(book: Book): void {
+    // need to check user for deletion
+    console.log(book);
+
+    this.mode = 'none';
+
+    console.log(this.mode);
+
+
+    let deletedBook = {
+      "id": book.id
+   };
+
+
+    this.api.DeleteBook(deletedBook).then(event => {
+      console.log('item deleted!');
+    })
+    .catch(e => {
+      console.log('error deleting book...', e);
+    });
+
+
   }
 
 

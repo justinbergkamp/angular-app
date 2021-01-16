@@ -40,7 +40,7 @@ export class DashboardComponent implements OnInit {
 
     });
 
-    /* subscribe to new restaurants being updated] */
+    /* subscribe to new restaurants being updated */
     this.api.OnUpdateBookListener.subscribe( (event: any) => {
       this.api.ListBooks().then(event => {
         this.books = event.items;

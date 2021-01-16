@@ -21,7 +21,7 @@ export class BookDetailComponent implements OnInit {
 
 
   @Input() book: Book;
-  statusOptions: Array<String> = ["Backlog", "Groomed", "Queued",  "Current", "Done"];
+  statusOptions: Array<String> = ["Backlog" , "Ready",  "Current", "Done"];
   public updateForm: FormGroup;
 
 
