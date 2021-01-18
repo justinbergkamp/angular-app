@@ -16,8 +16,6 @@ export class DashboardComponent implements OnInit {
 
   books: Array<Book>;
   allBooks: Array<Book>;
-  myFlagForButtonToggle: Array<String> = [];
-  endpointToggleOptions: Array<String> = ["To-Read", "Read"];
 
   selectedBook: Book;
 
@@ -40,7 +38,7 @@ export class DashboardComponent implements OnInit {
 
     });
 
-    /* subscribe to new restaurants being created */
+    /* subscribe to new books being updated */
     this.api.OnUpdateBookListener.subscribe( (event: any) => {
       this.api.ListBooks().then(event => {
         this.books = event.items;
@@ -51,8 +49,7 @@ export class DashboardComponent implements OnInit {
 
     });
 
-
-    /* subscribe to new restaurants being created */
+    /* subscribe to new cooks being created */
     this.api.OnCreateBookListener.subscribe( (event: any) => {
       const newBook = event.value.data.onCreateBook;
       this.books = [newBook, ...this.books];
@@ -114,6 +111,12 @@ export class DashboardComponent implements OnInit {
     .catch(e => {
       console.log('error creating restaurant...', e);
     });
+  }
+
+  selectValue( newValue : any ) {
+    this.mode = 'details';
+    console.log(newValue.selectedBook)
+    this.selectedBook = newValue.selectedBook;
   }
 
   drop(event: CdkDragDrop<string[]>) {

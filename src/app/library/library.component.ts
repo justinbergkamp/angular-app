@@ -18,24 +18,41 @@ export class LibraryComponent implements OnInit {
   completedBooks: Array<Book>;
 
   myFlagForButtonToggle: Array<String> = [];
-  endpointToggleOptions: Array<String> = ["Backlog", "Enqueued", "Current", "Done"];
+  endpointToggleOptions: Array<String> = ["Backlog", "Ready", "Current", "Done"];
 
   selectedBook: Book;
+  allTags: string[] = ['Science', 'Fantasy', 'History', 'Philosophy', 'Self-Improvement'];
+
+  tagInformation = new Map([
+          ["Science",    {color: "blue" , nickname : "S"}],
+          ["Fantasy",    {color: "red" , nickname : "F"}],
+          ["History",    {color: "pink" , nickname : "H"}],
+          ["Philosophy", {color: "purple" , nickname : "P"}],
+          ["Self-Improvement", {color: "green" , nickname : "SI"}]
+      ]);
 
   constructor(private api: APIService) { }
 
   ngOnInit(): void {
-    this.api.ListBooks().then(event => {
-      this.books = event.items;
-      this.books.sort((a, b) => a.queue_pos < b.queue_pos ? -1 : a.queue_pos > b.queue_pos ? 1 : 0);
-      this.allBooks = this.books;
-
-    });
+    this.listBooks();
 
     this.api.OnCreateBookListener.subscribe( (event: any) => {
       const newBook = event.value.data.onCreateBook;
       this.books = [newBook, ...this.books];
       this.books.sort((a, b) => a.queue_pos < b.queue_pos ? -1 : a.queue_pos > b.queue_pos ? 1 : 0)
+      this.allBooks = this.books;
+
+    });
+
+    this.api.OnDeleteBookListener.subscribe( (event: any) => {
+      this.listBooks();
+    });
+  }
+
+  listBooks(): void{
+    this.api.ListBooks().then(event => {
+      this.books = event.items;
+      this.books.sort((a, b) => a.queue_pos < b.queue_pos ? -1 : a.queue_pos > b.queue_pos ? 1 : 0);
       this.allBooks = this.books;
 
     });
@@ -46,8 +63,34 @@ export class LibraryComponent implements OnInit {
     this.selectedBook = book;
   }
 
+
+  onTag(tag: string): void {
+    console.log(tag);
+
+    console.log(this.tagInformation.get(tag));
+  }
+
   addBook(){
     this.mode = 'add';
+  }
+
+  deleteBook(book: Book): void {
+    // need to check user for deletion
+    console.log(book);
+
+    let deletedBook = {
+      "id": book.id
+   };
+
+    this.api.DeleteBook(deletedBook).then(event => {
+      console.log('item deleted!');
+      this.mode = 'none';
+
+    })
+    .catch(e => {
+      console.log('error deleting book...', e);
+    });
+
   }
 
 

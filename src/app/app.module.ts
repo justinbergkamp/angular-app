@@ -30,6 +30,7 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
 import { LibraryComponent } from './library/library.component';
 import { BookDetailComponent } from './book-detail/book-detail.component';
 import { AddBookComponent } from './add-book/add-book.component';
+import { QueueComponent } from './queue/queue.component';
 
 
 
@@ -40,7 +41,8 @@ import { AddBookComponent } from './add-book/add-book.component';
     DashboardComponent,
     BookDetailComponent,
     AddBookComponent,
-    LibraryComponent
+    LibraryComponent,
+    QueueComponent
   ],
   imports: [
     BrowserModule,

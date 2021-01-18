@@ -21,7 +21,7 @@ export class BookDetailComponent implements OnInit {
 
 
   @Input() book: Book;
-  statusOptions: Array<String> = ["Backlog", "Groomed", "Queued",  "Current", "Done"];
+  statusOptions: Array<String> = ["Backlog" , "Ready",  "Current", "Done"];
   public updateForm: FormGroup;
 
 
@@ -42,15 +42,6 @@ export class BookDetailComponent implements OnInit {
 
 
   constructor(private api: APIService, private fb: FormBuilder) {
-    //
-    // this.updateForm = this.fb.group({
-    //   'title': ['', Validators.required],
-    //   'description': ['', Validators.required],
-    //   'author': ['', Validators.required],
-    //   'tags': [''],
-    //   'status': ['', Validators.required]
-    //
-    // });
 
     this.updateForm = this.fb.group({
       'title': ['', Validators.required],
@@ -67,16 +58,9 @@ export class BookDetailComponent implements OnInit {
             startWith(null),
             map((tag: string | null) => tag ? this._filter(tag) : this.allTags.slice()));
 
-            console.log("AHHHH");
-
-
   }
 
-  ngOnInit(): void {
-
-
-
-  }
+  ngOnInit(): void {  }
 
   ngOnChanges(changes: SimpleChanges) {
 
@@ -95,9 +79,7 @@ export class BookDetailComponent implements OnInit {
 
 
   updateBook(book: Book){
-    console.log("JUSTIN")
-    console.log(this.book);
-    console.log(book);
+
     let updatedBook = {
       "id": this.book.id,
       "title": book.title,
@@ -122,7 +104,6 @@ export class BookDetailComponent implements OnInit {
   }
 
   public onStatusUpdate(val){
-    console.log(val);
     this.book.status = val;
     console.log(this.book.status);
 
@@ -147,8 +128,8 @@ export class BookDetailComponent implements OnInit {
     this.updateForm.controls.tags.setValue(null);
   }
 
-  remove(fruit: string): void {
-    const index = this.currentTags.indexOf(fruit);
+  remove(tag: string): void {
+    const index = this.currentTags.indexOf(tag);
 
     if (index >= 0) {
       this.currentTags.splice(index, 1);
@@ -163,7 +144,6 @@ export class BookDetailComponent implements OnInit {
 
   private _filter(value: string): string[] {
     const filterValue = value.toString().toLowerCase();
-
     return this.allTags.filter(tag => tag.toLowerCase().indexOf(filterValue) === 0);
   }
 }

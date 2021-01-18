@@ -26,8 +26,6 @@
 
 
 
-
-
 .queue {
   width: 900px;
   background-color: green;
@@ -39,7 +37,7 @@
   flex-direction: row ;
   flex-wrap: wrap;
   justify-content:flex-start;
-  background-color: pink;
+  background-color: gray;
 
 }
 
@@ -60,35 +58,26 @@
   flex-direction: row ;
   flex-wrap: wrap;
   justify-content:space-around;
-  background-color: blue;
+  background-color: lightblue;
 }
-/*
-.example-list {
-  width: 500px;
-  max-width: 100%;
-  border: solid 1px #ccc;
-  min-height: 60px;
-  display: block;
-  background: white;
-  border-radius: 4px;
+
+.test{
   overflow: hidden;
-} */
-/*
-.example-box {
-  padding: 20px 10px;
-  border-bottom: solid 1px #ccc;
-  color: rgba(0, 0, 0, 0.87);
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  box-sizing: border-box;
-  cursor: move;
-  background: white;
-  font-size: 14px;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1; /* number of lines to show */
+  -webkit-box-orient: vertical;
+}
+mat-card-header {
 }
 
+mat-chip{
+}
 
-.example-box:last-child {
-  border: none;
-} */
+p{
+   overflow: hidden;
+   text-overflow: ellipsis;
+   display: -webkit-box;
+   -webkit-line-clamp: 2; /* number of lines to show */
+   -webkit-box-orient: vertical;
+}

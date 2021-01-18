@@ -25,8 +25,11 @@ export class AddBookComponent implements OnInit {
   currentTags: string[] = [];
   allTags: string[] = ['Science', 'Fantasy', 'History', 'Philosophy', 'Self-Improvement'];
 
-@ViewChild('tagInput') tagInput: ElementRef<HTMLInputElement>;
-@ViewChild('auto') matAutocomplete: MatAutocomplete;
+  @ViewChild('tagInput') tagInput: ElementRef<HTMLInputElement>;
+  @ViewChild('auto') matAutocomplete: MatAutocomplete;
+
+  public createForm: FormGroup;
+
 
 
 
@@ -44,13 +47,8 @@ export class AddBookComponent implements OnInit {
             map((tag: string | null) => tag ? this._filter(tag) : this.allTags.slice()));
   }
 
-  public createForm: FormGroup;
-  myFlagForButtonToggle: String = "Single";
-  endpointToggleOptions: Array<String> = ["To-Read", "Read"];
 
   ngOnInit(): void {
-
-
     this.api.ListBooks().then(event => {
       this.books = event.items;
     });
@@ -62,15 +60,9 @@ export class AddBookComponent implements OnInit {
 
     });
   }
-  public onEndpointValChange(val){
-    console.log(val);
-  }
 
 
   public onCreate(book: Book) {
-    console.log(book);
-    console.log(this.currentTags);
-
     book.queue_pos = this.books.length+1;
     book.status = 0;
     book.tags = this.currentTags;
@@ -87,7 +79,7 @@ export class AddBookComponent implements OnInit {
     const input = event.input;
     const value = event.value;
 
-    // Add our fruit
+    // Add our tag
     if ((value || '').trim()) {
       this.currentTags.push(value.trim());
     }
@@ -100,8 +92,8 @@ export class AddBookComponent implements OnInit {
     this.createForm.controls.tags.setValue(null);
   }
 
-  remove(fruit: string): void {
-    const index = this.currentTags.indexOf(fruit);
+  remove(tag: string): void {
+    const index = this.currentTags.indexOf(tag);
 
     if (index >= 0) {
       this.currentTags.splice(index, 1);
