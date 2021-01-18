@@ -71,6 +71,9 @@
 mat-card-header {
 }
 
+mat-chip{
+}
+
 p{
    overflow: hidden;
    text-overflow: ellipsis;

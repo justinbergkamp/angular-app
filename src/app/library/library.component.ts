@@ -21,6 +21,15 @@ export class LibraryComponent implements OnInit {
   endpointToggleOptions: Array<String> = ["Backlog", "Ready", "Current", "Done"];
 
   selectedBook: Book;
+  allTags: string[] = ['Science', 'Fantasy', 'History', 'Philosophy', 'Self-Improvement'];
+
+  tagInformation = new Map([
+          ["Science",    {color: "blue" , nickname : "S"}],
+          ["Fantasy",    {color: "red" , nickname : "F"}],
+          ["History",    {color: "pink" , nickname : "H"}],
+          ["Philosophy", {color: "purple" , nickname : "P"}],
+          ["Self-Improvement", {color: "green" , nickname : "SI"}]
+      ]);
 
   constructor(private api: APIService) { }
 
@@ -52,6 +61,13 @@ export class LibraryComponent implements OnInit {
   onSelect(book: Book): void {
     this.mode = 'details';
     this.selectedBook = book;
+  }
+
+
+  onTag(tag: string): void {
+    console.log(tag);
+
+    console.log(this.tagInformation.get(tag));
   }
 
   addBook(){
