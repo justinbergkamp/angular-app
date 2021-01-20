@@ -13,14 +13,30 @@ Restaurants App
     <div class="queue">
 
         <h2>My Books</h2>
-        <mat-button-toggle-group #group="matButtonToggleGroup" (change)="onFilterChange(group.value)" multiple="true"
+
+        <form class="example-form">
+            <mat-form-field class="example-full-width">
+              <mat-label>Search Title</mat-label>
+              <input type="text"
+                    placeholder="Title"
+                    aria-label="Number"
+                    matInput
+                    [formControl]="myControl"
+                    [matAutocomplete]="auto">
+              <mat-autocomplete #auto="matAutocomplete">
+                <!-- <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                  {{option}}
+                </mat-option> -->
+              </mat-autocomplete>
+            </mat-form-field>
+        </form>
+        <mat-button-toggle-group #group="matButtonToggleGroup" (change)="onStatusFilterChange(group.value)" multiple="true"
           [(ngModel)]="myFlagForButtonToggle">
           <mat-button-toggle *ngFor="let item of endpointToggleOptions;" [value]="item">{{item}}</mat-button-toggle>
         </mat-button-toggle-group>
+
         <div class="queue-container">
-
           <div *ngFor="let book of books" (click)="onSelect(book)" >
-
               <mat-card class="example-card">
               <mat-card-header>
                 <!-- <div mat-card-avatar class="example-header-image"></div> -->

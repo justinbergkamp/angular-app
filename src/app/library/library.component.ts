@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { APIService } from '../API.service';
 import { Book } from '../../types/book';
+import {FormControl} from '@angular/forms';
+import {Observable} from 'rxjs';
+import {map, startWith} from 'rxjs/operators';
 
 
 @Component({
@@ -17,11 +20,13 @@ export class LibraryComponent implements OnInit {
   queuedBooks: Array<Book>;
   completedBooks: Array<Book>;
 
-  myFlagForButtonToggle: Array<String> = [];
-  endpointToggleOptions: Array<String> = ["Backlog", "Ready", "Current", "Done"];
+
 
   selectedBook: Book;
   allTags: string[] = ['Science', 'Fantasy', 'History', 'Philosophy', 'Self-Improvement'];
+
+  myFlagForButtonToggle: Array<String> = [];
+  endpointToggleOptions: Array<String> = this.allTags;
 
   tagInformation = new Map([
           ["Science",    {color: "blue" , nickname : "S"}],
@@ -30,6 +35,11 @@ export class LibraryComponent implements OnInit {
           ["Philosophy", {color: "purple" , nickname : "P"}],
           ["Self-Improvement", {color: "green" , nickname : "SI"}]
       ]);
+
+  myControl = new FormControl();
+  options: string[] = ['One', 'Two', 'Three'];
+  filteredOptions: Observable<string[]>;
+
 
   constructor(private api: APIService) { }
 
@@ -47,6 +57,15 @@ export class LibraryComponent implements OnInit {
     this.api.OnDeleteBookListener.subscribe( (event: any) => {
       this.listBooks();
     });
+
+    this.filteredOptions = this.myControl.valueChanges
+      .pipe(
+          startWith(''),
+          map(value => this._filter(value))
+        );
+
+    this.onChanges();
+
   }
 
   listBooks(): void{
@@ -94,13 +113,13 @@ export class LibraryComponent implements OnInit {
   }
 
 
-  public onFilterChange(val){
+  public onStatusFilterChange(val){
 
     let selectedBooks = [];
     if (val !=''){
       for(let filter of val){
 
-        let filteredBooks = this.allBooks.filter(book => book.status == filter);
+        let filteredBooks = this.allBooks.filter(book => book.tags.includes(filter));
 
         selectedBooks = selectedBooks.concat(filteredBooks);
 
@@ -110,5 +129,22 @@ export class LibraryComponent implements OnInit {
     }
     this.books = selectedBooks;
   }
+
+  private _filter(value: string): string[] {
+    const filterValue = value.toLowerCase();
+    console.log(filterValue);
+    return this.options.filter(option => option.toLowerCase().includes(filterValue));
+  }
+
+  onChanges(): void {
+    this.myControl.valueChanges.subscribe(val => {
+      let selectedBooks = [];
+      let filteredBooks = [];
+      filteredBooks = this.allBooks.filter(book => book.title.toLowerCase().includes(val));
+      selectedBooks = selectedBooks.concat(filteredBooks);
+      this.books = selectedBooks;
+    });
+}
+
 
 }
