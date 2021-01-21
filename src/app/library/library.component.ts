@@ -138,11 +138,9 @@ export class LibraryComponent implements OnInit {
 
   onChanges(): void {
     this.myControl.valueChanges.subscribe(val => {
-      let selectedBooks = [];
       let filteredBooks = [];
       filteredBooks = this.allBooks.filter(book => book.title.toLowerCase().includes(val));
-      selectedBooks = selectedBooks.concat(filteredBooks);
-      this.books = selectedBooks;
+      this.books = filteredBooks;
     });
 }
 
