@@ -69,12 +69,12 @@ Restaurants App
       </div>
 
 
-    <div class="forms" *ngIf="mode!=='none'">
-      <div *ngIf="mode==='add'">
+    <div *ngIf="mode!=='none'">
+      <div class="forms" *ngIf="mode==='add'">
         <app-add-book></app-add-book>
       </div>
 
-      <div *ngIf="mode==='details'">
+      <div class="forms" *ngIf="mode==='details'">
         <app-book-detail [book]="selectedBook"></app-book-detail>
       </div>
     </div>

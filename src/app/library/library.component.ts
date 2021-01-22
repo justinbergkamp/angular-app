@@ -49,6 +49,7 @@ export class LibraryComponent implements OnInit {
     this.api.OnCreateBookListener.subscribe( (event: any) => {
       const newBook = event.value.data.onCreateBook;
       this.books = [newBook, ...this.books];
+
       this.books.sort((a, b) => a.queue_pos < b.queue_pos ? -1 : a.queue_pos > b.queue_pos ? 1 : 0)
       this.allBooks = this.books;
 
@@ -65,6 +66,8 @@ export class LibraryComponent implements OnInit {
         );
 
     this.onChanges();
+    this.mode = 'none';
+
 
   }
 
@@ -72,6 +75,8 @@ export class LibraryComponent implements OnInit {
     this.api.ListBooks().then(event => {
       this.books = event.items;
       this.books.sort((a, b) => a.queue_pos < b.queue_pos ? -1 : a.queue_pos > b.queue_pos ? 1 : 0);
+      this.books = this.books.filter(book => book.status == 0);
+
       this.allBooks = this.books;
 
     });
