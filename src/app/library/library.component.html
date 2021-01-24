@@ -58,7 +58,7 @@ Restaurants App
 
             </mat-card-content>
             <mat-card-actions>
-              <button mat-button>LIKE</button>
+              <button mat-button (click)="addToQueue(book)">Add to Queue</button>
               <button mat-button (click)="deleteBook(book)">Delete</button>
             </mat-card-actions>
           </mat-card>

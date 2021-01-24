@@ -147,7 +147,11 @@ export class LibraryComponent implements OnInit {
       filteredBooks = this.allBooks.filter(book => book.title.toLowerCase().includes(val));
       this.books = filteredBooks;
     });
-}
+  }
 
-
+  addToQueue(book : Book): void {
+    this.mode = 'details';
+    book.status = 1;
+    this.selectedBook = book;
+  }
 }
