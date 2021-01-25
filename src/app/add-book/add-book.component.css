@@ -1,7 +1,15 @@
 
-
+/*
 .container {
   flex-flow: column wrap;
+  align-items: center;
+  justify-content: space-between;
+  background-color: purple;
+} */
+
+.form-body {
+  flex-flow: column wrap;
+  justify-content: flex-start;
 }
 
 div {
@@ -9,4 +17,27 @@ div {
 
 mat-button-toggle-group {
   padding-bottom: 5px;
+}
+
+.container {
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.Aligner-item {
+  max-width: 50%;
+}
+
+.Aligner-item--top {
+  align-self: flex-start;
+}
+
+.Aligner-item--bottom {
+  align-self: flex-end;
+}
+
+.add-button{
+  width: 100%;
 }

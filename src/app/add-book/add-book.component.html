@@ -1,7 +1,7 @@
-<div class="form-body container">
+<div class="container">
   <h2>Create Book</h2>
 
-  <form autocomplete="off" [formGroup]="createForm" (ngSubmit)="onCreate(createForm.value)">
+  <form class="form-body" autocomplete="off" [formGroup]="createForm" (ngSubmit)="onCreate(createForm.value)">
     <div class="">
     <mat-form-field class="form-field" appearance="outline">
         <mat-label> Title
@@ -58,7 +58,7 @@
 
   <div class="">
 
-    <button mat-stroked-button class="form-field" type="submit">Submit</button>
+    <button mat-stroked-button class="add-button form-field" type="submit">Submit</button>
   </div>
 
   </form>
