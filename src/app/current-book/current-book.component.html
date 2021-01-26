@@ -1,1 +1,21 @@
-<p>current-book works!</p>
+
+<div class="outer-container" *ngIf="selectedBook">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>{{selectedBook.title}}</mat-card-title>
+    </mat-card-header>
+  <mat-card-content>
+    <h2 class="example-h2">Progress</h2>
+    <mat-progress-spinner
+        class="example-margin"
+        [color]="color"
+        [mode]="mode"
+        [value]="value">
+    </mat-progress-spinner>
+    <div style="position:relative; top: -60px; left: 40px; font-size: 1.2em;">
+        {{ value }}
+    </div>
+  </mat-card-content>
+</mat-card>
+
+</div>
