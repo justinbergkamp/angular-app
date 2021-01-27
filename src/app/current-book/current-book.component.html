@@ -19,3 +19,39 @@
 </mat-card>
 
 </div>
+
+
+<mat-carousel
+timings="250ms ease-in"
+[autoplay]="true"
+interval="5000"
+color="primary"
+maxWidth="400px"
+proportion="100"
+slides="5"
+[loop]="true"
+[hideArrows]="false"
+[hideIndicators]="false"
+[useKeyboard]="true"
+[useMouseWheel]="false"
+orientation="ltr"
+class="container"
+>
+  <mat-carousel-slide overlayColor="lightgreen" class="inner-container" *ngFor="let book of books">
+    <div  style="width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center"  >
+      <h1>{{ book.title }}</h1>
+      <mat-progress-spinner
+          class="example-margin"
+          [color]="color"
+          [mode]="mode"
+          [value]="value">
+      </mat-progress-spinner>
+      <div style="position:relative; top: -60px; left: 0px; font-size: 1.2em;">
+          {{ value }}
+      </div>
+      <button  mat-flat-button>
+        Click me!
+      </button>
+    </div>
+  </mat-carousel-slide>
+</mat-carousel>

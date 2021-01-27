@@ -23,6 +23,7 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { MatCarouselModule } from '@ngbmodule/material-carousel';
 
 
 import {DragDropModule} from '@angular/cdk/drag-drop';
@@ -67,7 +68,8 @@ import { CurrentBookComponent } from './current-book/current-book.component';
     MatAutocompleteModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatCarouselModule.forRoot()
 
   ],
   providers: [],

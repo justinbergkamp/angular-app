@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Book } from '../../types/book';
 import { APIService } from '../API.service';
-
+import { MatCarousel, MatCarouselComponent, MatCarouselSlide } from '@ngbmodule/material-carousel';
 
 @Component({
   selector: 'app-current-book',
@@ -30,6 +30,8 @@ export class CurrentBookComponent implements OnInit {
       if(this.books){
         this.selectedBook = this.books[0]
       }
+      console.log(this.books);
+
     });
   }
 

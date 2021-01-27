@@ -48,7 +48,7 @@ Restaurants App
                 {{book.description}}
               </p>
 
-              <mat-chip-list aria-label="Fish selection">
+              <mat-chip-list aria-label="Tag selection">
                 <div *ngFor="let tag of book.tags" >
                   <mat-chip (click)="onTag(tag)"  [ngStyle]="{'background-color': tagInformation.get(tag).color}">
                     {{tagInformation.get(tag).nickname}}
