@@ -18,6 +18,9 @@
   </mat-card-content>
 </mat-card>
 
+{{startDate}}
+{{totalPages}}
+
 </div>
 
 
@@ -49,8 +52,11 @@ class="container"
       <div style="position:relative; top: -60px; left: 0px; font-size: 1.2em;">
           {{ value }}
       </div>
-      <button  mat-flat-button>
-        Click me!
+
+      <mat-label>Current Page</mat-label>
+      <input matInput [(ngModel)]="currentPage"  (ngModelChange)="onPageChange($event)">
+      <button  mat-flat-button >
+        Enter
       </button>
     </div>
   </mat-carousel-slide>

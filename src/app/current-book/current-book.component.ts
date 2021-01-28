@@ -15,7 +15,13 @@ export class CurrentBookComponent implements OnInit {
 
   color="primary";
   mode="determinate";
-  value="95";
+
+  currentPage = 0;
+  totalPages: number = 1;
+  startDate : Date = new Date();
+
+  value= this.currentPage / this.totalPages;
+
 
   constructor(private api: APIService) { }
 
@@ -29,10 +35,21 @@ export class CurrentBookComponent implements OnInit {
       this.books = this.books.filter(book => book.status == 2);
       if(this.books){
         this.selectedBook = this.books[0]
+        this.totalPages = this.selectedBook.pageNumber;
+        this.startDate = new Date(this.selectedBook.startDate);
+        this.value= Math.floor((this.currentPage / this.totalPages)*100);
       }
       console.log(this.books);
 
     });
+  }
+
+  onPageChange(val:string): void {
+    let page : number = +val;
+    if(page > 0 && page <= this.totalPages){
+      this.currentPage = page;
+      this.value = Math.floor((this.currentPage / this.totalPages)*100);
+    }
   }
 
 }
