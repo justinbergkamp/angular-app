@@ -44,7 +44,18 @@ export class CurrentBookComponent implements OnInit {
         this.startDate = new Date(this.selectedBook.startDate);
         // Get a percentage completed value for the progress wheel
         // TODO: check for infinity or zero lol
+        if(this.currentPage === undefined){
+          this.currentPage = 0;
+        }
+        if(this.totalPages === undefined){
+          this.totalPages = 0;
+        }
+        if(this.currentPage >= this.totalPages){
+          this.currentPage = this.totalPages;
+        }
         this.value= Math.floor((this.currentPage / this.totalPages)*100);
+        //Just a fake value until I get current page worked out
+        this.value = 83;
       }else{
         //should display something if no books are in progress
       }

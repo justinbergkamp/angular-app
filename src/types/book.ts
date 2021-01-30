@@ -7,7 +7,6 @@ export type Book = {
   status: number,
   queue_pos: number,
   pageNumber: number,
-  page: number,
   startDate: string,
   finishDate: string
 };
