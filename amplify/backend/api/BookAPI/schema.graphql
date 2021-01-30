@@ -5,6 +5,7 @@ type Book @model {
   status: Int!
   description: String
   pageNumber: Int
+  pages: Int
   tags: [String]
   queue_pos: Int
   startDate: String

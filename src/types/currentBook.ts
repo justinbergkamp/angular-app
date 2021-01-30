@@ -5,8 +5,8 @@ export type Book = {
   author: string,
   tags: Array<string>,
   status: number,
-  queue_pos: number,
   pageNumber: number,
+  pages: number,
   startDate: string,
-  finishDate: string,
+  finishDate: string
 };

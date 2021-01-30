@@ -16,6 +16,7 @@ export type CreateBookInput = {
   status: number;
   description?: string | null;
   pageNumber?: number | null;
+  pages?: number | null;
   tags?: Array<string | null> | null;
   queue_pos?: number | null;
   startDate?: string | null;
@@ -28,6 +29,7 @@ export type ModelBookConditionInput = {
   status?: ModelIntInput | null;
   description?: ModelStringInput | null;
   pageNumber?: ModelIntInput | null;
+  pages?: ModelIntInput | null;
   tags?: ModelStringInput | null;
   queue_pos?: ModelIntInput | null;
   startDate?: ModelStringInput | null;
@@ -95,6 +97,7 @@ export type UpdateBookInput = {
   status?: number | null;
   description?: string | null;
   pageNumber?: number | null;
+  pages?: number | null;
   tags?: Array<string | null> | null;
   queue_pos?: number | null;
   startDate?: string | null;
@@ -112,6 +115,7 @@ export type ModelBookFilterInput = {
   status?: ModelIntInput | null;
   description?: ModelStringInput | null;
   pageNumber?: ModelIntInput | null;
+  pages?: ModelIntInput | null;
   tags?: ModelStringInput | null;
   queue_pos?: ModelIntInput | null;
   startDate?: ModelStringInput | null;
@@ -145,6 +149,7 @@ export type CreateBookMutation = {
   status: number;
   description: string | null;
   pageNumber: number | null;
+  pages: number | null;
   tags: Array<string | null> | null;
   queue_pos: number | null;
   startDate: string | null;
@@ -161,6 +166,7 @@ export type UpdateBookMutation = {
   status: number;
   description: string | null;
   pageNumber: number | null;
+  pages: number | null;
   tags: Array<string | null> | null;
   queue_pos: number | null;
   startDate: string | null;
@@ -177,6 +183,7 @@ export type DeleteBookMutation = {
   status: number;
   description: string | null;
   pageNumber: number | null;
+  pages: number | null;
   tags: Array<string | null> | null;
   queue_pos: number | null;
   startDate: string | null;
@@ -193,6 +200,7 @@ export type GetBookQuery = {
   status: number;
   description: string | null;
   pageNumber: number | null;
+  pages: number | null;
   tags: Array<string | null> | null;
   queue_pos: number | null;
   startDate: string | null;
@@ -211,6 +219,7 @@ export type ListBooksQuery = {
     status: number;
     description: string | null;
     pageNumber: number | null;
+    pages: number | null;
     tags: Array<string | null> | null;
     queue_pos: number | null;
     startDate: string | null;
@@ -229,6 +238,7 @@ export type OnCreateBookSubscription = {
   status: number;
   description: string | null;
   pageNumber: number | null;
+  pages: number | null;
   tags: Array<string | null> | null;
   queue_pos: number | null;
   startDate: string | null;
@@ -245,6 +255,7 @@ export type OnUpdateBookSubscription = {
   status: number;
   description: string | null;
   pageNumber: number | null;
+  pages: number | null;
   tags: Array<string | null> | null;
   queue_pos: number | null;
   startDate: string | null;
@@ -261,6 +272,7 @@ export type OnDeleteBookSubscription = {
   status: number;
   description: string | null;
   pageNumber: number | null;
+  pages: number | null;
   tags: Array<string | null> | null;
   queue_pos: number | null;
   startDate: string | null;
@@ -286,6 +298,7 @@ export class APIService {
           status
           description
           pageNumber
+          pages
           tags
           queue_pos
           startDate
@@ -318,6 +331,7 @@ export class APIService {
           status
           description
           pageNumber
+          pages
           tags
           queue_pos
           startDate
@@ -350,6 +364,7 @@ export class APIService {
           status
           description
           pageNumber
+          pages
           tags
           queue_pos
           startDate
@@ -379,6 +394,7 @@ export class APIService {
           status
           description
           pageNumber
+          pages
           tags
           queue_pos
           startDate
@@ -411,6 +427,7 @@ export class APIService {
             status
             description
             pageNumber
+            pages
             tags
             queue_pos
             startDate
@@ -449,6 +466,7 @@ export class APIService {
           status
           description
           pageNumber
+          pages
           tags
           queue_pos
           startDate
@@ -473,6 +491,7 @@ export class APIService {
           status
           description
           pageNumber
+          pages
           tags
           queue_pos
           startDate
@@ -497,6 +516,7 @@ export class APIService {
           status
           description
           pageNumber
+          pages
           tags
           queue_pos
           startDate
