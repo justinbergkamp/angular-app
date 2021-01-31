@@ -5,7 +5,7 @@
   <div class="carousel-container">
       <mat-carousel
         timings="250ms ease-in"
-        [autoplay]="true"
+        [autoplay]="false"
         interval="5000"
         color="primary"
         proportion="50"
@@ -19,20 +19,38 @@
         class="carousel">
           <mat-carousel-slide overlayColor="lightgreen" class="carousel-slide-container" *ngFor="let book of books">
             <div  class="carousel-slide">
-              <h1>{{ book.title }}</h1>
-              <mat-progress-spinner
-              class="example-margin"
-              [color]="color"
-              [mode]="mode"
-              [value]="value">
-            </mat-progress-spinner>
-            <div id="completionPercentage">
-              {{ value }}
-            </div>
-            <mat-label>Current Page</mat-label>
-            <input matInput [(ngModel)]="currentPage"  (ngModelChange)="onPageChange($event)">
+              <div class="carousel-slide-headers">
+                <h1>{{ book.title }}</h1>
+                <h3>{{startDate | date }}</h3>
+              </div>
+              <div class="carousel-slide-headers">
+                <h3>by {{ book.author }}</h3>
+                <h3>Goal Completion Date</h3>
+              </div>
+              <mat-divider></mat-divider>
+              <div class="carousel-slide-body">
+                <div id="progress-spinner">
+                  <mat-progress-spinner
+                    class="example-margin"
+                    [color]="color"
+                    [mode]="mode"
+                    [value]="value">
+                  </mat-progress-spinner>
+                  <div id="completionPercentage">
+                     {{ value }}%
+                  </div>
+                </div>
+                <div class="page-details">
+                  <h4>Current Page : {{currentPage}}</h4>
+                  <h4>Total Pages : {{totalPages}}</h4>
+                </div>
+              </div>
+            <!-- <mat-label>Add Session</mat-label> -->
+            <!-- <input matInput [(ngModel)]="currentPage"  (ngModelChange)="onPageChange($event)"> -->
+            <mat-divider></mat-divider>
+
             <button  mat-flat-button >
-              Enter
+              Add Session
             </button>
           </div>
         </mat-carousel-slide>

@@ -29,8 +29,8 @@
   background-color: lightblue;
   border: solid 3px #ccc;
   border-radius: 4px;
-
-  margin: 20px;
+  margin: 30px;
+  margin-top: 20px;
 
 }
 
@@ -53,10 +53,30 @@
   justify-content: center;
 }
 
+.carousel-slide-headers{
+  width: 70%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.carousel-slide-body{
+  width: 70%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
 #completionPercentage{
   position:relative;
   top: -60px;
+  left: 37px;
   font-size: 1.2em;
+}
+
+.page-details{
+  margin: 20px;
+  margin-left: 40px;
 }
 
 .read-log-container{

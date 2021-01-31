@@ -11,7 +11,40 @@ export type Book = {
   finishDate: string
 };
 
+export type BacklogBook = {
+  id : string,
+  title : string,
+  description : string,
+  author: string,
+  tags: Array<string>,
+  status: number,
+  pages: number
+};
+
+export type QueueBook = {
+  id : string,
+  title : string,
+  description : string,
+  author: string,
+  tags: Array<string>,
+  status: number,
+  pages: number,
+  queue_pos: number
+};
+
 export type CurrentBook = {
+  id : string,
+  title : string,
+  description : string,
+  author: string,
+  tags: Array<string>,
+  status: number,
+  pageNumber: number,
+  pages: number,
+  startDate: string,
+};
+
+export type DoneBook = {
   id : string,
   title : string,
   description : string,
