@@ -36,6 +36,7 @@ import { BookDetailComponent } from './book-detail/book-detail.component';
 import { AddBookComponent } from './add-book/add-book.component';
 import { QueueComponent } from './queue/queue.component';
 import { CurrentBookComponent } from './current-book/current-book.component';
+import { DialogOverviewExampleDialog } from './current-book/current-book.component';
 
 
 
@@ -48,7 +49,8 @@ import { CurrentBookComponent } from './current-book/current-book.component';
     AddBookComponent,
     LibraryComponent,
     QueueComponent,
-    CurrentBookComponent
+    CurrentBookComponent,
+    DialogOverviewExampleDialog
   ],
   imports: [
     BrowserModule,

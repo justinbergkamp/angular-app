@@ -19,16 +19,18 @@
         class="carousel">
           <mat-carousel-slide overlayColor="lightgreen" class="carousel-slide-container" *ngFor="let book of books">
             <div  class="carousel-slide">
-              <div class="cover-image">
-                <img src = "{{coverImage}}">
-              </div>
-              <div class="carousel-slide-headers">
-                <h1>{{ book.title }}</h1>
-                <h3>{{startDate | date }}</h3>
-              </div>
-              <div class="carousel-slide-headers">
-                <h3>by {{ book.author }}</h3>
-                <h3>Goal Completion Date</h3>
+              <div class="carosel-slide-book-info">
+                <div class="cover-image">
+                  <img src = "{{coverImage}}">
+                </div>
+                <div class="carousel-slide-headers">
+                  <h1>{{ book.title }}</h1>
+                  <h3>by {{ book.author }}</h3>
+                </div>
+                <div class="carousel-slide-headers">
+                  <h3>{{startDate | date }}</h3>
+                  <h3>Goal Completion Date</h3>
+                </div>
               </div>
               <mat-divider></mat-divider>
               <div class="carousel-slide-body">
