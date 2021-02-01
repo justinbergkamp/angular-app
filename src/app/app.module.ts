@@ -25,6 +25,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { MatCarouselModule } from '@ngbmodule/material-carousel';
 import {MatDividerModule} from '@angular/material/divider';
+import {MatDialogModule} from '@angular/material/dialog';
 
 
 import {DragDropModule} from '@angular/cdk/drag-drop';
@@ -71,6 +72,7 @@ import { CurrentBookComponent } from './current-book/current-book.component';
     MatNativeDateModule,
     MatProgressSpinnerModule,
     MatDividerModule,
+    MatDialogModule,
     MatCarouselModule.forRoot()
 
   ],

@@ -1,7 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { Book, CurrentBook } from '../../types/book';
 import { APIService } from '../API.service';
 import { MatCarousel, MatCarouselComponent, MatCarouselSlide } from '@ngbmodule/material-carousel';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+
+
+
+
+export interface DialogData {
+  animal: string;
+  name: string;
+}
 
 @Component({
   selector: 'app-current-book',
@@ -12,6 +21,9 @@ export class CurrentBookComponent implements OnInit {
 
   books: Array<CurrentBook>;
   selectedBook: CurrentBook;
+
+  animal: string;
+  name: string;
 
 
   color="primary";
@@ -27,7 +39,7 @@ export class CurrentBookComponent implements OnInit {
 
   coverImage = 'assets/menu_book.svg';
 
-  constructor(private api: APIService) { }
+  constructor(private api: APIService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.getBooks();
@@ -74,6 +86,40 @@ export class CurrentBookComponent implements OnInit {
       this.currentPage = page;
       this.value = Math.floor((this.currentPage / this.totalPages)*100);
     }
+  }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
+      width: '250px',
+      data: {name: this.name, animal: this.animal}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      this.animal = result;
+      console.log(this.animal);
+    });
+  }
+
+}
+
+@Component({
+  selector: 'dialog-overview-example-dialog',
+  templateUrl: 'dialog-overview-example-dialog.html',
+})
+export class DialogOverviewExampleDialog {
+
+  constructor(
+    public dialogRef: MatDialogRef<DialogOverviewExampleDialog>,
+    @Inject(MAT_DIALOG_DATA) public data: DialogData) {}
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+
+  onOKClick(val:any): void {
+    console.log(val);
+    this.dialogRef.close();
   }
 
 }
