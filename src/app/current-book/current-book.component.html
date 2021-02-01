@@ -19,6 +19,9 @@
         class="carousel">
           <mat-carousel-slide overlayColor="lightgreen" class="carousel-slide-container" *ngFor="let book of books">
             <div  class="carousel-slide">
+              <div class="cover-image">
+                <img src = "{{coverImage}}">
+              </div>
               <div class="carousel-slide-headers">
                 <h1>{{ book.title }}</h1>
                 <h3>{{startDate | date }}</h3>

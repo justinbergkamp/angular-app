@@ -23,6 +23,9 @@ export class CurrentBookComponent implements OnInit {
 
   value= this.currentPage / this.totalPages;
 
+  // coverImage = 'assets/a-promised-land-image.jpg';
+
+  coverImage = 'assets/menu_book.svg';
 
   constructor(private api: APIService) { }
 
@@ -39,8 +42,11 @@ export class CurrentBookComponent implements OnInit {
         //arbitrarily select the top book
         // TODO: Select book most recently read
         this.selectedBook = this.books[0]
+        console.log(this.selectedBook);
         this.totalPages = this.selectedBook.pages;
         this.currentPage = this.selectedBook.pageNumber;
+        console.log(this.currentPage);
+
         this.startDate = new Date(this.selectedBook.startDate);
         // Get a percentage completed value for the progress wheel
         // TODO: check for infinity or zero lol
@@ -54,8 +60,6 @@ export class CurrentBookComponent implements OnInit {
           this.currentPage = this.totalPages;
         }
         this.value= Math.floor((this.currentPage / this.totalPages)*100);
-        //Just a fake value until I get current page worked out
-        this.value = 83;
       }else{
         //should display something if no books are in progress
       }
