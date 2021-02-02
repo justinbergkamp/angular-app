@@ -1,4 +1,34 @@
 # this is an auto generated file. This will be overwritten
+subscription OnCreateSession {
+  onCreateSession {
+    id
+    date
+    startPage
+    endPage
+    createdAt
+    updatedAt
+  }
+}
+subscription OnUpdateSession {
+  onUpdateSession {
+    id
+    date
+    startPage
+    endPage
+    createdAt
+    updatedAt
+  }
+}
+subscription OnDeleteSession {
+  onDeleteSession {
+    id
+    date
+    startPage
+    endPage
+    createdAt
+    updatedAt
+  }
+}
 subscription OnCreateBook {
   onCreateBook {
     id
@@ -12,6 +42,14 @@ subscription OnCreateBook {
     queue_pos
     startDate
     finishDate
+    sessions {
+      id
+      date
+      startPage
+      endPage
+      createdAt
+      updatedAt
+    }
     createdAt
     updatedAt
   }
@@ -29,6 +67,14 @@ subscription OnUpdateBook {
     queue_pos
     startDate
     finishDate
+    sessions {
+      id
+      date
+      startPage
+      endPage
+      createdAt
+      updatedAt
+    }
     createdAt
     updatedAt
   }
@@ -46,6 +92,14 @@ subscription OnDeleteBook {
     queue_pos
     startDate
     finishDate
+    sessions {
+      id
+      date
+      startPage
+      endPage
+      createdAt
+      updatedAt
+    }
     createdAt
     updatedAt
   }

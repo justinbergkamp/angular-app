@@ -36,7 +36,7 @@ import { BookDetailComponent } from './book-detail/book-detail.component';
 import { AddBookComponent } from './add-book/add-book.component';
 import { QueueComponent } from './queue/queue.component';
 import { CurrentBookComponent } from './current-book/current-book.component';
-import { DialogOverviewExampleDialog } from './current-book/current-book.component';
+import { SessionDialogComponent } from './session-dialog/session-dialog.component';
 
 
 
@@ -50,7 +50,7 @@ import { DialogOverviewExampleDialog } from './current-book/current-book.compone
     LibraryComponent,
     QueueComponent,
     CurrentBookComponent,
-    DialogOverviewExampleDialog
+    SessionDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -77,6 +77,9 @@ import { DialogOverviewExampleDialog } from './current-book/current-book.compone
     MatDialogModule,
     MatCarouselModule.forRoot()
 
+  ],
+  entryComponents: [
+    SessionDialogComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

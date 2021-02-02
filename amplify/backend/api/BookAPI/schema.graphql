@@ -1,3 +1,10 @@
+type Session {
+  id: ID!
+  date: String
+  startPage: Int
+  endPage: Int
+}
+
 type Book @model {
   id: ID!
   title: String!
@@ -10,4 +17,5 @@ type Book @model {
   queue_pos: Int
   startDate: String
   finishDate: String
+  sessions: [Session]
 }

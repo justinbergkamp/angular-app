@@ -1,4 +1,31 @@
 # this is an auto generated file. This will be overwritten
+query GetSession($id: ID!) {
+  getSession(id: $id) {
+    id
+    date
+    startPage
+    endPage
+    createdAt
+    updatedAt
+  }
+}
+query ListSessions(
+  $filter: ModelSessionFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listSessions(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      date
+      startPage
+      endPage
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}
 query GetBook($id: ID!) {
   getBook(id: $id) {
     id
@@ -12,6 +39,14 @@ query GetBook($id: ID!) {
     queue_pos
     startDate
     finishDate
+    sessions {
+      id
+      date
+      startPage
+      endPage
+      createdAt
+      updatedAt
+    }
     createdAt
     updatedAt
   }
@@ -34,6 +69,14 @@ query ListBooks(
       queue_pos
       startDate
       finishDate
+      sessions {
+        id
+        date
+        startPage
+        endPage
+        createdAt
+        updatedAt
+      }
       createdAt
       updatedAt
     }
