@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, EventEmitter } from '@angular/core';
 import { Book, CurrentBook } from '../../types/book';
 import { Session } from '../../types/session';
 import { APIService } from '../API.service';
@@ -18,9 +18,9 @@ export class CurrentBookComponent implements OnInit {
   books: Array<CurrentBook>;
   selectedBook: CurrentBook;
 
-  date: string;
-  startPage: string;
-  endPage: string;
+  date: Date;
+  startPage: number;
+  endPage: number;
 
   session : Session;
 
@@ -88,14 +88,19 @@ export class CurrentBookComponent implements OnInit {
   }
 
   openDialog(): void {
+    this.startPage = this.currentPage;
+    this.date = new Date();
     const dialogRef = this.dialog.open(SessionDialogComponent, {
       width: '500px',
       data: {date: this.date, startPage: this.startPage, endPage: this.endPage}
     });
 
+    const sub = dialogRef.componentInstance.onAdd.subscribe((data) => {
+      console.log(data);
+    });
+
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      console.log(result)
+        sub.unsubscribe();
     });
   }
 }
