@@ -18,8 +18,9 @@ export class CurrentBookComponent implements OnInit {
   books: Array<CurrentBook>;
   selectedBook: CurrentBook;
 
-  animal: string;
-  name: string;
+  date: string;
+  startPage: string;
+  endPage: string;
 
   session : Session;
 
@@ -88,13 +89,13 @@ export class CurrentBookComponent implements OnInit {
 
   openDialog(): void {
     const dialogRef = this.dialog.open(SessionDialogComponent, {
-      width: '250px',
-      data: {name: this.name, animal: this.animal}
+      width: '500px',
+      data: {date: this.date, startPage: this.startPage, endPage: this.endPage}
     });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
-      this.animal = result;
+      console.log(result)
     });
   }
 }

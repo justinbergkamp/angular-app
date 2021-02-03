@@ -2,8 +2,10 @@ import { Component, Inject, Optional, OnInit } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 
 export interface DialogData {
-  animal: string;
-  name: string;
+  date: string;
+  startPage: string;
+  endPage: string;
+
 }
 
 @Component({
@@ -13,9 +15,20 @@ export interface DialogData {
 })
 export class SessionDialogComponent {
 
+  // public sessionForm: FormGroup;
+
+
   constructor(
     public dialogRef: MatDialogRef<SessionDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData) {}
+    @Inject(MAT_DIALOG_DATA) public data: DialogData)
+    {
+      // this.sessionForm = this.fb.group({
+      //   'date': [''],
+      //   'startPage': [''],
+      //   'endPage': ['']
+      // });
+
+    }
 
   onNoClick(): void {
     this.dialogRef.close();
