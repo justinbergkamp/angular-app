@@ -1,7 +1,7 @@
 import { Component, Inject, Optional, OnInit, EventEmitter } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 
-export interface DialogData {
+export interface SessionData {
   date: string;
   startPage: string;
   endPage: string;
@@ -15,32 +15,19 @@ export interface DialogData {
 })
 export class SessionDialogComponent {
 
-  // public sessionForm: FormGroup;
   onAdd = new EventEmitter();
-  // @Output() newItemEvent = new EventEmitter<any>();
-
-
 
   constructor(
     public dialogRef: MatDialogRef<SessionDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData)
-    {
-      // this.sessionForm = this.fb.group({
-      //   'date': [''],
-      //   'startPage': [''],
-      //   'endPage': ['']
-      // });
+    @Inject(MAT_DIALOG_DATA) public data: SessionData)
+    {}
 
-    }
-
-  onNoClick(): void {
+  onCancel(): void {
     this.dialogRef.close();
   }
 
   onSubmit(): void {
-    console.log("Submit");
     this.onAdd.emit(this.data);
-    this.dialogRef.close();
   }
 
 }

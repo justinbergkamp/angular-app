@@ -24,18 +24,10 @@ export class CurrentBookComponent implements OnInit {
 
   session : Session;
 
-
   color="primary";
   mode="determinate";
 
-  currentPage = 0;
-  totalPages: number = 1;
-  startDate : Date = new Date();
-
-  value= this.currentPage / this.totalPages;
-
   // coverImage = 'assets/a-promised-land-image.jpg';
-
   coverImage = 'assets/menu_book.svg';
 
   constructor(private api: APIService, public dialog: MatDialog) { }
@@ -49,58 +41,76 @@ export class CurrentBookComponent implements OnInit {
       this.books = event.items;
       //this will filter only books with status 2 : IE current books
       this.books = this.books.filter(book => book.status == 2);
-      if(this.books){
-        //arbitrarily select the top book
-        // TODO: Select book most recently read
-        this.selectedBook = this.books[0]
-        console.log(this.selectedBook);
-        this.totalPages = this.selectedBook.pages;
-        this.currentPage = this.selectedBook.pageNumber;
-        console.log(this.currentPage);
-
-        this.startDate = new Date(this.selectedBook.startDate);
-        // Get a percentage completed value for the progress wheel
-        // TODO: check for infinity or zero lol
-        if(this.currentPage === undefined){
-          this.currentPage = 0;
-        }
-        if(this.totalPages === undefined){
-          this.totalPages = 0;
-        }
-        if(this.currentPage >= this.totalPages){
-          this.currentPage = this.totalPages;
-        }
-        this.value= Math.floor((this.currentPage / this.totalPages)*100);
-      }else{
-        //should display something if no books are in progress
-      }
-      console.log(this.books);
+      this.populateSlide();
 
     });
   }
 
-  onPageChange(val:string): void {
-    let page : number = +val;
-    if(page > 0 && page <= this.totalPages){
-      this.currentPage = page;
-      this.value = Math.floor((this.currentPage / this.totalPages)*100);
+  selectBook(book:CurrentBook){
+    this.selectedBook = book;
+    return true;
+  }
+
+  populateSlide():void {
+    if(this.books){
+      //arbitrarily select the top book
+      // TODO: Select book most recently read
+      // this.selectedBook = this.books[0]
+
+    }else{
+      //should display something if no books are in progress
     }
   }
 
+  calculatePercentage(currentPage : number , totalPages:number): number {
+    if(currentPage === undefined){
+      currentPage = 0;
+    }
+    if(totalPages === undefined){
+      totalPages = 0;
+    }
+    if(currentPage >= totalPages){
+      currentPage = totalPages;
+    }
+    let value = Math.floor((currentPage / totalPages)*100);
+    return value;
+  }
+
+
   openDialog(): void {
-    this.startPage = this.currentPage;
     this.date = new Date();
     const dialogRef = this.dialog.open(SessionDialogComponent, {
       width: '500px',
-      data: {date: this.date, startPage: this.startPage, endPage: this.endPage}
+      data: {date: this.date, startPage: this.selectedBook.pageNumber, endPage: this.endPage}
     });
 
     const sub = dialogRef.componentInstance.onAdd.subscribe((data) => {
       console.log(data);
+      if(this.verifySession(data)){
+        dialogRef.close();
+      }
     });
 
     dialogRef.afterClosed().subscribe(result => {
         sub.unsubscribe();
     });
   }
+
+  verifySession(data : Session): boolean{
+    // TODO: endPage >= startPage / pages haven't been already read
+    return true;
+  }
+
+  addSession(data : Session): void{
+    // TODO: endPage >= startPage / pages haven't been already read
+    // this.selectedBook.sessions
+    //
+    // this.api.UpdateBook(updatedBook).then(event => {
+    //   console.log('item updated!');
+    // })
+    // .catch(e => {
+    //   console.log('error updating book...', e);
+    // });
+  }
+
 }

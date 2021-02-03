@@ -42,6 +42,7 @@ export type CurrentBook = {
   pageNumber: number,
   pages: number,
   startDate: string,
+  sessions: Array<>
 };
 
 export type DoneBook = {
