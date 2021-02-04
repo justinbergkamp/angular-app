@@ -59,6 +59,19 @@
     </mat-carousel>
   </div>
   <div class="read-log-container">
-    Read Log
+    <h3>Reading Log</h3>
+    <div class="sessions" *ngIf="selectedBook">
+        <div *ngFor="let session of selectedBook.sessions" class="reading-session">
+            <div >
+              {{session.date | date }}
+            </div>
+            <!-- <div >
+              <mat-divider class="vertical-divider" [vertical]="true"></mat-divider>
+            </div> -->
+            <div >
+              {{session.startPage}} - {{session.endPage}}
+            </div>
+        </div>
+      </div>
   </div>
 </div>

@@ -117,4 +117,29 @@ button{
   margin: 30px;
   margin-top: 20px;
   background-color: lightblue;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.sessions{
+  width: 80%;
+
+}
+
+.reading-session{
+  height: 1.6em;
+  border: solid 2px #000;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.vertical-divider{
+  height:80%;
+  border-top-color: black;
 }
