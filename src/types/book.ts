@@ -1,3 +1,6 @@
+
+import { Session } from './session';
+
 export type Book = {
   id : string,
   title : string,
@@ -9,6 +12,8 @@ export type Book = {
   pageNumber: number,
   startDate: string,
   finishDate: string
+  sessions: Array<Session>
+
 };
 
 export type BacklogBook = {
@@ -42,7 +47,7 @@ export type CurrentBook = {
   pageNumber: number,
   pages: number,
   startDate: string,
-  sessions: Array<>
+  sessions: Array<Session>
 };
 
 export type DoneBook = {

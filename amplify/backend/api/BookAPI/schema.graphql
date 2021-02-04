@@ -1,5 +1,4 @@
 type Session {
-  id: ID!
   date: String
   startPage: Int
   endPage: Int

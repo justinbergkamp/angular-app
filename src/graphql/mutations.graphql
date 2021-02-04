@@ -1,43 +1,4 @@
 # this is an auto generated file. This will be overwritten
-mutation CreateSession(
-  $input: CreateSessionInput!
-  $condition: ModelSessionConditionInput
-) {
-  createSession(input: $input, condition: $condition) {
-    id
-    date
-    startPage
-    endPage
-    createdAt
-    updatedAt
-  }
-}
-mutation UpdateSession(
-  $input: UpdateSessionInput!
-  $condition: ModelSessionConditionInput
-) {
-  updateSession(input: $input, condition: $condition) {
-    id
-    date
-    startPage
-    endPage
-    createdAt
-    updatedAt
-  }
-}
-mutation DeleteSession(
-  $input: DeleteSessionInput!
-  $condition: ModelSessionConditionInput
-) {
-  deleteSession(input: $input, condition: $condition) {
-    id
-    date
-    startPage
-    endPage
-    createdAt
-    updatedAt
-  }
-}
 mutation CreateBook(
   $input: CreateBookInput!
   $condition: ModelBookConditionInput
@@ -55,12 +16,9 @@ mutation CreateBook(
     startDate
     finishDate
     sessions {
-      id
       date
       startPage
       endPage
-      createdAt
-      updatedAt
     }
     createdAt
     updatedAt
@@ -83,12 +41,9 @@ mutation UpdateBook(
     startDate
     finishDate
     sessions {
-      id
       date
       startPage
       endPage
-      createdAt
-      updatedAt
     }
     createdAt
     updatedAt
@@ -111,12 +66,9 @@ mutation DeleteBook(
     startDate
     finishDate
     sessions {
-      id
       date
       startPage
       endPage
-      createdAt
-      updatedAt
     }
     createdAt
     updatedAt

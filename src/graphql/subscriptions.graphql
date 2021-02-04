@@ -1,34 +1,4 @@
 # this is an auto generated file. This will be overwritten
-subscription OnCreateSession {
-  onCreateSession {
-    id
-    date
-    startPage
-    endPage
-    createdAt
-    updatedAt
-  }
-}
-subscription OnUpdateSession {
-  onUpdateSession {
-    id
-    date
-    startPage
-    endPage
-    createdAt
-    updatedAt
-  }
-}
-subscription OnDeleteSession {
-  onDeleteSession {
-    id
-    date
-    startPage
-    endPage
-    createdAt
-    updatedAt
-  }
-}
 subscription OnCreateBook {
   onCreateBook {
     id
@@ -43,12 +13,9 @@ subscription OnCreateBook {
     startDate
     finishDate
     sessions {
-      id
       date
       startPage
       endPage
-      createdAt
-      updatedAt
     }
     createdAt
     updatedAt
@@ -68,12 +35,9 @@ subscription OnUpdateBook {
     startDate
     finishDate
     sessions {
-      id
       date
       startPage
       endPage
-      createdAt
-      updatedAt
     }
     createdAt
     updatedAt
@@ -93,12 +57,9 @@ subscription OnDeleteBook {
     startDate
     finishDate
     sessions {
-      id
       date
       startPage
       endPage
-      createdAt
-      updatedAt
     }
     createdAt
     updatedAt

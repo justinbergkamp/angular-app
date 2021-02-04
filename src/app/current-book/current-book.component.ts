@@ -5,7 +5,7 @@ import { APIService } from '../API.service';
 import { MatCarousel, MatCarouselComponent, MatCarouselSlide } from '@ngbmodule/material-carousel';
 import { SessionDialogComponent } from '../session-dialog/session-dialog.component';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
-
+import * as _ from 'lodash';
 
 
 @Component({
@@ -89,6 +89,7 @@ export class CurrentBookComponent implements OnInit {
       if(this.verifySession(data)){
         dialogRef.close();
       }
+      this.addSession(data);
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -102,15 +103,25 @@ export class CurrentBookComponent implements OnInit {
   }
 
   addSession(data : Session): void{
-    // TODO: endPage >= startPage / pages haven't been already read
-    // this.selectedBook.sessions
-    //
-    // this.api.UpdateBook(updatedBook).then(event => {
-    //   console.log('item updated!');
-    // })
-    // .catch(e => {
-    //   console.log('error updating book...', e);
-    // });
+    //Cast CurrentBook to Book
+    // Add Session from data
+    // Update book with latest Session / New Current Page
+    let updatedBook : any ;
+    let newSession = _.omit(data, ['__typename']);
+    updatedBook = _.omit(updatedBook, ['__typename', 'createdAt', 'updatedAt']);
+
+    updatedBook = this.selectedBook;
+    updatedBook.sessions.push(newSession);
+    updatedBook.pageNumber = newSession.endPage;
+    
+    console.log("Updated Book");
+    console.log(updatedBook);
+    this.api.UpdateBook(updatedBook).then(event => {
+      console.log('item updated!');
+    })
+    .catch(e => {
+      console.log('error updating book...', e);
+    });
   }
 
 }

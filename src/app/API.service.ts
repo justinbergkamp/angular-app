@@ -9,20 +9,41 @@ export interface SubscriptionResponse<T> {
   value: GraphQLResult<T>;
 }
 
-export type CreateSessionInput = {
+export type CreateBookInput = {
   id?: string | null;
+  title: string;
+  author: string;
+  status: number;
+  description?: string | null;
+  pageNumber?: number | null;
+  pages?: number | null;
+  tags?: Array<string | null> | null;
+  queue_pos?: number | null;
+  startDate?: string | null;
+  finishDate?: string | null;
+  sessions?: Array<SessionInput | null> | null;
+};
+
+export type SessionInput = {
   date?: string | null;
   startPage?: number | null;
   endPage?: number | null;
 };
 
-export type ModelSessionConditionInput = {
-  date?: ModelStringInput | null;
-  startPage?: ModelIntInput | null;
-  endPage?: ModelIntInput | null;
-  and?: Array<ModelSessionConditionInput | null> | null;
-  or?: Array<ModelSessionConditionInput | null> | null;
-  not?: ModelSessionConditionInput | null;
+export type ModelBookConditionInput = {
+  title?: ModelStringInput | null;
+  author?: ModelStringInput | null;
+  status?: ModelIntInput | null;
+  description?: ModelStringInput | null;
+  pageNumber?: ModelIntInput | null;
+  pages?: ModelIntInput | null;
+  tags?: ModelStringInput | null;
+  queue_pos?: ModelIntInput | null;
+  startDate?: ModelStringInput | null;
+  finishDate?: ModelStringInput | null;
+  and?: Array<ModelBookConditionInput | null> | null;
+  or?: Array<ModelBookConditionInput | null> | null;
+  not?: ModelBookConditionInput | null;
 };
 
 export type ModelStringInput = {
@@ -76,47 +97,6 @@ export type ModelIntInput = {
   attributeType?: ModelAttributeTypes | null;
 };
 
-export type UpdateSessionInput = {
-  id: string;
-  date?: string | null;
-  startPage?: number | null;
-  endPage?: number | null;
-};
-
-export type DeleteSessionInput = {
-  id?: string | null;
-};
-
-export type CreateBookInput = {
-  id?: string | null;
-  title: string;
-  author: string;
-  status: number;
-  description?: string | null;
-  pageNumber?: number | null;
-  pages?: number | null;
-  tags?: Array<string | null> | null;
-  queue_pos?: number | null;
-  startDate?: string | null;
-  finishDate?: string | null;
-};
-
-export type ModelBookConditionInput = {
-  title?: ModelStringInput | null;
-  author?: ModelStringInput | null;
-  status?: ModelIntInput | null;
-  description?: ModelStringInput | null;
-  pageNumber?: ModelIntInput | null;
-  pages?: ModelIntInput | null;
-  tags?: ModelStringInput | null;
-  queue_pos?: ModelIntInput | null;
-  startDate?: ModelStringInput | null;
-  finishDate?: ModelStringInput | null;
-  and?: Array<ModelBookConditionInput | null> | null;
-  or?: Array<ModelBookConditionInput | null> | null;
-  not?: ModelBookConditionInput | null;
-};
-
 export type UpdateBookInput = {
   id: string;
   title?: string | null;
@@ -129,36 +109,11 @@ export type UpdateBookInput = {
   queue_pos?: number | null;
   startDate?: string | null;
   finishDate?: string | null;
+  sessions?: Array<SessionInput | null> | null;
 };
 
 export type DeleteBookInput = {
   id?: string | null;
-};
-
-export type ModelSessionFilterInput = {
-  id?: ModelIDInput | null;
-  date?: ModelStringInput | null;
-  startPage?: ModelIntInput | null;
-  endPage?: ModelIntInput | null;
-  and?: Array<ModelSessionFilterInput | null> | null;
-  or?: Array<ModelSessionFilterInput | null> | null;
-  not?: ModelSessionFilterInput | null;
-};
-
-export type ModelIDInput = {
-  ne?: string | null;
-  eq?: string | null;
-  le?: string | null;
-  lt?: string | null;
-  ge?: string | null;
-  gt?: string | null;
-  contains?: string | null;
-  notContains?: string | null;
-  between?: Array<string | null> | null;
-  beginsWith?: string | null;
-  attributeExists?: boolean | null;
-  attributeType?: ModelAttributeTypes | null;
-  size?: ModelSizeInput | null;
 };
 
 export type ModelBookFilterInput = {
@@ -178,34 +133,20 @@ export type ModelBookFilterInput = {
   not?: ModelBookFilterInput | null;
 };
 
-export type CreateSessionMutation = {
-  __typename: "Session";
-  id: string;
-  date: string | null;
-  startPage: number | null;
-  endPage: number | null;
-  createdAt: string;
-  updatedAt: string;
-};
-
-export type UpdateSessionMutation = {
-  __typename: "Session";
-  id: string;
-  date: string | null;
-  startPage: number | null;
-  endPage: number | null;
-  createdAt: string;
-  updatedAt: string;
-};
-
-export type DeleteSessionMutation = {
-  __typename: "Session";
-  id: string;
-  date: string | null;
-  startPage: number | null;
-  endPage: number | null;
-  createdAt: string;
-  updatedAt: string;
+export type ModelIDInput = {
+  ne?: string | null;
+  eq?: string | null;
+  le?: string | null;
+  lt?: string | null;
+  ge?: string | null;
+  gt?: string | null;
+  contains?: string | null;
+  notContains?: string | null;
+  between?: Array<string | null> | null;
+  beginsWith?: string | null;
+  attributeExists?: boolean | null;
+  attributeType?: ModelAttributeTypes | null;
+  size?: ModelSizeInput | null;
 };
 
 export type CreateBookMutation = {
@@ -223,12 +164,9 @@ export type CreateBookMutation = {
   finishDate: string | null;
   sessions: Array<{
     __typename: "Session";
-    id: string;
     date: string | null;
     startPage: number | null;
     endPage: number | null;
-    createdAt: string;
-    updatedAt: string;
   } | null> | null;
   createdAt: string;
   updatedAt: string;
@@ -249,12 +187,9 @@ export type UpdateBookMutation = {
   finishDate: string | null;
   sessions: Array<{
     __typename: "Session";
-    id: string;
     date: string | null;
     startPage: number | null;
     endPage: number | null;
-    createdAt: string;
-    updatedAt: string;
   } | null> | null;
   createdAt: string;
   updatedAt: string;
@@ -275,39 +210,12 @@ export type DeleteBookMutation = {
   finishDate: string | null;
   sessions: Array<{
     __typename: "Session";
-    id: string;
     date: string | null;
     startPage: number | null;
     endPage: number | null;
-    createdAt: string;
-    updatedAt: string;
   } | null> | null;
   createdAt: string;
   updatedAt: string;
-};
-
-export type GetSessionQuery = {
-  __typename: "Session";
-  id: string;
-  date: string | null;
-  startPage: number | null;
-  endPage: number | null;
-  createdAt: string;
-  updatedAt: string;
-};
-
-export type ListSessionsQuery = {
-  __typename: "ModelSessionConnection";
-  items: Array<{
-    __typename: "Session";
-    id: string;
-    date: string | null;
-    startPage: number | null;
-    endPage: number | null;
-    createdAt: string;
-    updatedAt: string;
-  } | null> | null;
-  nextToken: string | null;
 };
 
 export type GetBookQuery = {
@@ -325,12 +233,9 @@ export type GetBookQuery = {
   finishDate: string | null;
   sessions: Array<{
     __typename: "Session";
-    id: string;
     date: string | null;
     startPage: number | null;
     endPage: number | null;
-    createdAt: string;
-    updatedAt: string;
   } | null> | null;
   createdAt: string;
   updatedAt: string;
@@ -353,47 +258,14 @@ export type ListBooksQuery = {
     finishDate: string | null;
     sessions: Array<{
       __typename: "Session";
-      id: string;
       date: string | null;
       startPage: number | null;
       endPage: number | null;
-      createdAt: string;
-      updatedAt: string;
     } | null> | null;
     createdAt: string;
     updatedAt: string;
   } | null> | null;
   nextToken: string | null;
-};
-
-export type OnCreateSessionSubscription = {
-  __typename: "Session";
-  id: string;
-  date: string | null;
-  startPage: number | null;
-  endPage: number | null;
-  createdAt: string;
-  updatedAt: string;
-};
-
-export type OnUpdateSessionSubscription = {
-  __typename: "Session";
-  id: string;
-  date: string | null;
-  startPage: number | null;
-  endPage: number | null;
-  createdAt: string;
-  updatedAt: string;
-};
-
-export type OnDeleteSessionSubscription = {
-  __typename: "Session";
-  id: string;
-  date: string | null;
-  startPage: number | null;
-  endPage: number | null;
-  createdAt: string;
-  updatedAt: string;
 };
 
 export type OnCreateBookSubscription = {
@@ -411,12 +283,9 @@ export type OnCreateBookSubscription = {
   finishDate: string | null;
   sessions: Array<{
     __typename: "Session";
-    id: string;
     date: string | null;
     startPage: number | null;
     endPage: number | null;
-    createdAt: string;
-    updatedAt: string;
   } | null> | null;
   createdAt: string;
   updatedAt: string;
@@ -437,12 +306,9 @@ export type OnUpdateBookSubscription = {
   finishDate: string | null;
   sessions: Array<{
     __typename: "Session";
-    id: string;
     date: string | null;
     startPage: number | null;
     endPage: number | null;
-    createdAt: string;
-    updatedAt: string;
   } | null> | null;
   createdAt: string;
   updatedAt: string;
@@ -463,12 +329,9 @@ export type OnDeleteBookSubscription = {
   finishDate: string | null;
   sessions: Array<{
     __typename: "Session";
-    id: string;
     date: string | null;
     startPage: number | null;
     endPage: number | null;
-    createdAt: string;
-    updatedAt: string;
   } | null> | null;
   createdAt: string;
   updatedAt: string;
@@ -478,84 +341,6 @@ export type OnDeleteBookSubscription = {
   providedIn: "root"
 })
 export class APIService {
-  async CreateSession(
-    input: CreateSessionInput,
-    condition?: ModelSessionConditionInput
-  ): Promise<CreateSessionMutation> {
-    const statement = `mutation CreateSession($input: CreateSessionInput!, $condition: ModelSessionConditionInput) {
-        createSession(input: $input, condition: $condition) {
-          __typename
-          id
-          date
-          startPage
-          endPage
-          createdAt
-          updatedAt
-        }
-      }`;
-    const gqlAPIServiceArguments: any = {
-      input
-    };
-    if (condition) {
-      gqlAPIServiceArguments.condition = condition;
-    }
-    const response = (await API.graphql(
-      graphqlOperation(statement, gqlAPIServiceArguments)
-    )) as any;
-    return <CreateSessionMutation>response.data.createSession;
-  }
-  async UpdateSession(
-    input: UpdateSessionInput,
-    condition?: ModelSessionConditionInput
-  ): Promise<UpdateSessionMutation> {
-    const statement = `mutation UpdateSession($input: UpdateSessionInput!, $condition: ModelSessionConditionInput) {
-        updateSession(input: $input, condition: $condition) {
-          __typename
-          id
-          date
-          startPage
-          endPage
-          createdAt
-          updatedAt
-        }
-      }`;
-    const gqlAPIServiceArguments: any = {
-      input
-    };
-    if (condition) {
-      gqlAPIServiceArguments.condition = condition;
-    }
-    const response = (await API.graphql(
-      graphqlOperation(statement, gqlAPIServiceArguments)
-    )) as any;
-    return <UpdateSessionMutation>response.data.updateSession;
-  }
-  async DeleteSession(
-    input: DeleteSessionInput,
-    condition?: ModelSessionConditionInput
-  ): Promise<DeleteSessionMutation> {
-    const statement = `mutation DeleteSession($input: DeleteSessionInput!, $condition: ModelSessionConditionInput) {
-        deleteSession(input: $input, condition: $condition) {
-          __typename
-          id
-          date
-          startPage
-          endPage
-          createdAt
-          updatedAt
-        }
-      }`;
-    const gqlAPIServiceArguments: any = {
-      input
-    };
-    if (condition) {
-      gqlAPIServiceArguments.condition = condition;
-    }
-    const response = (await API.graphql(
-      graphqlOperation(statement, gqlAPIServiceArguments)
-    )) as any;
-    return <DeleteSessionMutation>response.data.deleteSession;
-  }
   async CreateBook(
     input: CreateBookInput,
     condition?: ModelBookConditionInput
@@ -576,12 +361,9 @@ export class APIService {
           finishDate
           sessions {
             __typename
-            id
             date
             startPage
             endPage
-            createdAt
-            updatedAt
           }
           createdAt
           updatedAt
@@ -618,12 +400,9 @@ export class APIService {
           finishDate
           sessions {
             __typename
-            id
             date
             startPage
             endPage
-            createdAt
-            updatedAt
           }
           createdAt
           updatedAt
@@ -660,12 +439,9 @@ export class APIService {
           finishDate
           sessions {
             __typename
-            id
             date
             startPage
             endPage
-            createdAt
-            updatedAt
           }
           createdAt
           updatedAt
@@ -681,61 +457,6 @@ export class APIService {
       graphqlOperation(statement, gqlAPIServiceArguments)
     )) as any;
     return <DeleteBookMutation>response.data.deleteBook;
-  }
-  async GetSession(id: string): Promise<GetSessionQuery> {
-    const statement = `query GetSession($id: ID!) {
-        getSession(id: $id) {
-          __typename
-          id
-          date
-          startPage
-          endPage
-          createdAt
-          updatedAt
-        }
-      }`;
-    const gqlAPIServiceArguments: any = {
-      id
-    };
-    const response = (await API.graphql(
-      graphqlOperation(statement, gqlAPIServiceArguments)
-    )) as any;
-    return <GetSessionQuery>response.data.getSession;
-  }
-  async ListSessions(
-    filter?: ModelSessionFilterInput,
-    limit?: number,
-    nextToken?: string
-  ): Promise<ListSessionsQuery> {
-    const statement = `query ListSessions($filter: ModelSessionFilterInput, $limit: Int, $nextToken: String) {
-        listSessions(filter: $filter, limit: $limit, nextToken: $nextToken) {
-          __typename
-          items {
-            __typename
-            id
-            date
-            startPage
-            endPage
-            createdAt
-            updatedAt
-          }
-          nextToken
-        }
-      }`;
-    const gqlAPIServiceArguments: any = {};
-    if (filter) {
-      gqlAPIServiceArguments.filter = filter;
-    }
-    if (limit) {
-      gqlAPIServiceArguments.limit = limit;
-    }
-    if (nextToken) {
-      gqlAPIServiceArguments.nextToken = nextToken;
-    }
-    const response = (await API.graphql(
-      graphqlOperation(statement, gqlAPIServiceArguments)
-    )) as any;
-    return <ListSessionsQuery>response.data.listSessions;
   }
   async GetBook(id: string): Promise<GetBookQuery> {
     const statement = `query GetBook($id: ID!) {
@@ -754,12 +475,9 @@ export class APIService {
           finishDate
           sessions {
             __typename
-            id
             date
             startPage
             endPage
-            createdAt
-            updatedAt
           }
           createdAt
           updatedAt
@@ -796,12 +514,9 @@ export class APIService {
             finishDate
             sessions {
               __typename
-              id
               date
               startPage
               endPage
-              createdAt
-              updatedAt
             }
             createdAt
             updatedAt
@@ -824,60 +539,6 @@ export class APIService {
     )) as any;
     return <ListBooksQuery>response.data.listBooks;
   }
-  OnCreateSessionListener: Observable<
-    SubscriptionResponse<OnCreateSessionSubscription>
-  > = API.graphql(
-    graphqlOperation(
-      `subscription OnCreateSession {
-        onCreateSession {
-          __typename
-          id
-          date
-          startPage
-          endPage
-          createdAt
-          updatedAt
-        }
-      }`
-    )
-  ) as Observable<SubscriptionResponse<OnCreateSessionSubscription>>;
-
-  OnUpdateSessionListener: Observable<
-    SubscriptionResponse<OnUpdateSessionSubscription>
-  > = API.graphql(
-    graphqlOperation(
-      `subscription OnUpdateSession {
-        onUpdateSession {
-          __typename
-          id
-          date
-          startPage
-          endPage
-          createdAt
-          updatedAt
-        }
-      }`
-    )
-  ) as Observable<SubscriptionResponse<OnUpdateSessionSubscription>>;
-
-  OnDeleteSessionListener: Observable<
-    SubscriptionResponse<OnDeleteSessionSubscription>
-  > = API.graphql(
-    graphqlOperation(
-      `subscription OnDeleteSession {
-        onDeleteSession {
-          __typename
-          id
-          date
-          startPage
-          endPage
-          createdAt
-          updatedAt
-        }
-      }`
-    )
-  ) as Observable<SubscriptionResponse<OnDeleteSessionSubscription>>;
-
   OnCreateBookListener: Observable<
     SubscriptionResponse<OnCreateBookSubscription>
   > = API.graphql(
@@ -898,12 +559,9 @@ export class APIService {
           finishDate
           sessions {
             __typename
-            id
             date
             startPage
             endPage
-            createdAt
-            updatedAt
           }
           createdAt
           updatedAt
@@ -932,12 +590,9 @@ export class APIService {
           finishDate
           sessions {
             __typename
-            id
             date
             startPage
             endPage
-            createdAt
-            updatedAt
           }
           createdAt
           updatedAt
@@ -966,12 +621,9 @@ export class APIService {
           finishDate
           sessions {
             __typename
-            id
             date
             startPage
             endPage
-            createdAt
-            updatedAt
           }
           createdAt
           updatedAt

@@ -24,6 +24,7 @@
     "@aws-amplify/ui-angular": "^0.4.15",
     "@ngbmodule/material-carousel": "^0.7.1",
     "aws-amplify": "^3.3.12",
+    "lodash": "^4.17.20",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"
@@ -33,6 +34,7 @@
     "@angular/cli": "~11.0.4",
     "@angular/compiler-cli": "~11.0.4",
     "@types/jasmine": "~3.6.0",
+    "@types/lodash": "^4.14.168",
     "@types/node": "^12.11.1",
     "codelyzer": "^6.0.0",
     "jasmine-core": "~3.6.0",
