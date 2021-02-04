@@ -34,6 +34,18 @@ export class CurrentBookComponent implements OnInit {
 
   ngOnInit(): void {
     this.getBooks();
+
+    /* subscribe to new books being updated */
+    this.api.OnUpdateBookListener.subscribe( (event: any) => {
+      // TODO: Check this event for failure
+      console.log(event);
+
+      this.api.ListBooks().then(event => {
+          // TODO: Filter to retrive the book we were just looking at in case of multiple
+          this.getBooks();
+      });
+    });
+
   }
 
   getBooks(): void{
@@ -42,8 +54,8 @@ export class CurrentBookComponent implements OnInit {
       //this will filter only books with status 2 : IE current books
       this.books = this.books.filter(book => book.status == 2);
       this.populateSlide();
-
     });
+
   }
 
   selectBook(book:CurrentBook){
@@ -107,13 +119,20 @@ export class CurrentBookComponent implements OnInit {
     // Add Session from data
     // Update book with latest Session / New Current Page
     let updatedBook : any ;
-    let newSession = _.omit(data, ['__typename']);
+    updatedBook = this.selectedBook;
     updatedBook = _.omit(updatedBook, ['__typename', 'createdAt', 'updatedAt']);
 
-    updatedBook = this.selectedBook;
+    let newSession = _.omit(data, ['__typename']);
     updatedBook.sessions.push(newSession);
-    updatedBook.pageNumber = newSession.endPage;
+
+
+    for (var index in updatedBook.sessions) {
+      let newSesh = _.omit(updatedBook.sessions[index], ['__typename']);
+      updatedBook.sessions[index] = newSesh;
+    }
     
+    updatedBook.pageNumber = newSession.endPage;
+
     console.log("Updated Book");
     console.log(updatedBook);
     this.api.UpdateBook(updatedBook).then(event => {
