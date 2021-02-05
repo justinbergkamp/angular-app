@@ -1,6 +1,14 @@
 <div class="current-page-container">
   <div class="queue-list-container">
-    Queue List
+    <h3>Queue</h3>
+    <div class="queue" *ngIf="queuedBooks">
+        <div *ngFor="let queueBook of queuedBooks" class="queued-books">
+            <div >
+              {{queueBook.title}}
+            </div>
+        </div>
+      </div>
+
   </div>
   <div class="carousel-container">
       <mat-carousel
@@ -60,8 +68,8 @@
   </div>
   <div class="read-log-container">
     <h3>Reading Log</h3>
-    <div class="sessions" *ngIf="selectedBook">
-        <div *ngFor="let session of selectedBook.sessions" class="reading-session">
+    <div class="sessions" *ngIf="selectedBook !== undefined">
+      <div *ngFor="let session of selectedBook.sessions" class="reading-session">
             <div >
               {{session.date | date }}
             </div>
@@ -72,6 +80,6 @@
               {{session.startPage}} - {{session.endPage}}
             </div>
         </div>
-      </div>
+        </div>
   </div>
 </div>

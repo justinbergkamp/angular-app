@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, EventEmitter } from '@angular/core';
+import { Component, OnInit, ViewChild, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 import { Book, CurrentBook } from '../../types/book';
 import { Session } from '../../types/session';
 import { APIService } from '../API.service';
@@ -17,6 +17,7 @@ export class CurrentBookComponent implements OnInit {
 
   books: Array<CurrentBook>;
   selectedBook: CurrentBook;
+  queuedBooks : Array<Book>;
 
   date: Date;
   startPage: number;
@@ -34,26 +35,42 @@ export class CurrentBookComponent implements OnInit {
 
   ngOnInit(): void {
     this.getBooks();
+    this.getQueuedBooks()
 
     /* subscribe to new books being updated */
     this.api.OnUpdateBookListener.subscribe( (event: any) => {
       // TODO: Check this event for failure
-      console.log(event);
-
-      this.api.ListBooks().then(event => {
-          // TODO: Filter to retrive the book we were just looking at in case of multiple
-          this.getBooks();
-      });
+      console.log(event.value.data);
+      this.selectedBook = event.value.data;
     });
 
   }
 
   getBooks(): void{
-    this.api.ListBooks().then(event => {
+    // Query with filters, limits, and pagination
+    let filter = {
+      status: {
+        eq: 2 // filter status = 2
+      }
+    };
+    this.api.ListBooks(filter).then(event => {
       this.books = event.items;
-      //this will filter only books with status 2 : IE current books
-      this.books = this.books.filter(book => book.status == 2);
-      this.populateSlide();
+      this.selectBook(this.books[0])
+    });
+
+  }
+
+
+  getQueuedBooks(): void{
+    // Query with filters, limits, and pagination
+    let filter = {
+      status: {
+        eq: 1 // filter status = 2
+      }
+    };
+        const limit =  10;
+    this.api.ListBooks(filter, limit).then(event => {
+      this.queuedBooks = event.items;
     });
 
   }
@@ -63,16 +80,6 @@ export class CurrentBookComponent implements OnInit {
     return true;
   }
 
-  populateSlide():void {
-    if(this.books){
-      //arbitrarily select the top book
-      // TODO: Select book most recently read
-      // this.selectedBook = this.books[0]
-
-    }else{
-      //should display something if no books are in progress
-    }
-  }
 
   calculatePercentage(currentPage : number , totalPages:number): number {
     if(currentPage === undefined){
@@ -100,8 +107,10 @@ export class CurrentBookComponent implements OnInit {
       console.log(data);
       if(this.verifySession(data)){
         dialogRef.close();
+        this.addSession(data);
+      }else{
+        alert("The end page must be greater than the beginning page!")
       }
-      this.addSession(data);
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -111,6 +120,9 @@ export class CurrentBookComponent implements OnInit {
 
   verifySession(data : Session): boolean{
     // TODO: endPage >= startPage / pages haven't been already read
+    if(data.endPage <= data.startPage){
+      return false;
+    }
     return true;
   }
 
@@ -130,7 +142,7 @@ export class CurrentBookComponent implements OnInit {
       let newSesh = _.omit(updatedBook.sessions[index], ['__typename']);
       updatedBook.sessions[index] = newSesh;
     }
-    
+
     updatedBook.pageNumber = newSession.endPage;
 
     console.log("Updated Book");

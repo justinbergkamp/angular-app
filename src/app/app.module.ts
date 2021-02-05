@@ -26,6 +26,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { MatCarouselModule } from '@ngbmodule/material-carousel';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatDialogModule} from '@angular/material/dialog';
+import {ScrollingModule} from '@angular/cdk/scrolling';
 
 
 import {DragDropModule} from '@angular/cdk/drag-drop';
@@ -75,6 +76,7 @@ import { SessionDialogComponent } from './session-dialog/session-dialog.componen
     MatProgressSpinnerModule,
     MatDividerModule,
     MatDialogModule,
+    ScrollingModule,
     MatCarouselModule.forRoot()
 
   ],

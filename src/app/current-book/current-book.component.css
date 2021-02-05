@@ -31,8 +31,29 @@
   border-radius: 4px;
   margin: 30px;
   margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
 
 }
+
+.queue{
+  width: 80%;
+
+}
+
+.queued-books{
+  height: 1.6em;
+  border: solid 2px #000;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
 
 .carousel-container{
   min-width: 400px;
