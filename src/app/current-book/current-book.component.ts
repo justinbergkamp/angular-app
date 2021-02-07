@@ -4,6 +4,7 @@ import { Session } from '../../types/session';
 import { APIService } from '../API.service';
 import { MatCarousel, MatCarouselComponent, MatCarouselSlide } from '@ngbmodule/material-carousel';
 import { SessionDialogComponent } from '../session-dialog/session-dialog.component';
+import { TransitionDialogComponent } from '../transition-dialog/transition-dialog.component';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import * as _ from 'lodash';
 
@@ -115,6 +116,28 @@ export class CurrentBookComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
         sub.unsubscribe();
+    });
+  }
+
+  openTransitionDialog(book: Book): void {
+    this.date = new Date();
+    const dialogRef = this.dialog.open(TransitionDialogComponent, {
+      width: '500px',
+      data: book
+    });
+
+    // const sub = dialogRef.componentInstance.onAdd.subscribe((data) => {
+    //   console.log(data);
+    //   if(this.verifySession(data)){
+    //     dialogRef.close();
+    //     this.addSession(data);
+    //   }else{
+    //     alert("The end page must be greater than the beginning page!")
+    //   }
+    // });
+
+    dialogRef.afterClosed().subscribe(result => {
+        // sub.unsubscribe();
     });
   }
 

@@ -38,6 +38,7 @@ import { AddBookComponent } from './add-book/add-book.component';
 import { QueueComponent } from './queue/queue.component';
 import { CurrentBookComponent } from './current-book/current-book.component';
 import { SessionDialogComponent } from './session-dialog/session-dialog.component';
+import { TransitionDialogComponent } from './transition-dialog/transition-dialog.component';
 
 
 
@@ -51,7 +52,8 @@ import { SessionDialogComponent } from './session-dialog/session-dialog.componen
     LibraryComponent,
     QueueComponent,
     CurrentBookComponent,
-    SessionDialogComponent
+    SessionDialogComponent,
+    TransitionDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -81,7 +83,8 @@ import { SessionDialogComponent } from './session-dialog/session-dialog.componen
 
   ],
   entryComponents: [
-    SessionDialogComponent
+    SessionDialogComponent,
+    TransitionDialogComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -2,7 +2,7 @@
   <div class="queue-list-container">
     <h3>Queue</h3>
     <div class="queue" *ngIf="queuedBooks">
-        <div *ngFor="let queueBook of queuedBooks" class="queued-books">
+        <div *ngFor="let queueBook of queuedBooks" class="queued-books" (click)="openTransitionDialog(queueBook)">
             <div >
               {{queueBook.title}}
             </div>

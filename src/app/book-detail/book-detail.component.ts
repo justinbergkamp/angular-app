@@ -63,6 +63,8 @@ export class BookDetailComponent implements OnInit {
   ngOnInit(): void {  }
 
   ngOnChanges(changes: SimpleChanges) {
+    console.log("AHHHHH");
+    console.log(changes.book);
 
     this.updateForm.patchValue({title: this.book.title, author: this.book.author, status: this.book.status,
     description: this.book.description, pageNumber: this.book.pageNumber,tags: this.book.tags,
