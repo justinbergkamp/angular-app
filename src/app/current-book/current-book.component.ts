@@ -64,11 +64,7 @@ export class CurrentBookComponent implements OnInit {
 
   getQueuedBooks(): void{
     // Query with filters, limits, and pagination
-    let filter = {
-      status: {
-        eq: 1 // filter status = 2
-      }
-    };
+    let filter = { status: {  eq: 1  } };
         const limit =  10;
     this.api.ListBooks(filter, limit).then(event => {
       this.queuedBooks = event.items;
@@ -77,9 +73,18 @@ export class CurrentBookComponent implements OnInit {
   }
 
   selectBook(book:CurrentBook){
+    // TODO:  this is bad
+    // if(book != this.selectedBook){
+    //   this.loadReadingLog();
+    // }
     this.selectedBook = book;
     return true;
   }
+
+  // loadReadingLog(){
+  //   console.log("Reloading log ");
+  // }
+
 
 
   calculatePercentage(currentPage : number , totalPages:number): number {

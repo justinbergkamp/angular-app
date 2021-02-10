@@ -1,15 +1,14 @@
 import { Book } from '../../types/book';
-import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, Output,  Input, ViewChild, ElementRef, EventEmitter } from '@angular/core';
 import { APIService } from '../API.service';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { SimpleChanges } from '@angular/core';
-
-
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import {MatAutocompleteSelectedEvent, MatAutocomplete} from '@angular/material/autocomplete';
 import {MatChipInputEvent} from '@angular/material/chips';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-book-detail',
@@ -17,12 +16,20 @@ import {map, startWith} from 'rxjs/operators';
   styleUrls: ['./book-detail.component.css']
 })
 
+// TODO: Refactor tags to separate tags component?
 export class BookDetailComponent implements OnInit {
 
 
   @Input() book: Book;
+  @Input() mode: String;
+  @Output() onUpdate = new EventEmitter();
+
+
   statusOptions: Array<String> = ["Backlog" , "Ready",  "Current", "Done"];
   public updateForm: FormGroup;
+
+  //Defualts status to Backlog -- I don't think this is neccessary anymore
+  currentStatus: String = "Backlog";
 
 
  // information needed for the tags
@@ -34,9 +41,7 @@ export class BookDetailComponent implements OnInit {
   currentTags: string[] = [];
   allTags: string[] = ['Science', 'Fantasy', 'History', 'Philosophy', 'Self-Improvement'];
 
-  currentStatus: String = "Backlog";
-
-
+  //Used for tag input
   @ViewChild('tagInput') tagInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto') matAutocomplete: MatAutocomplete;
 
@@ -46,35 +51,54 @@ export class BookDetailComponent implements OnInit {
     this.updateForm = this.fb.group({
       'title': ['', Validators.required],
       'author': ['', Validators.required],
-      'description': [''],
-      'pageNumber': [''],
-      'tags': [''],
+      'description': ['', Validators.required],
+      'pages': ['', Validators.required],
+      'pageNumber': ['', Validators.required],
+      'tags': ['', Validators.required],
       'status': ['', Validators.required],
-      'startDate': [''],
-      'finishDate': ['']
+      'startDate': ['', Validators.required],
+      'finishDate': ['', Validators.required]
     });
 
     this.filteredTags = this.updateForm.controls.tags.valueChanges.pipe(
             startWith(null),
             map((tag: string | null) => tag ? this._filter(tag) : this.allTags.slice()));
 
+    console.log("TEST");
+    console.log(this.mode);
+
   }
 
   ngOnInit(): void {  }
 
   ngOnChanges(changes: SimpleChanges) {
-    console.log("AHHHHH");
-    console.log(changes.book);
 
-    this.updateForm.patchValue({title: this.book.title, author: this.book.author, status: this.book.status,
-    description: this.book.description, pageNumber: this.book.pageNumber,tags: this.book.tags,
-    startDate: this.book.startDate, finishDate: this.book.finishDate});
-    this.currentTags = this.book.tags;
-    if (this.currentTags == null) {
-      this.currentTags = [];
+    if(this.mode === undefined){
+      //this is a non-descript boot details instance - display everything as normal
+      this.updateForm.patchValue({title: this.book.title, author: this.book.author, status: this.book.status,
+      description: this.book.description, pageNumber: this.book.pageNumber,tags: this.book.tags,
+      startDate: this.book.startDate, finishDate: this.book.finishDate});
+      this.currentTags = this.book.tags;
+      if (this.currentTags == null) {
+        this.currentTags = [];
+      }
+
+      this.currentStatus = this.statusOptions[this.book.status];
+
+
+    }else{
+      this.updateForm.patchValue({title: this.book.title, author: this.book.author, status: this.book.status,
+      description: this.book.description, pageNumber: this.book.pageNumber,tags: this.book.tags,
+      startDate: this.book.startDate, finishDate: this.book.finishDate});
+      this.currentTags = this.book.tags;
+      if (this.currentTags == null) {
+        this.currentTags = [];
+      }
+      this.book.status = this.book.status + 1;
+      this.currentStatus = this.statusOptions[this.book.status];
+
+
     }
-
-    this.currentStatus = this.statusOptions[this.book.status];
 
 
 }
@@ -82,22 +106,27 @@ export class BookDetailComponent implements OnInit {
 
   updateBook(book: Book){
 
-    let updatedBook = {
-      "id": this.book.id,
-      "title": book.title,
-      "author": book.author,
-      "status": book.status,
-      "description": book.description,
-      "pageNumber": book.pageNumber,
-      "queue_pos": this.book.queue_pos,
-      "tags": this.currentTags,
-      "startDate": book.startDate,
-      "finishDate": book.finishDate
-   };
+   let updatedBook : any ;
+   updatedBook = book;
+   updatedBook.id = this.book.id;
+   updatedBook.status = this.book.status;
+   updatedBook = _.omit(updatedBook, ['__typename', 'createdAt', 'updatedAt']);
+
+   //Not best practice, need better way to add generated values for each new instance
+   if(updatedBook.status == 2){
+     console.log(updatedBook.pages);
+     console.log(updatedBook.pageNumber);
+     if(!updatedBook.pageNumber){
+       updatedBook.pageNumber = 0;
+     }
+
+   }
+
    console.log(updatedBook);
 
     this.api.UpdateBook(updatedBook).then(event => {
       console.log('item updated!');
+      this.onUpdate.emit("done");
     })
     .catch(e => {
       console.log('error updating book...', e);
@@ -105,10 +134,9 @@ export class BookDetailComponent implements OnInit {
 
   }
 
+  //Tag toggle buttons
   public onStatusUpdate(val){
     this.book.status = val;
-    console.log(this.book.status);
-
   }
 
   //tag methods
@@ -117,7 +145,7 @@ export class BookDetailComponent implements OnInit {
     const input = event.input;
     const value = event.value;
 
-    // Add our fruit
+    // Add our tag
     if ((value || '').trim()) {
       this.currentTags.push(value.trim());
     }

@@ -31,7 +31,7 @@
         <mat-form-field class="form-field" appearance="outline">
           <mat-label> Pages
           </mat-label>
-          <input matInput  formControlName="pageNumber" placeholder="Page Number">
+          <input matInput  type=number formControlName="pages" placeholder="Number of Pages">
         </mat-form-field>
       </div>
 
@@ -86,7 +86,7 @@
       </div>
 
 
-      <div class="">
+      <div *ngIf="mode === undefined">
         <mat-button-toggle-group  #group="matButtonToggleGroup" (change)="onStatusUpdate(group.value)" multiple="false"
         formControlName="status" value = "currentStatus">
         <mat-button-toggle *ngFor="let item of statusOptions; let i = index" [value]="i">{{item}}</mat-button-toggle>

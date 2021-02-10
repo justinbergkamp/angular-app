@@ -1,12 +1,11 @@
 <div mat-dialog-content>
   <div class="dialog-body">
 
-    <app-book-detail [book]="book"></app-book-detail>
+    <app-book-detail (onUpdate)="onUpdate()" [book]="book" [mode]="'transition'"></app-book-detail>
 
   </div>
 </div>
 
 <div mat-dialog-actions>
   <button mat-button (click)="onCancel()">Cancel</button>
-  <button mat-button type="submit" cdkFocusInitial>Add</button>
 </div>
