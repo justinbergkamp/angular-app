@@ -9,6 +9,8 @@ import {MatChipInputEvent} from '@angular/material/chips';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
 import * as _ from 'lodash';
+import { TransitionService } from '../transition.service';
+
 
 @Component({
   selector: 'app-book-detail',
@@ -27,10 +29,7 @@ export class BookDetailComponent implements OnInit {
 
   statusOptions: Array<String> = ["Backlog" , "Ready",  "Current", "Done"];
   public updateForm: FormGroup;
-
-  //Defualts status to Backlog -- I don't think this is neccessary anymore
-  currentStatus: String = "Backlog";
-
+  currentStatus : String = this.statusOptions[0];
 
  // information needed for the tags
   visible = true;
@@ -46,7 +45,7 @@ export class BookDetailComponent implements OnInit {
   @ViewChild('auto') matAutocomplete: MatAutocomplete;
 
 
-  constructor(private api: APIService, private fb: FormBuilder) {
+  constructor(private api: APIService, private fb: FormBuilder, private transitionService : TransitionService) {
 
     this.updateForm = this.fb.group({
       'title': ['', Validators.required],
@@ -64,42 +63,32 @@ export class BookDetailComponent implements OnInit {
             startWith(null),
             map((tag: string | null) => tag ? this._filter(tag) : this.allTags.slice()));
 
-    console.log("TEST");
-    console.log(this.mode);
-
   }
 
   ngOnInit(): void {  }
 
   ngOnChanges(changes: SimpleChanges) {
 
-    if(this.mode === undefined){
-      //this is a non-descript boot details instance - display everything as normal
-      this.updateForm.patchValue({title: this.book.title, author: this.book.author, status: this.book.status,
-      description: this.book.description, pageNumber: this.book.pageNumber,tags: this.book.tags,
-      startDate: this.book.startDate, finishDate: this.book.finishDate});
-      this.currentTags = this.book.tags;
-      if (this.currentTags == null) {
-        this.currentTags = [];
-      }
+    this.updateForm.patchValue({
+      title: this.book.title,
+      author: this.book.author,
+      status: this.book.status,
+      description: this.book.description,
+      pageNumber: this.book.pageNumber,
+      tags: this.book.tags,
+      startDate: this.book.startDate,
+      finishDate: this.book.finishDate});
 
-      this.currentStatus = this.statusOptions[this.book.status];
-
-
-    }else{
-      this.updateForm.patchValue({title: this.book.title, author: this.book.author, status: this.book.status,
-      description: this.book.description, pageNumber: this.book.pageNumber,tags: this.book.tags,
-      startDate: this.book.startDate, finishDate: this.book.finishDate});
-      this.currentTags = this.book.tags;
-      if (this.currentTags == null) {
-        this.currentTags = [];
-      }
-      this.book.status = this.book.status + 1;
-      this.currentStatus = this.statusOptions[this.book.status];
-
-
+    this.currentTags = this.book.tags;
+    if (this.currentTags == null) {
+      this.currentTags = [];
     }
 
+    this.currentStatus = this.statusOptions[this.book.status];
+
+    if(this.mode === "transition"){
+      this.book.status = this.book.status + 1;
+    }
 
 }
 
@@ -111,16 +100,7 @@ export class BookDetailComponent implements OnInit {
    updatedBook.id = this.book.id;
    updatedBook.status = this.book.status;
    updatedBook = _.omit(updatedBook, ['__typename', 'createdAt', 'updatedAt']);
-
-   //Not best practice, need better way to add generated values for each new instance
-   if(updatedBook.status == 2){
-     console.log(updatedBook.pages);
-     console.log(updatedBook.pageNumber);
-     if(!updatedBook.pageNumber){
-       updatedBook.pageNumber = 0;
-     }
-
-   }
+   updatedBook = this.transitionService.convertToCurrent(updatedBook);
 
    console.log(updatedBook);
 

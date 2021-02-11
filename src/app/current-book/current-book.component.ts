@@ -110,7 +110,7 @@ export class CurrentBookComponent implements OnInit {
     });
 
     const sub = dialogRef.componentInstance.onAdd.subscribe((data) => {
-      console.log(data);
+      console.log("What's up with this?");
       if(this.verifySession(data)){
         dialogRef.close();
         this.addSession(data);

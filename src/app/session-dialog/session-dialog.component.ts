@@ -23,10 +23,12 @@ export class SessionDialogComponent {
     {}
 
   onCancel(): void {
+    console.log("Cancel");
     this.dialogRef.close();
   }
 
   onSubmit(): void {
+    console.log("Submit");
     this.onAdd.emit(this.data);
   }
 

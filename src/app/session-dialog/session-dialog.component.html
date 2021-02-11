@@ -1,5 +1,5 @@
 <h1 mat-dialog-title>Add Reading Session</h1>
-<form (ngSubmit)="onSubmit()" #sessionForm="ngForm">
+<form  #sessionForm="ngForm">
   <div mat-dialog-content>
     <div class="dialog-body">
 
@@ -33,5 +33,5 @@
     <button mat-button (click)="onCancel()">Cancel</button>
     <button mat-button type="submit" [disabled]="!sessionForm.form.valid" cdkFocusInitial>Add</button>
   </div>
-  
+
 </form>
