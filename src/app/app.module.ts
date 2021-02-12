@@ -39,6 +39,7 @@ import { QueueComponent } from './queue/queue.component';
 import { CurrentBookComponent } from './current-book/current-book.component';
 import { SessionDialogComponent } from './session-dialog/session-dialog.component';
 import { TransitionDialogComponent } from './transition-dialog/transition-dialog.component';
+import { CarouselComponent } from './carousel/carousel.component';
 
 
 
@@ -53,7 +54,8 @@ import { TransitionDialogComponent } from './transition-dialog/transition-dialog
     QueueComponent,
     CurrentBookComponent,
     SessionDialogComponent,
-    TransitionDialogComponent
+    TransitionDialogComponent,
+    CarouselComponent
   ],
   imports: [
     BrowserModule,

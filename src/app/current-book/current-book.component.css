@@ -1,20 +1,4 @@
-/* .container {
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: pink;
-}
 
-.inner-container {
-  height: 200px;
-  width: 200px;
-  background-color: blue;
-
-  outline: 6px black;
-  margin: 20px;
-}
-} */
 
 .current-page-container{
   display: flex; /* or inline-flex */
@@ -59,76 +43,11 @@
   min-width: 400px;
   width: 60%;
   margin-top: 20px;
-}
-
-.carousel{
-
-}
-
-.carousel-slide{
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-}
-
-.carosel-slide-book-info{
-  width:80%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-
-.cover-image{
-  height: 100px;
-  width: 100px;
-}
-
-img {
-  height: 100%;
-  width: 100%;
+  border: solid 3px #ccc;
+  border-radius: 4px;
 }
 
 
-.carousel-slide-headers{
-  height: 100px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  margin-top: 20px;
-}
-
-.carousel-slide-body{
-  width: 70%;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  margin-top: 20px;
-
-}
-
-#completionPercentage{
-  position:relative;
-  top: -60px;
-  left: 37px;
-  font-size: 1.2em;
-}
-
-mat-divider {
-    width: 100%;
-}
-
-button{
-  margin-top: 20px;
-
-}
-
-.page-details{
-  margin: 20px;
-  margin-left: 40px;
-}
 
 .read-log-container{
   width: 20%;

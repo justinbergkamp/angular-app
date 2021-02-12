@@ -2,7 +2,6 @@ import { Component, OnInit, ViewChild, EventEmitter, ChangeDetectionStrategy } f
 import { Book, CurrentBook } from '../../types/book';
 import { Session } from '../../types/session';
 import { APIService } from '../API.service';
-import { MatCarousel, MatCarouselComponent, MatCarouselSlide } from '@ngbmodule/material-carousel';
 import { SessionDialogComponent } from '../session-dialog/session-dialog.component';
 import { TransitionDialogComponent } from '../transition-dialog/transition-dialog.component';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
@@ -84,6 +83,15 @@ export class CurrentBookComponent implements OnInit {
   // loadReadingLog(){
   //   console.log("Reloading log ");
   // }
+
+  onSlideChange(slideVal : number){
+    console.log(`Slide changed to ${{slideVal}}`);
+  }
+
+  onSession(){
+    console.log("Session opened");
+
+  }
 
 
 

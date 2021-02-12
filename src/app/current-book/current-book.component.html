@@ -11,60 +11,7 @@
 
   </div>
   <div class="carousel-container">
-      <mat-carousel
-        timings="250ms ease-in"
-        [autoplay]="false"
-        interval="5000"
-        color="primary"
-        proportion="50"
-        slides="5"
-        [loop]="true"
-        [hideArrows]="false"
-        [hideIndicators]="false"
-        [useKeyboard]="true"
-        [useMouseWheel]="false"
-        orientation="ltr"
-        class="carousel">
-          <mat-carousel-slide overlayColor="lightgreen" class="carousel-slide-container" *ngFor="let book of books">
-            <div  class="carousel-slide" *ngIf="selectBook(book)">
-              <div class="carosel-slide-book-info">
-                <div class="cover-image">
-                  <img src = "{{coverImage}}">
-                </div>
-                <div class="carousel-slide-headers">
-                  <h1>{{ book.title }}</h1>
-                  <h3>by {{ book.author }}</h3>
-                </div>
-                <div class="carousel-slide-headers">
-                  <h3>{{book.startDate | date }}</h3>
-                  <h3>Goal Completion Date</h3>
-                </div>
-              </div>
-              <mat-divider></mat-divider>
-              <div class="carousel-slide-body">
-                <div id="progress-spinner">
-                  <mat-progress-spinner
-                    class="example-margin"
-                    [color]="color"
-                    [mode]="mode"
-                    [value]="calculatePercentage(book.pageNumber,book.pages)">
-                  </mat-progress-spinner>
-                  <div id="completionPercentage">
-                     {{ calculatePercentage(book.pageNumber,book.pages) }}%
-                  </div>
-                </div>
-                <div class="page-details">
-                  <h4>Current Page : {{book.pageNumber}}</h4>
-                  <h4>Total Pages : {{book.pages}}</h4>
-                </div>
-              </div>
-            <mat-divider></mat-divider>
-            <button  mat-flat-button  (click)="openDialog()">
-              Add Session
-            </button>
-          </div>
-        </mat-carousel-slide>
-    </mat-carousel>
+      <app-carousel  (onSlideChange)="onSlideChange($event)" (onSession)="onSession()" [books]="books" class="carousel"></app-carousel>
   </div>
   <div class="read-log-container">
     <h3>Reading Log</h3>
@@ -73,9 +20,6 @@
             <div >
               {{session.date | date }}
             </div>
-            <!-- <div >
-              <mat-divider class="vertical-divider" [vertical]="true"></mat-divider>
-            </div> -->
             <div >
               {{session.startPage}} - {{session.endPage}}
             </div>
