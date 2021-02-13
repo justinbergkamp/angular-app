@@ -19,6 +19,8 @@ export class CurrentBookComponent implements OnInit {
   selectedBook: CurrentBook;
   queuedBooks : Array<Book>;
 
+  currentSlide = 0;
+
   date: Date;
   startPage: number;
   endPage: number;
@@ -40,8 +42,10 @@ export class CurrentBookComponent implements OnInit {
     /* subscribe to new books being updated */
     this.api.OnUpdateBookListener.subscribe( (event: any) => {
       // TODO: Check this event for failure
-      console.log(event.value.data);
-      this.selectedBook = event.value.data;
+      console.log("A book was updated");
+      console.log(event.value.data.onUpdateBook);
+      this.selectedBook = event.value.data.onUpdateBook;
+      this.books[this.currentSlide] =   this.selectedBook;
     });
 
   }
@@ -56,6 +60,7 @@ export class CurrentBookComponent implements OnInit {
     this.api.ListBooks(filter).then(event => {
       this.books = event.items;
       this.selectBook(this.books[0])
+
     });
 
   }
@@ -86,10 +91,13 @@ export class CurrentBookComponent implements OnInit {
 
   onSlideChange(slideVal : number){
     console.log(`Slide changed to ${{slideVal}}`);
+    this.selectedBook = this.books[slideVal];
+    this.currentSlide = slideVal;
   }
 
   onSession(){
     console.log("Session opened");
+    this.openDialog();
 
   }
 
@@ -171,6 +179,9 @@ export class CurrentBookComponent implements OnInit {
     updatedBook = _.omit(updatedBook, ['__typename', 'createdAt', 'updatedAt']);
 
     let newSession = _.omit(data, ['__typename']);
+    if(!updatedBook.sessions){
+      updatedBook.sessions = [];
+    }
     updatedBook.sessions.push(newSession);
 
 

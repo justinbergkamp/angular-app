@@ -31,7 +31,7 @@
 
   <div mat-dialog-actions>
     <button mat-button (click)="onCancel()">Cancel</button>
-    <button mat-button type="submit" [disabled]="!sessionForm.form.valid" cdkFocusInitial>Add</button>
+    <button mat-button (click)="onSubmit()" [disabled]="!sessionForm.form.valid" cdkFocusInitial>Add</button>
   </div>
 
 </form>
