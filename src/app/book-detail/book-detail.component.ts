@@ -100,7 +100,7 @@ export class BookDetailComponent implements OnInit {
    updatedBook.id = this.book.id;
    updatedBook.status = this.book.status;
    updatedBook = _.omit(updatedBook, ['__typename', 'createdAt', 'updatedAt']);
-   updatedBook = this.transitionService.convertToCurrent(updatedBook);
+   updatedBook = this.transitionService.convert(updatedBook);
 
    console.log(updatedBook);
 

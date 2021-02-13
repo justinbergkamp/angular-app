@@ -18,7 +18,6 @@ export class TransitionDialogComponent  {
     public dialogRef: MatDialogRef<TransitionDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Book){
       this.book = data;
-      console.log(this.book);
     }
 
   ngOnInit(): void {
@@ -29,7 +28,6 @@ export class TransitionDialogComponent  {
   }
 
   onUpdate(): void {
-    console.log("You betcha");
     this.onCancel();
   }
 

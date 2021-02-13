@@ -55,6 +55,7 @@ export class CarouselComponent implements OnInit {
   }
 
   calculatePercentage(currentPage : number , totalPages:number): number {
+    // TODO: should be nicer
     if(currentPage === undefined){
       currentPage = 0;
     }
@@ -67,9 +68,9 @@ export class CarouselComponent implements OnInit {
     let value = Math.floor((currentPage / totalPages)*100);
     return value;
   }
+  
   openDialog(){
     this.onSession.emit();
-
   }
 
 }

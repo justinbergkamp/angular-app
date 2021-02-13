@@ -27,11 +27,6 @@ export class CurrentBookComponent implements OnInit {
 
   session : Session;
 
-  color="primary";
-  mode="determinate";
-
-  // coverImage = 'assets/a-promised-land-image.jpg';
-  coverImage = 'assets/menu_book.svg';
 
   constructor(private api: APIService, public dialog: MatDialog) { }
 
@@ -52,15 +47,12 @@ export class CurrentBookComponent implements OnInit {
 
   getBooks(): void{
     // Query with filters, limits, and pagination
-    let filter = {
-      status: {
-        eq: 2 // filter status = 2
-      }
-    };
+    let filter = { status: { eq: 2 }  };
+
     this.api.ListBooks(filter).then(event => {
       this.books = event.items;
-      this.selectBook(this.books[0])
-
+      // TODO: sort by most amount of pages
+      this.selectedBook = this.books[0]
     });
 
   }
@@ -76,45 +68,10 @@ export class CurrentBookComponent implements OnInit {
 
   }
 
-  selectBook(book:CurrentBook){
-    // TODO:  this is bad
-    // if(book != this.selectedBook){
-    //   this.loadReadingLog();
-    // }
-    this.selectedBook = book;
-    return true;
-  }
-
-  // loadReadingLog(){
-  //   console.log("Reloading log ");
-  // }
-
   onSlideChange(slideVal : number){
-    console.log(`Slide changed to ${{slideVal}}`);
+    console.log(`Slide changed to ${slideVal}`);
     this.selectedBook = this.books[slideVal];
     this.currentSlide = slideVal;
-  }
-
-  onSession(){
-    console.log("Session opened");
-    this.openDialog();
-
-  }
-
-
-
-  calculatePercentage(currentPage : number , totalPages:number): number {
-    if(currentPage === undefined){
-      currentPage = 0;
-    }
-    if(totalPages === undefined){
-      totalPages = 0;
-    }
-    if(currentPage >= totalPages){
-      currentPage = totalPages;
-    }
-    let value = Math.floor((currentPage / totalPages)*100);
-    return value;
   }
 
 
@@ -126,7 +83,6 @@ export class CurrentBookComponent implements OnInit {
     });
 
     const sub = dialogRef.componentInstance.onAdd.subscribe((data) => {
-      console.log("What's up with this?");
       if(this.verifySession(data)){
         dialogRef.close();
         this.addSession(data);
@@ -140,6 +96,11 @@ export class CurrentBookComponent implements OnInit {
     });
   }
 
+  test(){
+    console.log("Hm");
+
+  }
+
   openTransitionDialog(book: Book): void {
     this.date = new Date();
     const dialogRef = this.dialog.open(TransitionDialogComponent, {
@@ -147,18 +108,9 @@ export class CurrentBookComponent implements OnInit {
       data: book
     });
 
-    // const sub = dialogRef.componentInstance.onAdd.subscribe((data) => {
-    //   console.log(data);
-    //   if(this.verifySession(data)){
-    //     dialogRef.close();
-    //     this.addSession(data);
-    //   }else{
-    //     alert("The end page must be greater than the beginning page!")
-    //   }
-    // });
 
     dialogRef.afterClosed().subscribe(result => {
-        // sub.unsubscribe();
+      // TODO: Handle errors
     });
   }
 
@@ -179,11 +131,8 @@ export class CurrentBookComponent implements OnInit {
     updatedBook = _.omit(updatedBook, ['__typename', 'createdAt', 'updatedAt']);
 
     let newSession = _.omit(data, ['__typename']);
-    if(!updatedBook.sessions){
-      updatedBook.sessions = [];
-    }
+    if(!updatedBook.sessions){ updatedBook.sessions = []; }
     updatedBook.sessions.push(newSession);
-
 
     for (var index in updatedBook.sessions) {
       let newSesh = _.omit(updatedBook.sessions[index], ['__typename']);
