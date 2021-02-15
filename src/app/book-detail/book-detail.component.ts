@@ -74,7 +74,7 @@ export class BookDetailComponent implements OnInit {
       author: this.book.author,
       status: this.book.status,
       description: this.book.description,
-      pageNumber: this.book.pageNumber,
+      pages: this.book.pages,
       tags: this.book.tags,
       startDate: this.book.startDate,
       finishDate: this.book.finishDate});

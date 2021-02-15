@@ -113,7 +113,13 @@ export class CurrentBookComponent implements OnInit {
       message = "Are you sure you want to move "+this.selectedBook.title+" back to the Queue? Some data will be lost."
     }
     if(confirm(message)) {
-      this.transitionService.test(this.selectedBook, status);
+      if(status == 1){
+        this.transitionService.moveToQueue(this.selectedBook, status);
+      }
+      if(status == 3){
+        this.transitionService.moveToDone(this.selectedBook, status);
+      }
+      // TODO: Remove from books list
     }
 
   }
