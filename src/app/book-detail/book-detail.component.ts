@@ -86,8 +86,12 @@ export class BookDetailComponent implements OnInit {
 
     this.currentStatus = this.statusOptions[this.book.status];
 
-    if(this.mode === "transition"){
-      this.book.status = this.book.status + 1;
+    console.log(this.currentStatus);
+    console.log(this.mode);
+
+    if(this.mode != "details"){
+      this.book.status = +this.mode ;
+      this.currentStatus = this.statusOptions[this.book.status];
     }
 
 }

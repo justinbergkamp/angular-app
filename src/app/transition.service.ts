@@ -14,4 +14,9 @@ export class TransitionService {
     book.pageNumber = 0;
     return book
   }
+
+  test(book: any, status: number):void{
+    console.log("UDATE");
+
+  }
 }

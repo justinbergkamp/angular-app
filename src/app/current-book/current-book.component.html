@@ -2,7 +2,7 @@
   <div class="queue-list-container">
     <h3>Queue</h3>
     <div class="queue" *ngIf="queuedBooks">
-        <div *ngFor="let queueBook of queuedBooks" class="queued-books" (click)="openTransitionDialog(queueBook)">
+        <div *ngFor="let queueBook of queuedBooks" class="queued-books" (click)="openTransitionDialog(queueBook,2)">
             <div >
               {{queueBook.title}}
             </div>
@@ -14,13 +14,13 @@
       <app-carousel  (onSlideChange)="onSlideChange($event)" (onSession)="openDialog()" [books]="books" class="carousel"></app-carousel>
       <mat-divider></mat-divider>
       <div class="actions">
-        <button  mat-flat-button  (click)="test()">
+        <button  mat-flat-button  (click)="transition(1)">
           Move to Queue
         </button>
         <button id="sessionButton" mat-flat-button (click)="openDialog()">
           Add Session
         </button>
-        <button  mat-flat-button  (click)="test()">
+        <button  mat-flat-button  (click)="transition(3)">
           Move to Done
         </button>
       </div>

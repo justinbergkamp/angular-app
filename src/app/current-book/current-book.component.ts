@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChild, EventEmitter, ChangeDetectionStrategy } f
 import { Book, CurrentBook } from '../../types/book';
 import { Session } from '../../types/session';
 import { APIService } from '../API.service';
+import { TransitionService } from '../transition.service';
+
 import { SessionDialogComponent } from '../session-dialog/session-dialog.component';
 import { TransitionDialogComponent } from '../transition-dialog/transition-dialog.component';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
@@ -28,7 +30,7 @@ export class CurrentBookComponent implements OnInit {
   session : Session;
 
 
-  constructor(private api: APIService, public dialog: MatDialog) { }
+  constructor(private api: APIService, public dialog: MatDialog, private transitionService :TransitionService) { }
 
   ngOnInit(): void {
     this.getBooks();
@@ -96,16 +98,31 @@ export class CurrentBookComponent implements OnInit {
     });
   }
 
-  test(){
-    console.log("Hm");
+  transition(status: number){
+    // TODO: Ask for confirmation via more robust dialog
+    let message = "Are you sure?";
+    if(status == 3){
+      console.log("Moving book to done");
+      message = "Are you sure you want to move "+this.selectedBook.title+" to done?"
+      if(this.selectedBook.pageNumber < this.selectedBook.pages){
+        message = "You haven't completed the book yet. Are you sure you want to move "+this.selectedBook.title+" to done?"
+      }
+    }
+    if(status == 1){
+      console.log("Moving book to queue");
+      message = "Are you sure you want to move "+this.selectedBook.title+" back to the Queue? Some data will be lost."
+    }
+    if(confirm(message)) {
+      this.transitionService.test(this.selectedBook, status);
+    }
 
   }
 
-  openTransitionDialog(book: Book): void {
+  openTransitionDialog(book: Book, status: number): void {
     this.date = new Date();
     const dialogRef = this.dialog.open(TransitionDialogComponent, {
       width: '500px',
-      data: book
+      data: {book: book, status:status}
     });
 
 

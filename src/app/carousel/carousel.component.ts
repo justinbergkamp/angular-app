@@ -68,7 +68,7 @@ export class CarouselComponent implements OnInit {
     let value = Math.floor((currentPage / totalPages)*100);
     return value;
   }
-  
+
   openDialog(){
     this.onSession.emit();
   }

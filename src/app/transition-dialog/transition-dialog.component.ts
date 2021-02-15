@@ -11,13 +11,15 @@ import { BookDetailComponent } from '../book-detail/book-detail.component';
 export class TransitionDialogComponent  {
 
   book: Book;
+  newStatus: number;
   @ViewChild(BookDetailComponent) bookDetails: BookDetailComponent;
 
 
   constructor(
     public dialogRef: MatDialogRef<TransitionDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: Book){
-      this.book = data;
+    @Inject(MAT_DIALOG_DATA) public data: any){
+      this.book = data.book;
+      this.newStatus = data.status;
     }
 
   ngOnInit(): void {
