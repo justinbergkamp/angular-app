@@ -25,7 +25,8 @@ export class CarouselComponent implements OnInit {
   @Output() onSlideChange = new EventEmitter<number>();
   @Output() onSession = new EventEmitter();
 
-
+  completed : boolean = false;
+  value: number = 0;
 
   currentSlide = 0;
 
@@ -33,9 +34,17 @@ export class CarouselComponent implements OnInit {
   color="primary";
   mode="determinate";
 
-  constructor() { }
+  constructor() {
+
+
+
+  }
 
   ngOnInit(): void {
+    if(this.books){
+      this.calculatePercentage(this.books[this.currentSlide]);
+      this.checkCompletion();
+    }
   }
 
   onPreviousClick() {
@@ -43,6 +52,11 @@ export class CarouselComponent implements OnInit {
     this.currentSlide = previous < 0 ? this.books.length - 1 : previous;
     console.log("previous clicked, new current slide is: ", this.currentSlide);
     this.onSlideChange.emit(this.currentSlide);
+
+    this.resetValues();
+    this.calculatePercentage(this.books[this.currentSlide]);
+    this.checkCompletion();
+
 
   }
 
@@ -52,21 +66,39 @@ export class CarouselComponent implements OnInit {
     console.log("next clicked, new current slide is: ", this.currentSlide);
     this.onSlideChange.emit(this.currentSlide);
 
+    this.resetValues();
+    this.calculatePercentage(this.books[this.currentSlide]);
+    this.checkCompletion();
+
   }
 
-  calculatePercentage(currentPage : number , totalPages:number): number {
-    // TODO: should be nicer
-    if(currentPage === undefined){
-      currentPage = 0;
+  calculatePercentage(book:any): void {
+
+    let currentPage = book.pageNumber;
+    let totalPages  = book.pages;
+
+
+    if(currentPage === undefined){  currentPage = 0;  }
+    if(totalPages === undefined){ totalPages = 0;}
+    if(currentPage >= totalPages){  currentPage = totalPages;}
+
+    this.value = Math.floor((currentPage / totalPages)*100);
+
+  }
+  checkCompletion(){
+    if(this.value == 100){
+      this.completed = true;
+      this.color = 'accent'
+      this.mode="indeterminate";
+
     }
-    if(totalPages === undefined){
-      totalPages = 0;
-    }
-    if(currentPage >= totalPages){
-      currentPage = totalPages;
-    }
-    let value = Math.floor((currentPage / totalPages)*100);
-    return value;
+  }
+
+  resetValues(){
+    this.value = 0;
+    this.completed = false;
+    this.color="primary";
+    this.mode="determinate";
   }
 
   openDialog(){

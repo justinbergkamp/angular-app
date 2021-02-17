@@ -85,11 +85,17 @@ export class CurrentBookComponent implements OnInit {
     });
 
     const sub = dialogRef.componentInstance.onAdd.subscribe((data) => {
-      if(this.verifySession(data)){
+      let verifyResult = this.verifySession(data);
+      if(verifyResult == 0){
         dialogRef.close();
         this.addSession(data);
       }else{
-        alert("The end page must be greater than the beginning page!")
+        let sessionErrors = [
+          "The end page must be greater than the beginning page!",
+          "The end page can't exceed the number of pages in the book!",
+          "The start page needs to be greater than zero!"
+        ];
+        alert(sessionErrors[verifyResult-1])
       }
     });
 
@@ -137,12 +143,18 @@ export class CurrentBookComponent implements OnInit {
     });
   }
 
-  verifySession(data : Session): boolean{
+  verifySession(data : Session): number{
     // TODO: endPage >= startPage / pages haven't been already read
     if(data.endPage <= data.startPage){
-      return false;
+      return 1;
     }
-    return true;
+    if(this.selectedBook.pages < data.endPage){
+      return 2;
+    }
+    if(data.startPage <= -1){
+      return 3;
+    }
+    return 0;
   }
 
   addSession(data : Session): void{

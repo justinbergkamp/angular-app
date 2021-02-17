@@ -140,11 +140,16 @@ img {
 
 }
 
-#completionPercentage{
+.completionPercentage{
   position:relative;
   top: -60px;
   left: 37px;
   font-size: 1.2em;
+}
+
+.completed{
+  left: 32px;
+  font-weight: bold;
 }
 
 mat-divider {

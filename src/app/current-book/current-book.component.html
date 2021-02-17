@@ -11,7 +11,7 @@
 
   </div>
   <div class="carousel-container">
-      <app-carousel  (onSlideChange)="onSlideChange($event)" (onSession)="openDialog()" [books]="books" class="carousel"></app-carousel>
+      <app-carousel  *ngIf="books" (onSlideChange)="onSlideChange($event)" (onSession)="openDialog()" [books]="books" class="carousel"></app-carousel>
       <mat-divider></mat-divider>
       <div class="actions">
         <button  mat-flat-button  (click)="transition(1)">

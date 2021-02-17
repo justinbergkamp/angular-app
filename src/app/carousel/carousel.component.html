@@ -33,10 +33,11 @@
               class="example-margin"
               [color]="color"
               [mode]="mode"
-              [value]="calculatePercentage(book.pageNumber,book.pages)">
+              [value]="value">
             </mat-progress-spinner>
-            <div id="completionPercentage">
-               {{ calculatePercentage(book.pageNumber,book.pages) }}%
+            <div class="completionPercentage"
+               [ngClass]="{'completed': completed === true}">
+               {{ value }}%
             </div>
           </div>
           <div class="page-details">
