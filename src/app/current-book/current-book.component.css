@@ -9,7 +9,7 @@
 
 .queue-list-container{
   width: 20%;
-  min-height: 400px;
+  height: 410px;
   background-color: lightblue;
   border: solid 3px #ccc;
   border-radius: 4px;
@@ -36,6 +36,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+  background-color: white;
 }
 
 
@@ -71,7 +72,7 @@
 
 .read-log-container{
   width: 20%;
-  min-height: 400px;
+  height: 410px;
   border: solid 3px #ccc;
   border-radius: 4px;
   margin: 30px;
@@ -97,9 +98,15 @@
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+  background-color: white;
+
 }
 
 .vertical-divider{
   height:80%;
   border-top-color: black;
+}
+
+h3 {
+  font-weight: bold;
 }

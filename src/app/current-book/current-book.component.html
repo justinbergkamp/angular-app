@@ -28,7 +28,7 @@
   <div class="read-log-container">
     <h3>Reading Log</h3>
     <div class="sessions" *ngIf="selectedBook !== undefined">
-      <div *ngFor="let session of selectedBook.sessions" class="reading-session">
+      <div *ngFor="let session of selectedBook.sessions | slice:-10;" class="reading-session">
             <div >
               {{session.date | date }}
             </div>

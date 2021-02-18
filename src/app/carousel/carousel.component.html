@@ -17,13 +17,13 @@
           <!-- <div class="cover-image">
             <img src = "{{coverImage}}">
           </div> -->
-          <div class="carousel-slide-headers">
+          <div id="first-header" class="carousel-slide-headers">
             <h1>{{ book.title }}</h1>
             <h3>by {{ book.author }}</h3>
           </div>
-          <div class="carousel-slide-headers">
+          <div id="second-header" class="carousel-slide-headers">
             <h3>{{book.startDate | date }}</h3>
-            <h3>Goal Completion Date</h3>
+            <h3>Goal: Feb 16, 2021</h3>
           </div>
         </div>
         <mat-divider></mat-divider>

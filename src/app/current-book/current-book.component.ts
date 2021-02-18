@@ -65,13 +65,13 @@ export class CurrentBookComponent implements OnInit {
     let filter = { status: {  eq: 1  } };
         const limit =  10;
     this.api.ListBooks(filter, limit).then(event => {
+      // TODO: sort by queue pos
       this.queuedBooks = event.items;
     });
 
   }
 
   onSlideChange(slideVal : number){
-    console.log(`Slide changed to ${slideVal}`);
     this.selectedBook = this.books[slideVal];
     this.currentSlide = slideVal;
   }

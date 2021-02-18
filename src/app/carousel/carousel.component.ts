@@ -19,7 +19,7 @@ import {
   ]
 })
 export class CarouselComponent implements OnInit {
-  // coverImage = 'assets/a-promised-land-image.jpg';
+  coverImage = 'assets/a-promised-land-image.jpg';
 
   @Input() books;
   @Output() onSlideChange = new EventEmitter<number>();
@@ -30,7 +30,7 @@ export class CarouselComponent implements OnInit {
 
   currentSlide = 0;
 
-  coverImage = 'assets/menu_book.svg';
+  // coverImage = 'assets/menu_book.svg';
   color="primary";
   mode="determinate";
 
@@ -41,10 +41,8 @@ export class CarouselComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if(this.books){
       this.calculatePercentage(this.books[this.currentSlide]);
       this.checkCompletion();
-    }
   }
 
   onPreviousClick() {
@@ -88,8 +86,8 @@ export class CarouselComponent implements OnInit {
   checkCompletion(){
     if(this.value == 100){
       this.completed = true;
-      this.color = 'accent'
-      this.mode="indeterminate";
+      this.color = 'primary'
+      this.mode="determinate";
 
     }
   }

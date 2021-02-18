@@ -30,6 +30,7 @@ export class TransitionDialogComponent  {
   }
 
   onUpdate(): void {
+    // TODO: could handle error raised by book-detail 
     this.onCancel();
   }
 
