@@ -1,0 +1,41 @@
+<div class="current-page-container">
+  <div class="queue-list-container">
+    <h3>Queue</h3>
+    <div class="queue" *ngIf="queuedBooks">
+        <div *ngFor="let queueBook of queuedBooks" class="queued-books" (click)="openTransitionDialog(queueBook,2)">
+            <div >
+              {{queueBook.title}}
+            </div>
+        </div>
+      </div>
+
+  </div>
+  <div class="carousel-container">
+      <app-carousel  *ngIf="books" (onSlideChange)="onSlideChange($event)" (onSession)="openDialog()" [books]="books" class="carousel"></app-carousel>
+      <mat-divider></mat-divider>
+      <div class="actions">
+        <button  mat-flat-button  (click)="transition(1)">
+          Move to Queue
+        </button>
+        <button id="sessionButton" mat-flat-button (click)="openDialog()">
+          Add Session
+        </button>
+        <button  mat-flat-button  (click)="transition(3)">
+          Move to Done
+        </button>
+      </div>
+  </div>
+  <div class="read-log-container">
+    <h3>Reading Log</h3>
+    <div class="sessions" *ngIf="selectedBook !== undefined">
+      <div *ngFor="let session of selectedBook.sessions | slice:-10;" class="reading-session">
+            <div >
+              {{session.date | date }}
+            </div>
+            <div >
+              {{session.startPage}} - {{session.endPage}}
+            </div>
+        </div>
+        </div>
+  </div>
+</div>

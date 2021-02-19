@@ -1,7 +1,7 @@
 .example-card {
   max-width: 200px;
   min-width: 200px;
-  height : 150px;
+  height : 200px;
   outline: 6px black;
   margin: 20px;
 }
@@ -18,18 +18,8 @@
 }
 
 
-.form-container{
-    width: 400 px;
-    margin: 0 px auto;
-    margin-top: 200 px
-}
-
-
 
 .queue {
-  width: 900px;
-  background-color: green;
-
 }
 
 .queue-container{
@@ -43,8 +33,9 @@
 
 
 .forms {
-  width: 500px;
-  max-width: 100%;
+  max-width: 400px;
+  min-width: 400px;
+  background-color: green;
   border: solid 1px #ccc;
   min-height: 60px;
   display: block;
@@ -56,9 +47,8 @@
 .library{
   display: flex; /* or inline-flex */
   flex-direction: row ;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   justify-content:space-around;
-  background-color: lightblue;
 }
 
 .test{

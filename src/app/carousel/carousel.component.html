@@ -1,0 +1,54 @@
+<!-- carousel -->
+<div class="carousel">
+  <button class="control prev" (click)="onPreviousClick()">
+    <span class="arrow left"></span>
+  </button>
+  <ng-container class="carousel-slide-container" *ngFor="let book of books; let i = index">
+    <div
+      class="carousel-slide slide"
+      *ngIf="i === currentSlide"
+      @carouselAnimation>
+      <div class="current-book-image">
+          <img src = "{{coverImage}}">
+      </div>
+      <div class="divider"></div>
+      <div class="current-book-info">
+        <div class="carosel-slide-book-info">
+          <!-- <div class="cover-image">
+            <img src = "{{coverImage}}">
+          </div> -->
+          <div id="first-header" class="carousel-slide-headers">
+            <h1>{{ book.title }}</h1>
+            <h3>by {{ book.author }}</h3>
+          </div>
+          <div id="second-header" class="carousel-slide-headers">
+            <h3>{{book.startDate | date }}</h3>
+            <h3>Goal: Feb 16, 2021</h3>
+          </div>
+        </div>
+        <mat-divider></mat-divider>
+        <div class="carousel-slide-body">
+          <div id="progress-spinner">
+            <mat-progress-spinner
+              class="example-margin"
+              [color]="color"
+              [mode]="mode"
+              [value]="value">
+            </mat-progress-spinner>
+            <div class="completionPercentage"
+               [ngClass]="{'completed': completed === true}">
+               {{ value }}%
+            </div>
+          </div>
+          <div class="page-details">
+            <h4>Current Page : {{book.pageNumber}}</h4>
+            <h4>Total Pages : {{book.pages}}</h4>
+          </div>
+        </div>
+      </div>
+  </div>
+  </ng-container>
+  <button class="control next" (click)="onNextClick()">
+    <span class="arrow right"></span>
+  </button>
+</div>

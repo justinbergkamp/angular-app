@@ -22,6 +22,11 @@ import {MatChipsModule} from '@angular/material/chips';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { MatCarouselModule } from '@ngbmodule/material-carousel';
+import {MatDividerModule} from '@angular/material/divider';
+import {MatDialogModule} from '@angular/material/dialog';
+import {ScrollingModule} from '@angular/cdk/scrolling';
 
 
 import {DragDropModule} from '@angular/cdk/drag-drop';
@@ -31,6 +36,10 @@ import { LibraryComponent } from './library/library.component';
 import { BookDetailComponent } from './book-detail/book-detail.component';
 import { AddBookComponent } from './add-book/add-book.component';
 import { QueueComponent } from './queue/queue.component';
+import { CurrentBookComponent } from './current-book/current-book.component';
+import { SessionDialogComponent } from './session-dialog/session-dialog.component';
+import { TransitionDialogComponent } from './transition-dialog/transition-dialog.component';
+import { CarouselComponent } from './carousel/carousel.component';
 
 
 
@@ -42,7 +51,11 @@ import { QueueComponent } from './queue/queue.component';
     BookDetailComponent,
     AddBookComponent,
     LibraryComponent,
-    QueueComponent
+    QueueComponent,
+    CurrentBookComponent,
+    SessionDialogComponent,
+    TransitionDialogComponent,
+    CarouselComponent
   ],
   imports: [
     BrowserModule,
@@ -63,8 +76,17 @@ import { QueueComponent } from './queue/queue.component';
     MatChipsModule,
     MatAutocompleteModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatProgressSpinnerModule,
+    MatDividerModule,
+    MatDialogModule,
+    ScrollingModule,
+    MatCarouselModule.forRoot()
 
+  ],
+  entryComponents: [
+    SessionDialogComponent,
+    TransitionDialogComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

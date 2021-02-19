@@ -16,10 +16,18 @@ export type CreateBookInput = {
   status: number;
   description?: string | null;
   pageNumber?: number | null;
+  pages?: number | null;
   tags?: Array<string | null> | null;
   queue_pos?: number | null;
   startDate?: string | null;
   finishDate?: string | null;
+  sessions?: Array<SessionInput | null> | null;
+};
+
+export type SessionInput = {
+  date?: string | null;
+  startPage?: number | null;
+  endPage?: number | null;
 };
 
 export type ModelBookConditionInput = {
@@ -28,6 +36,7 @@ export type ModelBookConditionInput = {
   status?: ModelIntInput | null;
   description?: ModelStringInput | null;
   pageNumber?: ModelIntInput | null;
+  pages?: ModelIntInput | null;
   tags?: ModelStringInput | null;
   queue_pos?: ModelIntInput | null;
   startDate?: ModelStringInput | null;
@@ -95,10 +104,12 @@ export type UpdateBookInput = {
   status?: number | null;
   description?: string | null;
   pageNumber?: number | null;
+  pages?: number | null;
   tags?: Array<string | null> | null;
   queue_pos?: number | null;
   startDate?: string | null;
   finishDate?: string | null;
+  sessions?: Array<SessionInput | null> | null;
 };
 
 export type DeleteBookInput = {
@@ -112,6 +123,7 @@ export type ModelBookFilterInput = {
   status?: ModelIntInput | null;
   description?: ModelStringInput | null;
   pageNumber?: ModelIntInput | null;
+  pages?: ModelIntInput | null;
   tags?: ModelStringInput | null;
   queue_pos?: ModelIntInput | null;
   startDate?: ModelStringInput | null;
@@ -145,10 +157,17 @@ export type CreateBookMutation = {
   status: number;
   description: string | null;
   pageNumber: number | null;
+  pages: number | null;
   tags: Array<string | null> | null;
   queue_pos: number | null;
   startDate: string | null;
   finishDate: string | null;
+  sessions: Array<{
+    __typename: "Session";
+    date: string | null;
+    startPage: number | null;
+    endPage: number | null;
+  } | null> | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -161,10 +180,17 @@ export type UpdateBookMutation = {
   status: number;
   description: string | null;
   pageNumber: number | null;
+  pages: number | null;
   tags: Array<string | null> | null;
   queue_pos: number | null;
   startDate: string | null;
   finishDate: string | null;
+  sessions: Array<{
+    __typename: "Session";
+    date: string | null;
+    startPage: number | null;
+    endPage: number | null;
+  } | null> | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -177,10 +203,17 @@ export type DeleteBookMutation = {
   status: number;
   description: string | null;
   pageNumber: number | null;
+  pages: number | null;
   tags: Array<string | null> | null;
   queue_pos: number | null;
   startDate: string | null;
   finishDate: string | null;
+  sessions: Array<{
+    __typename: "Session";
+    date: string | null;
+    startPage: number | null;
+    endPage: number | null;
+  } | null> | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -193,10 +226,17 @@ export type GetBookQuery = {
   status: number;
   description: string | null;
   pageNumber: number | null;
+  pages: number | null;
   tags: Array<string | null> | null;
   queue_pos: number | null;
   startDate: string | null;
   finishDate: string | null;
+  sessions: Array<{
+    __typename: "Session";
+    date: string | null;
+    startPage: number | null;
+    endPage: number | null;
+  } | null> | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -211,10 +251,17 @@ export type ListBooksQuery = {
     status: number;
     description: string | null;
     pageNumber: number | null;
+    pages: number | null;
     tags: Array<string | null> | null;
     queue_pos: number | null;
     startDate: string | null;
     finishDate: string | null;
+    sessions: Array<{
+      __typename: "Session";
+      date: string | null;
+      startPage: number | null;
+      endPage: number | null;
+    } | null> | null;
     createdAt: string;
     updatedAt: string;
   } | null> | null;
@@ -229,10 +276,17 @@ export type OnCreateBookSubscription = {
   status: number;
   description: string | null;
   pageNumber: number | null;
+  pages: number | null;
   tags: Array<string | null> | null;
   queue_pos: number | null;
   startDate: string | null;
   finishDate: string | null;
+  sessions: Array<{
+    __typename: "Session";
+    date: string | null;
+    startPage: number | null;
+    endPage: number | null;
+  } | null> | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -245,10 +299,17 @@ export type OnUpdateBookSubscription = {
   status: number;
   description: string | null;
   pageNumber: number | null;
+  pages: number | null;
   tags: Array<string | null> | null;
   queue_pos: number | null;
   startDate: string | null;
   finishDate: string | null;
+  sessions: Array<{
+    __typename: "Session";
+    date: string | null;
+    startPage: number | null;
+    endPage: number | null;
+  } | null> | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -261,10 +322,17 @@ export type OnDeleteBookSubscription = {
   status: number;
   description: string | null;
   pageNumber: number | null;
+  pages: number | null;
   tags: Array<string | null> | null;
   queue_pos: number | null;
   startDate: string | null;
   finishDate: string | null;
+  sessions: Array<{
+    __typename: "Session";
+    date: string | null;
+    startPage: number | null;
+    endPage: number | null;
+  } | null> | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -286,10 +354,17 @@ export class APIService {
           status
           description
           pageNumber
+          pages
           tags
           queue_pos
           startDate
           finishDate
+          sessions {
+            __typename
+            date
+            startPage
+            endPage
+          }
           createdAt
           updatedAt
         }
@@ -318,10 +393,17 @@ export class APIService {
           status
           description
           pageNumber
+          pages
           tags
           queue_pos
           startDate
           finishDate
+          sessions {
+            __typename
+            date
+            startPage
+            endPage
+          }
           createdAt
           updatedAt
         }
@@ -350,10 +432,17 @@ export class APIService {
           status
           description
           pageNumber
+          pages
           tags
           queue_pos
           startDate
           finishDate
+          sessions {
+            __typename
+            date
+            startPage
+            endPage
+          }
           createdAt
           updatedAt
         }
@@ -379,10 +468,17 @@ export class APIService {
           status
           description
           pageNumber
+          pages
           tags
           queue_pos
           startDate
           finishDate
+          sessions {
+            __typename
+            date
+            startPage
+            endPage
+          }
           createdAt
           updatedAt
         }
@@ -411,10 +507,17 @@ export class APIService {
             status
             description
             pageNumber
+            pages
             tags
             queue_pos
             startDate
             finishDate
+            sessions {
+              __typename
+              date
+              startPage
+              endPage
+            }
             createdAt
             updatedAt
           }
@@ -449,10 +552,17 @@ export class APIService {
           status
           description
           pageNumber
+          pages
           tags
           queue_pos
           startDate
           finishDate
+          sessions {
+            __typename
+            date
+            startPage
+            endPage
+          }
           createdAt
           updatedAt
         }
@@ -473,10 +583,17 @@ export class APIService {
           status
           description
           pageNumber
+          pages
           tags
           queue_pos
           startDate
           finishDate
+          sessions {
+            __typename
+            date
+            startPage
+            endPage
+          }
           createdAt
           updatedAt
         }
@@ -497,10 +614,17 @@ export class APIService {
           status
           description
           pageNumber
+          pages
           tags
           queue_pos
           startDate
           finishDate
+          sessions {
+            __typename
+            date
+            startPage
+            endPage
+          }
           createdAt
           updatedAt
         }

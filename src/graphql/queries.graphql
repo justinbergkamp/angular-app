@@ -7,10 +7,16 @@ query GetBook($id: ID!) {
     status
     description
     pageNumber
+    pages
     tags
     queue_pos
     startDate
     finishDate
+    sessions {
+      date
+      startPage
+      endPage
+    }
     createdAt
     updatedAt
   }
@@ -28,10 +34,16 @@ query ListBooks(
       status
       description
       pageNumber
+      pages
       tags
       queue_pos
       startDate
       finishDate
+      sessions {
+        date
+        startPage
+        endPage
+      }
       createdAt
       updatedAt
     }

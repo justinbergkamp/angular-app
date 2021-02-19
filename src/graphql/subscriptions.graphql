@@ -7,10 +7,16 @@ subscription OnCreateBook {
     status
     description
     pageNumber
+    pages
     tags
     queue_pos
     startDate
     finishDate
+    sessions {
+      date
+      startPage
+      endPage
+    }
     createdAt
     updatedAt
   }
@@ -23,10 +29,16 @@ subscription OnUpdateBook {
     status
     description
     pageNumber
+    pages
     tags
     queue_pos
     startDate
     finishDate
+    sessions {
+      date
+      startPage
+      endPage
+    }
     createdAt
     updatedAt
   }
@@ -39,10 +51,16 @@ subscription OnDeleteBook {
     status
     description
     pageNumber
+    pages
     tags
     queue_pos
     startDate
     finishDate
+    sessions {
+      date
+      startPage
+      endPage
+    }
     createdAt
     updatedAt
   }

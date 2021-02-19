@@ -1,0 +1,112 @@
+
+
+.current-page-container{
+  display: flex; /* or inline-flex */
+  flex-direction: row ;
+  flex-wrap: nowrap;
+  justify-content:space-around;
+}
+
+.queue-list-container{
+  width: 20%;
+  height: 410px;
+  background-color: lightblue;
+  border: solid 3px #ccc;
+  border-radius: 4px;
+  margin: 30px;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
+
+}
+
+.queue{
+  width: 80%;
+
+}
+
+.queued-books{
+  height: 1.6em;
+  border: solid 2px #000;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  background-color: white;
+}
+
+
+.carousel-container{
+  min-width: 400px;
+  width: 60%;
+  margin-top: 20px;
+  border: solid 3px #ccc;
+  border-radius: 4px;
+}
+
+.actions{
+  height: 20%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  align-items: flex-end;
+}
+
+.actions button{
+  margin-bottom: 20px;
+  background-color: lightblue;
+  color: black;
+}
+
+#sessionButton{
+  font-size: 1.3em;
+}
+
+
+
+
+.read-log-container{
+  width: 20%;
+  height: 410px;
+  border: solid 3px #ccc;
+  border-radius: 4px;
+  margin: 30px;
+  margin-top: 20px;
+  background-color: lightblue;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.sessions{
+  width: 80%;
+
+}
+
+.reading-session{
+  height: 1.6em;
+  border: solid 2px #000;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  background-color: white;
+
+}
+
+.vertical-divider{
+  height:80%;
+  border-top-color: black;
+}
+
+h3 {
+  font-weight: bold;
+}

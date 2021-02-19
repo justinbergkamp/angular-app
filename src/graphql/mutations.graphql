@@ -10,10 +10,16 @@ mutation CreateBook(
     status
     description
     pageNumber
+    pages
     tags
     queue_pos
     startDate
     finishDate
+    sessions {
+      date
+      startPage
+      endPage
+    }
     createdAt
     updatedAt
   }
@@ -29,10 +35,16 @@ mutation UpdateBook(
     status
     description
     pageNumber
+    pages
     tags
     queue_pos
     startDate
     finishDate
+    sessions {
+      date
+      startPage
+      endPage
+    }
     createdAt
     updatedAt
   }
@@ -48,10 +60,16 @@ mutation DeleteBook(
     status
     description
     pageNumber
+    pages
     tags
     queue_pos
     startDate
     finishDate
+    sessions {
+      date
+      startPage
+      endPage
+    }
     createdAt
     updatedAt
   }

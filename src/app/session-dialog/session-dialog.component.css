@@ -1,0 +1,17 @@
+/* .ng-valid[required], .ng-valid.required  {
+  background-color:  #42A94822;
+
+}
+
+.ng-invalid:not(form)  {
+  background-color:  #a9444222;
+
+} */
+
+
+.dialog-body{
+    display: flex;
+    flex-flow: column wrap;
+    align-items: flex-start;
+    justify-content: center;
+}

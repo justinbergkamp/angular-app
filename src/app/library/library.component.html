@@ -48,7 +48,7 @@ Restaurants App
                 {{book.description}}
               </p>
 
-              <mat-chip-list aria-label="Fish selection">
+              <mat-chip-list aria-label="Tag selection">
                 <div *ngFor="let tag of book.tags" >
                   <mat-chip (click)="onTag(tag)"  [ngStyle]="{'background-color': tagInformation.get(tag).color}">
                     {{tagInformation.get(tag).nickname}}
@@ -58,7 +58,7 @@ Restaurants App
 
             </mat-card-content>
             <mat-card-actions>
-              <button mat-button>LIKE</button>
+              <button mat-button (click)="addToQueue(book)">Add to Queue</button>
               <button mat-button (click)="deleteBook(book)">Delete</button>
             </mat-card-actions>
           </mat-card>
@@ -69,13 +69,13 @@ Restaurants App
       </div>
 
 
-    <div class="forms" *ngIf="mode!=='none'">
-      <div *ngIf="mode==='add'">
+    <div *ngIf="mode!=='none'">
+      <div class="forms" *ngIf="mode==='add'">
         <app-add-book></app-add-book>
       </div>
 
-      <div *ngIf="mode==='details'">
-        <app-book-detail [book]="selectedBook"></app-book-detail>
+      <div class="forms" *ngIf="mode==='details'">
+        <app-book-detail [book]="selectedBook" [mode]="'details'"></app-book-detail>
       </div>
     </div>
 

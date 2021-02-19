@@ -1,7 +1,7 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { APIService } from '../API.service';
-import { Book } from '../../types/book';
+import { Book, BacklogBook } from '../../types/book';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import {MatAutocompleteSelectedEvent, MatAutocomplete} from '@angular/material/autocomplete';
 import {MatChipInputEvent} from '@angular/material/chips';
