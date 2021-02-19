@@ -40,9 +40,8 @@ export class CurrentBookComponent implements OnInit {
     this.api.OnUpdateBookListener.subscribe( (event: any) => {
       // TODO: Check this event for failure
       console.log("A book was updated");
-      console.log(event.value.data.onUpdateBook);
-      this.selectedBook = event.value.data.onUpdateBook;
-      this.books[this.currentSlide] =   this.selectedBook;
+      this.getBooks();
+      this.getQueuedBooks()
     });
 
   }
@@ -54,7 +53,8 @@ export class CurrentBookComponent implements OnInit {
     this.api.ListBooks(filter).then(event => {
       this.books = event.items;
       // TODO: sort by most amount of pages
-      this.selectedBook = this.books[0]
+      this.books.sort((a, b) => a.pageNumber > b.pageNumber ? -1 : a.pageNumber < b.pageNumber ? 1 : 0)
+      this.selectedBook = this.books[this.currentSlide]
     });
 
   }
@@ -67,6 +67,8 @@ export class CurrentBookComponent implements OnInit {
     this.api.ListBooks(filter, limit).then(event => {
       // TODO: sort by queue pos
       this.queuedBooks = event.items;
+      this.queuedBooks.sort((a, b) => a.queue_pos < b.queue_pos ? -1 : a.queue_pos > b.queue_pos ? 1 : 0)
+
     });
 
   }

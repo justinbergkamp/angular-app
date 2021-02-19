@@ -1,9 +1,12 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { trigger, transition, style, animate, useAnimation } from '@angular/animations';
+import { SimpleChanges } from '@angular/core';
 
 import {
   enter,
   leave,
+  fadeIn,
+  fadeOut
 } from "./carousel.animations";
 
 
@@ -13,13 +16,13 @@ import {
   styleUrls: ['./carousel.component.scss'],
   animations: [
     trigger("carouselAnimation", [
-      transition("void => *", [useAnimation(enter, {params: { time: '500ms' }} )]),
-      transition("* => void", [useAnimation(leave, {params: { time: '0ms' }})]),
+      transition("void => *", [useAnimation(fadeIn, {params: { time: '500ms' }} )]),
+      transition("* => void", [useAnimation(fadeOut, {params: { time: '0ms' }})]),
     ])
   ]
 })
-export class CarouselComponent implements OnInit {
-  coverImage = 'assets/a-promised-land-image.jpg';
+export class CarouselComponent {
+  // coverImage = 'assets/a-promised-land-image.jpg';
 
   @Input() books;
   @Output() onSlideChange = new EventEmitter<number>();
@@ -30,19 +33,16 @@ export class CarouselComponent implements OnInit {
 
   currentSlide = 0;
 
-  // coverImage = 'assets/menu_book.svg';
+  coverImage = 'assets/menu_book.svg';
   color="primary";
   mode="determinate";
 
   constructor() {
-
-
-
   }
 
-  ngOnInit(): void {
-      this.calculatePercentage(this.books[this.currentSlide]);
-      this.checkCompletion();
+  ngOnChanges(changes: SimpleChanges) {
+    this.calculatePercentage(this.books[this.currentSlide]);
+    this.checkCompletion();
   }
 
   onPreviousClick() {

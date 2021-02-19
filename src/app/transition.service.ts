@@ -26,6 +26,10 @@ export class TransitionService {
     updatedBook.status = 3;
     updatedBook.finishDate = new Date();
     updatedBook = _.omit(updatedBook, ['__typename', 'createdAt', 'updatedAt']);
+    for (var index in updatedBook.sessions) {
+      let newSesh = _.omit(updatedBook.sessions[index], ['__typename']);
+      updatedBook.sessions[index] = newSesh;
+    }
     this.api.UpdateBook(updatedBook).then(event => {
       console.log('item updated!');
       this.onUpdate.emit("done");
