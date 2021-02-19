@@ -52,6 +52,7 @@ export class TransitionService {
     updatedBook.sessions = [];
     updatedBook.pageNumber = 0;
     updatedBook.startDate = '';
+    updatedBook.goalFinishDate = '';
     updatedBook.status = 1;
     updatedBook = _.omit(updatedBook, ['__typename', 'createdAt', 'updatedAt']);
     this.api.UpdateBook(updatedBook).then(event => {

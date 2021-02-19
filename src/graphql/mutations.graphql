@@ -14,6 +14,7 @@ mutation CreateBook(
     tags
     queue_pos
     startDate
+    goalFinishDate
     finishDate
     sessions {
       date
@@ -39,6 +40,7 @@ mutation UpdateBook(
     tags
     queue_pos
     startDate
+    goalFinishDate
     finishDate
     sessions {
       date
@@ -64,6 +66,7 @@ mutation DeleteBook(
     tags
     queue_pos
     startDate
+    goalFinishDate
     finishDate
     sessions {
       date

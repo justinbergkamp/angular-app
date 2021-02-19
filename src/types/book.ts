@@ -12,6 +12,7 @@ export type Book = {
   pages: number;
   pageNumber: number,
   startDate: string,
+  goalFinishDate: string,
   finishDate: string
   sessions: Array<Session>
 
@@ -48,6 +49,7 @@ export type CurrentBook = {
   pageNumber: number,
   pages: number,
   startDate: string,
+  goalFinishDate: string,
   sessions: Array<Session>
 };
 

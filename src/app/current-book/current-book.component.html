@@ -1,6 +1,7 @@
 <div class="current-page-container">
   <div class="queue-list-container">
     <h3>Queue</h3>
+    <mat-divider class="separator" ></mat-divider>
     <div class="queue" *ngIf="queuedBooks">
         <div *ngFor="let queueBook of queuedBooks" class="queued-books" (click)="openTransitionDialog(queueBook,2)">
             <div >
@@ -27,6 +28,7 @@
   </div>
   <div class="read-log-container">
     <h3>Reading Log</h3>
+    <mat-divider class="separator" ></mat-divider>
     <div class="sessions" *ngIf="selectedBook !== undefined">
       <div *ngFor="let session of selectedBook.sessions | slice:-10;" class="reading-session">
             <div >

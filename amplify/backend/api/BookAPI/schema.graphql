@@ -15,6 +15,7 @@ type Book @model {
   tags: [String]
   queue_pos: Int
   startDate: String
+  goalFinishDate : String
   finishDate: String
   sessions: [Session]
 }

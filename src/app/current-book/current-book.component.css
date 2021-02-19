@@ -9,7 +9,7 @@
 
 .queue-list-container{
   width: 20%;
-  height: 410px;
+  height: 420px;
   background-color: lightblue;
   border: solid 3px #ccc;
   border-radius: 4px;
@@ -72,7 +72,7 @@
 
 .read-log-container{
   width: 20%;
-  height: 410px;
+  height: 420px;
   border: solid 3px #ccc;
   border-radius: 4px;
   margin: 30px;
@@ -90,6 +90,14 @@
 
 }
 
+.read-log-container h3{
+  margin-bottom: 0px;
+}
+
+.queue-list-container h3{
+  margin-bottom: 0px;
+}
+
 .reading-session{
   height: 1.6em;
   border: solid 2px #000;
@@ -102,8 +110,10 @@
 
 }
 
-.vertical-divider{
-  height:80%;
+.separator{
+  margin-top: 0px;
+  margin-bottom: 20px;
+  width:90%;
   border-top-color: black;
 }
 

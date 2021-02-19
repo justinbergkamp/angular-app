@@ -56,6 +56,7 @@ export class BookDetailComponent implements OnInit {
       'tags': ['', Validators.required],
       'status': ['', Validators.required],
       'startDate': ['', Validators.required],
+      'goalFinishDate': ['', Validators.required],
       'finishDate': ['', Validators.required]
     });
 
@@ -77,6 +78,7 @@ export class BookDetailComponent implements OnInit {
       pages: this.book.pages,
       tags: this.book.tags,
       startDate: this.book.startDate,
+      goalFinishDate: this.book.goalFinishDate,
       finishDate: this.book.finishDate});
 
     this.currentTags = this.book.tags;
