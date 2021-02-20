@@ -41,6 +41,17 @@ export class CarouselComponent {
   }
 
   ngOnChanges(changes: SimpleChanges) {
+    try {
+      this.calculatePercentage(this.books[this.currentSlide]);
+
+    } catch (error) {
+      console.log("Resetting current slide");
+
+      this.currentSlide = 0;
+      this.calculatePercentage(this.books[this.currentSlide]);
+
+
+    }
     this.calculatePercentage(this.books[this.currentSlide]);
     this.checkCompletion();
   }
