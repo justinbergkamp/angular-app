@@ -100,7 +100,7 @@
       </mat-button-toggle-group>
     </div>
 
-    <button mat-stroked-button color="primary"  type="submit">Update</button>
+    <button mat-stroked-button color="primary"  [disabled]="updateForm.invalid" type="submit">Update</button>
 
   </form>
   </div>

@@ -22,7 +22,6 @@ import {
   ]
 })
 export class CarouselComponent {
-  // coverImage = 'assets/a-promised-land-image.jpg';
 
   @Input() books;
   @Output() onSlideChange = new EventEmitter<number>();
@@ -34,6 +33,8 @@ export class CarouselComponent {
   currentSlide = 0;
 
   coverImage = 'assets/menu_book.svg';
+  coverImage = 'assets/a-promised-land-image.jpg';
+
   color="primary";
   mode="determinate";
 

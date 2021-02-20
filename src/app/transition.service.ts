@@ -62,6 +62,26 @@ export class TransitionService {
     .catch(e => {
       console.log('error updating book...', e);
     });
-
   }
+
+  updateBook(book:Book, id:string, status:number, mode:String){
+    let updatedBook : any ;
+    updatedBook = book;
+    updatedBook.id = id;
+    updatedBook.status = status;
+    updatedBook = _.omit(updatedBook, ['__typename', 'createdAt', 'updatedAt']);
+
+    updatedBook = this.convert(updatedBook);
+
+    console.log(updatedBook);
+
+     this.api.UpdateBook(updatedBook).then(event => {
+       console.log('item updated!');
+       this.onUpdate.emit("done");
+     })
+     .catch(e => {
+       console.log('error updating book...', e);
+     });
+  }
+
 }
