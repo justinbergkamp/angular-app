@@ -32,7 +32,7 @@ export class CarouselComponent {
 
   currentSlide = 0;
 
-  coverImage = 'assets/menu_book.svg';
+  // coverImage = 'assets/menu_book.svg';
   coverImage = 'assets/a-promised-land-image.jpg';
 
   color="primary";

@@ -48,17 +48,26 @@ export class BookDetailComponent implements OnInit {
 
   constructor(private api: APIService, private fb: FormBuilder, private transitionService : TransitionService, private formService : FormService ) {
 
-    this.updateForm = formService.composeForm(0);
-
-    this.filteredTags = this.updateForm.controls.tags.valueChanges.pipe(
-            startWith(null),
-            map((tag: string | null) => tag ? this._filter(tag) : this.allTags.slice()));
 
   }
 
-  ngOnInit(): void {  }
+  ngOnInit(): void {}
 
   ngOnChanges(changes: SimpleChanges) {
+
+    if(!this.updateForm || this.updateForm == undefined){
+      if(this.mode == 'details'){
+        this.updateForm = this.formService.composeForm(""+this.book.status);
+      }
+      if(this.mode != 'details'){
+        this.updateForm = this.formService.composeForm(""+this.mode);
+      }
+
+      this.filteredTags = this.updateForm.controls.tags.valueChanges.pipe(
+          startWith(null),
+          map((tag: string | null) => tag ? this._filter(tag) : this.allTags.slice()));
+
+    }
 
     this.updateForm.patchValue({
       title: this.book.title,

@@ -71,7 +71,28 @@ export class TransitionService {
     updatedBook.status = status;
     updatedBook = _.omit(updatedBook, ['__typename', 'createdAt', 'updatedAt']);
 
-    updatedBook = this.convert(updatedBook);
+    switch (status) {
+      case 0:
+          console.log("Updating a backlog book");
+          break;
+      case 1:
+          console.log("Updating a backlog book");
+          break;
+      case 2:
+          console.log("Updating a current book");
+          updatedBook = this.convert(updatedBook);
+          break;
+      case 3:
+          console.log("Updating a backlog book");
+          break;
+      case 4:
+          console.log("Updating a backlog book");
+          break;
+      default:
+          console.log("No such day exists!");
+          break;
+      }
+
 
     console.log(updatedBook);
 

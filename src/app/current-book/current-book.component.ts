@@ -132,13 +132,24 @@ export class CurrentBookComponent implements OnInit {
 
   }
 
+  openDetails(){
+    this.date = new Date();
+    const dialogRef = this.dialog.open(TransitionDialogComponent, {
+      width: '500px',
+      data: {book: this.selectedBook, status:'details'}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      // TODO: Handle errors
+    });
+  }
+
   openTransitionDialog(book: Book, status: number): void {
     this.date = new Date();
     const dialogRef = this.dialog.open(TransitionDialogComponent, {
       width: '500px',
       data: {book: book, status:status}
     });
-
 
     dialogRef.afterClosed().subscribe(result => {
       // TODO: Handle errors

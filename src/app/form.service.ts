@@ -8,7 +8,7 @@ export class FormService {
 
   constructor( private fb: FormBuilder) { }
 
-  composeForm(status: number):FormGroup{
+  composeForm(status: string):FormGroup{
     let updateForm = this.composeCurrentForm();
     return updateForm;
   }
@@ -20,7 +20,8 @@ export class FormService {
       'description': ['', Validators.required],
       'pages': ['', Validators.required],
       'pageNumber': [''],
-      'tags': ['', Validators.required],
+      'tags': [''],
+      'status': [''],
       'startDate': ['', Validators.required],
       'goalFinishDate': ['', Validators.required],
     });
