@@ -142,6 +142,8 @@ export class LibraryComponent implements OnInit {
   }
 
   onChanges(): void {
+    console.log("test");
+
     this.myControl.valueChanges.subscribe(val => {
       let filteredBooks = [];
       filteredBooks = this.allBooks.filter(book => book.title.toLowerCase().includes(val));

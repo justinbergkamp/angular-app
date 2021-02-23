@@ -27,6 +27,8 @@ import { MatCarouselModule } from '@ngbmodule/material-carousel';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatDialogModule} from '@angular/material/dialog';
 import {ScrollingModule} from '@angular/cdk/scrolling';
+import {MatTabsModule} from '@angular/material/tabs';
+
 
 
 import {DragDropModule} from '@angular/cdk/drag-drop';
@@ -81,6 +83,7 @@ import { CarouselComponent } from './carousel/carousel.component';
     MatDividerModule,
     MatDialogModule,
     ScrollingModule,
+    MatTabsModule,
     MatCarouselModule.forRoot()
 
   ],
