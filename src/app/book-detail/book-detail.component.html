@@ -93,14 +93,24 @@
           <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
       </div>
-      <div *ngIf="mode === 'details'">
+      <!-- <div *ngIf="mode === 'details'">
         <mat-button-toggle-group  #group="matButtonToggleGroup" (change)="onStatusUpdate(group.value)" multiple="false"
         formControlName="status" value = "currentStatus">
         <mat-button-toggle *ngFor="let item of statusOptions; let i = index" [value]="i">{{item}}</mat-button-toggle>
       </mat-button-toggle-group>
-    </div>
+    </div> -->
 
-    <button mat-stroked-button color="primary"  [disabled]="updateForm.invalid" type="submit">Update</button>
+    <div class="actions">
+      <div *ngIf="mode === 'details'">
+        <button mat-stroked-button color="primary"   type="submit">Move to </button>
+      </div>
+
+      <button mat-stroked-button color="primary"  [disabled]="updateForm.invalid" type="submit">Update</button>
+
+      <div *ngIf="mode === 'details'">
+        <button mat-stroked-button color="primary"   type="submit">Move to </button>
+      </div>
+    </div>
 
   </form>
   </div>

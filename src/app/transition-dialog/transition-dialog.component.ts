@@ -11,7 +11,7 @@ import { BookDetailComponent } from '../book-detail/book-detail.component';
 export class TransitionDialogComponent  {
 
   book: Book;
-  newStatus: number;
+  status: number;
   @ViewChild(BookDetailComponent) bookDetails: BookDetailComponent;
 
 
@@ -19,7 +19,7 @@ export class TransitionDialogComponent  {
     public dialogRef: MatDialogRef<TransitionDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any){
       this.book = data.book;
-      this.newStatus = data.status;
+      this.status = data.status;
     }
 
   ngOnInit(): void {
@@ -30,7 +30,7 @@ export class TransitionDialogComponent  {
   }
 
   onUpdate(): void {
-    // TODO: could handle error raised by book-detail 
+    // TODO: could handle error raised by book-detail
     this.onCancel();
   }
 

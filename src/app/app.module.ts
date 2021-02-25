@@ -42,6 +42,7 @@ import { CurrentBookComponent } from './current-book/current-book.component';
 import { SessionDialogComponent } from './session-dialog/session-dialog.component';
 import { TransitionDialogComponent } from './transition-dialog/transition-dialog.component';
 import { CarouselComponent } from './carousel/carousel.component';
+import { LibraryGridComponent } from './library/library-grid/library-grid.component';
 
 
 
@@ -57,7 +58,8 @@ import { CarouselComponent } from './carousel/carousel.component';
     CurrentBookComponent,
     SessionDialogComponent,
     TransitionDialogComponent,
-    CarouselComponent
+    CarouselComponent,
+    LibraryGridComponent
   ],
   imports: [
     BrowserModule,
