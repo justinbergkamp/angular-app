@@ -1,12 +1,28 @@
 
 <mat-tab-group mat-align-tabs="center">
   <mat-tab label="Backlog">
-
+    <app-library-grid [books]="books"></app-library-grid>
   </mat-tab>
   <mat-tab label="Queue">
+    <app-library-grid [books]="books"></app-library-grid>
 
   </mat-tab>
   <mat-tab label="Done">
+    <app-library-grid [books]="books"></app-library-grid>
 
   </mat-tab>
 </mat-tab-group>
+
+<button mat-stroked-button color="accent" (click)="addBook()">Add Book</button>
+
+<p>test</p>
+
+<!-- <div *ngIf="mode!=='none'">
+  <div class="forms" *ngIf="mode==='add'">
+    <app-add-book></app-add-book>
+  </div>
+
+  <div class="forms" *ngIf="mode==='details'">
+    <app-book-detail [book]="selectedBook" [mode]="'details'"></app-book-detail>
+  </div>
+</div> -->

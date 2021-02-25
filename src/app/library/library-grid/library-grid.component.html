@@ -55,18 +55,9 @@
           </div>
         </div>
 
-        <button mat-stroked-button color="accent" (click)="addBook()">Add Book</button>
       </div>
 
 
-    <div *ngIf="mode!=='none'">
-      <div class="forms" *ngIf="mode==='add'">
-        <app-add-book></app-add-book>
-      </div>
 
-      <div class="forms" *ngIf="mode==='details'">
-        <app-book-detail [book]="selectedBook" [mode]="'details'"></app-book-detail>
-      </div>
-    </div>
 
   </div>

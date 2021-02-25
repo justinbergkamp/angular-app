@@ -1,4 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+
+import { APIService } from '../../API.service';
+import { Book } from '../../../types/book';
+import {FormControl} from '@angular/forms';
+import {Observable} from 'rxjs';
+import {map, startWith} from 'rxjs/operators';
 
 @Component({
   selector: 'app-library-grid',
@@ -7,9 +13,43 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LibraryGridComponent implements OnInit {
 
-  constructor() { }
+  @Input() books;
+
+
+  mode = '';
+
+  books: Array<Book>;
+  allBooks: Array<Book>;
+  toReadBooks: Array<Book>;
+  queuedBooks: Array<Book>;
+  completedBooks: Array<Book>;
+
+
+
+  selectedBook: Book;
+  allTags: string[] = ['Science', 'Fantasy', 'History', 'Philosophy', 'Self-Improvement'];
+
+  myFlagForButtonToggle: Array<String> = [];
+  endpointToggleOptions: Array<String> = this.allTags;
+
+  tagInformation = new Map([
+          ["Science",    {color: "blue" , nickname : "S"}],
+          ["Fantasy",    {color: "red" , nickname : "F"}],
+          ["History",    {color: "pink" , nickname : "H"}],
+          ["Philosophy", {color: "purple" , nickname : "P"}],
+          ["Self-Improvement", {color: "green" , nickname : "SI"}]
+      ]);
+
+  myControl = new FormControl();
+  options: string[] = ['One', 'Two', 'Three'];
+  filteredOptions: Observable<string[]>;
+
+  constructor(private api: APIService) { }
 
   ngOnInit(): void {
+    // this.books.sort((a, b) => a.queue_pos < b.queue_pos ? -1 : a.queue_pos > b.queue_pos ? 1 : 0);
+
+
     this.filteredOptions = this.myControl.valueChanges
       .pipe(
           startWith(''),
