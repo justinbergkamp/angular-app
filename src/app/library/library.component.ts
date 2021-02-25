@@ -83,77 +83,21 @@ export class LibraryComponent implements OnInit {
   }
 
   onSelect(book: Book): void {
+    //shoukd recieve emit
     this.mode = 'details';
     this.selectedBook = book;
   }
 
 
-  onTag(tag: string): void {
-    console.log(tag);
-
-    console.log(this.tagInformation.get(tag));
-  }
 
   addBook(){
+
     this.mode = 'add';
   }
 
-  deleteBook(book: Book): void {
-    // need to check user for deletion
-    console.log(book);
-
-    let deletedBook = {
-      "id": book.id
-   };
-
-    this.api.DeleteBook(deletedBook).then(event => {
-      console.log('item deleted!');
-      this.mode = 'none';
-
-    })
-    .catch(e => {
-      console.log('error deleting book...', e);
-    });
-
-  }
 
 
-  public onStatusFilterChange(val){
 
-    let selectedBooks = [];
-    if (val !=''){
-      for(let filter of val){
 
-        let filteredBooks = this.allBooks.filter(book => book.tags.includes(filter));
 
-        selectedBooks = selectedBooks.concat(filteredBooks);
-
-      }
-    }else{
-      selectedBooks = this.allBooks;
-    }
-    this.books = selectedBooks;
-  }
-
-  private _filter(value: string): string[] {
-    const filterValue = value.toLowerCase();
-    console.log(filterValue);
-    return this.options.filter(option => option.toLowerCase().includes(filterValue));
-  }
-
-  onChanges(): void {
-    console.log("test");
-
-    this.myControl.valueChanges.subscribe(val => {
-      let filteredBooks = [];
-      filteredBooks = this.allBooks.filter(book => book.title.toLowerCase().includes(val));
-      this.books = filteredBooks;
-    });
-  }
-
-  addToQueue(book : Book): void {
-    this.mode = 'details';
-    book.status = 1;
-    this.selectedBook = book;
-  }
 }
