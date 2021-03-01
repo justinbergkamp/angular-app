@@ -43,6 +43,8 @@ export class LibraryComponent implements OnInit {
     this.api.ListBooks().then(event => {
       this.books = event.items;
       this.backlogBooks = this.books.filter(book => book.status == 0);
+      console.log(this.backlogBooks);
+
       this.queuedBooks = this.books.filter(book => book.status == 1);
       this.completedBooks = this.books.filter(book => book.status == 3);
     });

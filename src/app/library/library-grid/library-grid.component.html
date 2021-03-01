@@ -1,63 +1,36 @@
-<div class="library">
+<div class="library-grid-container">
 
-    <div class="queue">
+    <mat-button-toggle-group #group="matButtonToggleGroup" (change)="onStatusFilterChange(group.value)" multiple="true"
+      [(ngModel)]="tagFilterToggle">
+      <mat-button-toggle *ngFor="let tag of tagOptions;" [value]="tag">{{tag}}</mat-button-toggle>
+    </mat-button-toggle-group>
 
-        <h2>My Books</h2>
+    <div class="book-container">
+      <div *ngFor="let book of books" (click)="onSelect(book)" >
+          <mat-card class="book-card">
+          <mat-card-header>
+            <!-- <div mat-card-avatar class="example-header-image"></div> -->
+            <mat-card-title>{{book.title}}</mat-card-title>
+            <mat-card-subtitle>{{book.author}}</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <mat-star-rating [rating]='4' [starCount]= '5' [color]='primary'></mat-star-rating>
 
-        <form class="example-form">
-            <mat-form-field class="example-full-width">
-              <mat-label>Search Title</mat-label>
-              <input type="text"
-                    placeholder="Title"
-                    aria-label="Number"
-                    matInput
-                    [formControl]="myControl"
-                    [matAutocomplete]="auto">
-              <mat-autocomplete #auto="matAutocomplete">
-                <!-- <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-                  {{option}}
-                </mat-option> -->
-              </mat-autocomplete>
-            </mat-form-field>
-        </form>
-        <mat-button-toggle-group #group="matButtonToggleGroup" (change)="onStatusFilterChange(group.value)" multiple="true"
-          [(ngModel)]="myFlagForButtonToggle">
-          <mat-button-toggle *ngFor="let item of endpointToggleOptions;" [value]="item">{{item}}</mat-button-toggle>
-        </mat-button-toggle-group>
+          <!-- <mat-chip-list aria-label="Tag selection">
+            <div *ngFor="let tag of book.tags" >
+              <mat-chip (click)="onTag(tag)"  [ngStyle]="{'background-color': tagInformation.get(tag).color}">
+                {{tagInformation.get(tag).nickname}}
+              </mat-chip>
+            </div>
+          </mat-chip-list> -->
 
-        <div class="queue-container">
-          <div *ngFor="let book of books" (click)="onSelect(book)" >
-              <mat-card class="example-card">
-              <mat-card-header>
-                <!-- <div mat-card-avatar class="example-header-image"></div> -->
-                <mat-card-title class="test">{{book.title}}</mat-card-title>
-                <mat-card-subtitle class="test">{{book.author}}</mat-card-subtitle>
-              </mat-card-header>
-              <mat-card-content>
-              <p >
-                {{book.description}}
-              </p>
-
-              <mat-chip-list aria-label="Tag selection">
-                <div *ngFor="let tag of book.tags" >
-                  <mat-chip (click)="onTag(tag)"  [ngStyle]="{'background-color': tagInformation.get(tag).color}">
-                    {{tagInformation.get(tag).nickname}}
-                  </mat-chip>
-                </div>
-              </mat-chip-list>
-
-            </mat-card-content>
-            <mat-card-actions>
-              <button mat-button (click)="addToQueue(book)">Add to Queue</button>
-              <button mat-button (click)="deleteBook(book)">Delete</button>
-            </mat-card-actions>
-          </mat-card>
-          </div>
-        </div>
-
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-button (click)="addToQueue(book)">Add to Queue</button>
+          <button mat-button (click)="deleteBook(book)">Delete</button>
+        </mat-card-actions>
+      </mat-card>
       </div>
-
-
-
+    </div>
 
   </div>

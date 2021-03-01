@@ -28,6 +28,7 @@ import {MatDividerModule} from '@angular/material/divider';
 import {MatDialogModule} from '@angular/material/dialog';
 import {ScrollingModule} from '@angular/cdk/scrolling';
 import {MatTabsModule} from '@angular/material/tabs';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 
 
@@ -43,6 +44,7 @@ import { SessionDialogComponent } from './session-dialog/session-dialog.componen
 import { TransitionDialogComponent } from './transition-dialog/transition-dialog.component';
 import { CarouselComponent } from './carousel/carousel.component';
 import { LibraryGridComponent } from './library/library-grid/library-grid.component';
+import { StarRatingComponent } from './star-rating/star-rating.component';
 
 
 
@@ -59,7 +61,8 @@ import { LibraryGridComponent } from './library/library-grid/library-grid.compon
     SessionDialogComponent,
     TransitionDialogComponent,
     CarouselComponent,
-    LibraryGridComponent
+    LibraryGridComponent,
+    StarRatingComponent
   ],
   imports: [
     BrowserModule,
@@ -86,6 +89,7 @@ import { LibraryGridComponent } from './library/library-grid/library-grid.compon
     MatDialogModule,
     ScrollingModule,
     MatTabsModule,
+    MatSnackBarModule,
     MatCarouselModule.forRoot()
 
   ],

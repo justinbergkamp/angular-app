@@ -1,14 +1,14 @@
 
 <mat-tab-group mat-align-tabs="center">
   <mat-tab label="Backlog">
-    <app-library-grid [books]="books"></app-library-grid>
+    <app-library-grid [allBooks]="backlogBooks"></app-library-grid>
   </mat-tab>
   <mat-tab label="Queue">
-    <app-library-grid [books]="books"></app-library-grid>
+    <app-library-grid [allBooks]="queuedBooks"></app-library-grid>
 
   </mat-tab>
   <mat-tab label="Done">
-    <app-library-grid [books]="books"></app-library-grid>
+    <app-library-grid [allBooks]="completedBooks"></app-library-grid>
 
   </mat-tab>
 </mat-tab-group>
