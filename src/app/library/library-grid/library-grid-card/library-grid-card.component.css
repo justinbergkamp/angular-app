@@ -1,0 +1,13 @@
+mat-card {
+  height: 150px;
+  width: 200px;
+  margin: 20px;
+}
+
+mat-card-title , mat-card-subtitle{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1; /* number of lines to show */
+  -webkit-box-orient: vertical;
+}
