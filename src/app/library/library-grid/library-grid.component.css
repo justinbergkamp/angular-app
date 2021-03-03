@@ -4,17 +4,18 @@
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
+  height:100%;
 }
 
 .book-container{
   display: flex; /* or inline-flex */
-  flex-direction: row ;
+  flex-direction: row;
   flex-wrap: wrap;
   justify-content:flex-start;
   align-items: flex-start;
   background-color: lightblue;
   width: 90%;
-  height: 400px;
+  height:600px;
 }
 
 mat-card {

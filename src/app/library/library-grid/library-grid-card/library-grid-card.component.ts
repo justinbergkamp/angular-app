@@ -14,11 +14,11 @@ export class LibraryGridCardComponent implements OnInit {
 
   allTags: string[] = ['Science', 'Fantasy', 'History', 'Philosophy', 'Self-Improvement'];
   tagInformation = new Map([
-          ["Science",    {color: "blue" , nickname : "S"}],
-          ["Fantasy",    {color: "red" , nickname : "F"}],
-          ["History",    {color: "pink" , nickname : "H"}],
-          ["Philosophy", {color: "purple" , nickname : "P"}],
-          ["Self-Improvement", {color: "green" , nickname : "SI"}]
+          ["Science",    {color: "#2fa4d6" , nickname : "S"}],
+          ["Fantasy",    {color: "#d16d6d" , nickname : "F"}],
+          ["History",    {color: "#d9d95f" , nickname : "H"}],
+          ["Philosophy", {color: "#af79c9" , nickname : "P"}],
+          ["Self-Improvement", {color: "#7ccc43" , nickname : "SI"}]
       ]);
 
   constructor(private api: APIService) { }
@@ -46,6 +46,10 @@ export class LibraryGridCardComponent implements OnInit {
     .catch(e => {
       console.log('error deleting book...', e);
     });
+  }
+
+  onTag(tag : string):void{
+
   }
 
 }
