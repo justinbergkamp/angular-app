@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Book } from '../../../../types/book';
 import { APIService } from '../../../API.service';
 import { UpdateDialogComponent } from '../../../update-dialog/update-dialog.component';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-library-grid-card',
@@ -22,7 +23,7 @@ export class LibraryGridCardComponent implements OnInit {
           ["Self-Improvement", {color: "#7ccc43" , nickname : "SI"}]
       ]);
 
-  constructor(private api: APIService) { }
+  constructor(private api: APIService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
   }
@@ -32,10 +33,19 @@ export class LibraryGridCardComponent implements OnInit {
     // this.selectedBook = book;
   }
 
-  deleteBook(book: Book): void {
-    // need to check user for deletion
-    //simple alert until more robust dialog
+  deleteBook(): void {
+    const dialogRef = this.dialog.open(UpdateDialogComponent, {
+      width: '500px',
+      data: {book: this.book, action: "delete"}
+    });
 
+    const sub = dialogRef.componentInstance.onAdd.subscribe((data) => {
+        dialogRef.close();
+
+        dialogRef.afterClosed().subscribe(result => {
+          sub.unsubscribe();
+        });
+    });
   }
 
   onTag(tag : string):void{

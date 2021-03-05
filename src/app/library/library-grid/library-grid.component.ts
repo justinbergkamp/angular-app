@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
 import { SimpleChanges } from '@angular/core';
 import { APIService } from '../../API.service';
 import { Book } from '../../../types/book';
@@ -9,7 +9,8 @@ import {map, startWith} from 'rxjs/operators';
 @Component({
   selector: 'app-library-grid',
   templateUrl: './library-grid.component.html',
-  styleUrls: ['./library-grid.component.css']
+  styleUrls: ['./library-grid.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LibraryGridComponent implements OnInit {
 

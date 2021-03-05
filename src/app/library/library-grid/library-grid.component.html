@@ -6,9 +6,15 @@
     </mat-button-toggle-group>
 
     <div class="book-container">
-      <div *ngFor="let book of books" (click)="onSelect(book)" >
+      <cdk-virtual-scroll-viewport itemSize="50" class="example-viewport">
+        <div *cdkVirtualFor="let book of books" class="example-item">
+          {{book.title}}
+        </div>
+      </cdk-virtual-scroll-viewport>
+
+      <!-- <div *ngFor="let book of books" (click)="onSelect(book)" >
         <app-library-grid-card [book]="book" [status]="book.status"></app-library-grid-card>
-      </div>
+      </div> -->
     </div>
 
-  </div>
+</div>
