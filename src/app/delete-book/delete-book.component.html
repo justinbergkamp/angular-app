@@ -1,0 +1,9 @@
+
+<div class="delete-book-container">
+  <h1>Are you sure you want to delete {{book}}?</h1>
+  <p>This data will be lost forever</p>
+  <div class="actions">
+    <button mat-button (click)="cancel()" cdkFocusInitial >Cancel</button>
+    <button mat-button (click)="delete()">Delete</button>
+  </div>
+</div>

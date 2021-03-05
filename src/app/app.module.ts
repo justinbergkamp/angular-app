@@ -45,6 +45,9 @@ import { TransitionDialogComponent } from './transition-dialog/transition-dialog
 import { CarouselComponent } from './carousel/carousel.component';
 import { LibraryGridComponent } from './library/library-grid/library-grid.component';
 import { StarRatingComponent } from './star-rating/star-rating.component';
+import { LibraryGridCardComponent } from './library/library-grid/library-grid-card/library-grid-card.component';
+import { UpdateDialogComponent } from './update-dialog/update-dialog.component';
+import { DeleteBookComponent } from './delete-book/delete-book.component';
 
 
 
@@ -62,7 +65,10 @@ import { StarRatingComponent } from './star-rating/star-rating.component';
     TransitionDialogComponent,
     CarouselComponent,
     LibraryGridComponent,
-    StarRatingComponent
+    StarRatingComponent,
+    LibraryGridCardComponent,
+    UpdateDialogComponent,
+    DeleteBookComponent
   ],
   imports: [
     BrowserModule,

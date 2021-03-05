@@ -1,0 +1,8 @@
+<!-- <app-library-grid-card [book]="book" [status]="book.status"></app-library-grid-card> -->
+<div *ngIf="action == 'add'">
+    <h1>Add a Book Bitch</h1>
+</div>
+
+<div *ngIf="action == 'delete'">
+      <h1>Delete {{book.title}}</h1>
+</div>

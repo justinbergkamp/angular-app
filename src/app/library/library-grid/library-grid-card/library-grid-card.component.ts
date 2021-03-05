@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Book } from '../../../../types/book';
 import { APIService } from '../../../API.service';
+import { UpdateDialogComponent } from '../../../update-dialog/update-dialog.component';
 
 @Component({
   selector: 'app-library-grid-card',
@@ -34,18 +35,7 @@ export class LibraryGridCardComponent implements OnInit {
   deleteBook(book: Book): void {
     // need to check user for deletion
     //simple alert until more robust dialog
-    console.log(book);
 
-    let deletedBook = {
-      "id": book.id
-   };
-
-    this.api.DeleteBook(deletedBook).then(event => {
-      console.log('item deleted!');
-    })
-    .catch(e => {
-      console.log('error deleting book...', e);
-    });
   }
 
   onTag(tag : string):void{
