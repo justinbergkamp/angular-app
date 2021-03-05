@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { APIService } from '../API.service';
+import { Book, CurrentBook } from '../../types/book';
 
 @Component({
   selector: 'app-delete-book',
@@ -8,16 +9,19 @@ import { APIService } from '../API.service';
 })
 export class DeleteBookComponent implements OnInit {
 
+  @Input('book')  book: Book;
+
+
   constructor(private api: APIService) { }
 
   ngOnInit(): void {
   }
 
-  delete(book: Book): void {
-    console.log(book);
+  delete(): void {
+    console.log(this.book);
 
     let deletedBook = {
-      "id": book.id
+      "id": this.book.id
    };
 
     this.api.DeleteBook(deletedBook).then(event => {
@@ -27,6 +31,7 @@ export class DeleteBookComponent implements OnInit {
       console.log('error deleting book...', e);
     });
   }
+  cancel():void{}
 
 
 }

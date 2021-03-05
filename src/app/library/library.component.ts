@@ -4,6 +4,8 @@ import { Book } from '../../types/book';
 import {FormControl} from '@angular/forms';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
+import {UpdateDialogComponent} from '../update-dialog/update-dialog.component';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 
 
 @Component({
@@ -25,7 +27,7 @@ export class LibraryComponent implements OnInit {
   selectedBook: Book;
 
 
-  constructor(private api: APIService) { }
+  constructor(private api: APIService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.listBooks();
@@ -58,8 +60,19 @@ export class LibraryComponent implements OnInit {
 
 
 
-  addBook(){
-    // this.mode = 'add';
+  addBook(): void {
+    const dialogRef = this.dialog.open(UpdateDialogComponent, {
+      width: '500px',
+      data: {book: "", action: "add"}
+    });
+
+    const sub = dialogRef.componentInstance.onAdd.subscribe((data) => {
+        dialogRef.close();
+
+        dialogRef.afterClosed().subscribe(result => {
+          sub.unsubscribe();
+        });
+    });
   }
 
 }

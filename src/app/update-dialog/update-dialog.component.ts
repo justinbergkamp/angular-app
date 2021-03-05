@@ -12,12 +12,14 @@ import { DeleteBookComponent } from '../delete-book/delete-book.component';
 export class UpdateDialogComponent implements OnInit {
 
   book: Book;
+  onAdd = new EventEmitter();
+
 
   //for the moment will handle add and delete actions
-  action: number;
+  action: string;
 
   constructor(
-      public dialogRef: MatDialogRef<TransitionDialogComponent>,
+      public dialogRef: MatDialogRef<UpdateDialogComponent>,
       @Inject(MAT_DIALOG_DATA) public data: any)
       {
         this.book = data.book;
@@ -29,4 +31,5 @@ export class UpdateDialogComponent implements OnInit {
   closeDialog(){
     this.dialogRef.close();
   }
+
 }
