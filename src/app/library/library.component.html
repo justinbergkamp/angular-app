@@ -1,3 +1,11 @@
+<mat-drawer-container class="example-container" autosize>
+  <mat-drawer #drawer class="example-sidenav" mode="side">
+
+    <button mat-stroked-button color="accent" (click)="addBook()">Add Book</button>
+
+
+    </mat-drawer>
+
 
 <mat-tab-group mat-align-tabs="center">
   <mat-tab label="Backlog">
@@ -13,9 +21,18 @@
   </mat-tab>
 </mat-tab-group>
 
-<button mat-stroked-button color="accent" (click)="addBook()">Add Book</button>
+<div class="example-sidenav-content">
+  <button type="button" mat-button (click)="drawer.toggle()">
+    Toggle sidenav
+  </button>
+</div>
+</mat-drawer-container>
 
-<p>test</p>
+
+
+
+
+
 
 <!-- <div *ngIf="mode!=='none'">
   <div class="forms" *ngIf="mode==='add'">

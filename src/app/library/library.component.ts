@@ -22,6 +22,7 @@ export class LibraryComponent implements OnInit {
   backlogBooks: Array<Book>;
   queuedBooks: Array<Book>;
   completedBooks: Array<Book>;
+  showFiller = true;
 
 
   selectedBook: Book;

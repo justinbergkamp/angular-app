@@ -29,6 +29,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {ScrollingModule} from '@angular/cdk/scrolling';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatSidenavModule} from '@angular/material/sidenav';
 
 
 
@@ -96,6 +97,7 @@ import { DeleteBookComponent } from './delete-book/delete-book.component';
     ScrollingModule,
     MatTabsModule,
     MatSnackBarModule,
+    MatSidenavModule,
     MatCarouselModule.forRoot()
 
   ],
