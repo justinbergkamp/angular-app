@@ -22,6 +22,7 @@ export type CreateBookInput = {
   startDate?: string | null;
   goalFinishDate?: string | null;
   finishDate?: string | null;
+  rating?: number | null;
   sessions?: Array<SessionInput | null> | null;
 };
 
@@ -43,6 +44,7 @@ export type ModelBookConditionInput = {
   startDate?: ModelStringInput | null;
   goalFinishDate?: ModelStringInput | null;
   finishDate?: ModelStringInput | null;
+  rating?: ModelIntInput | null;
   and?: Array<ModelBookConditionInput | null> | null;
   or?: Array<ModelBookConditionInput | null> | null;
   not?: ModelBookConditionInput | null;
@@ -112,6 +114,7 @@ export type UpdateBookInput = {
   startDate?: string | null;
   goalFinishDate?: string | null;
   finishDate?: string | null;
+  rating?: number | null;
   sessions?: Array<SessionInput | null> | null;
 };
 
@@ -132,6 +135,7 @@ export type ModelBookFilterInput = {
   startDate?: ModelStringInput | null;
   goalFinishDate?: ModelStringInput | null;
   finishDate?: ModelStringInput | null;
+  rating?: ModelIntInput | null;
   and?: Array<ModelBookFilterInput | null> | null;
   or?: Array<ModelBookFilterInput | null> | null;
   not?: ModelBookFilterInput | null;
@@ -167,6 +171,7 @@ export type CreateBookMutation = {
   startDate: string | null;
   goalFinishDate: string | null;
   finishDate: string | null;
+  rating: number | null;
   sessions: Array<{
     __typename: "Session";
     date: string | null;
@@ -191,6 +196,7 @@ export type UpdateBookMutation = {
   startDate: string | null;
   goalFinishDate: string | null;
   finishDate: string | null;
+  rating: number | null;
   sessions: Array<{
     __typename: "Session";
     date: string | null;
@@ -215,6 +221,7 @@ export type DeleteBookMutation = {
   startDate: string | null;
   goalFinishDate: string | null;
   finishDate: string | null;
+  rating: number | null;
   sessions: Array<{
     __typename: "Session";
     date: string | null;
@@ -239,6 +246,7 @@ export type GetBookQuery = {
   startDate: string | null;
   goalFinishDate: string | null;
   finishDate: string | null;
+  rating: number | null;
   sessions: Array<{
     __typename: "Session";
     date: string | null;
@@ -265,6 +273,7 @@ export type ListBooksQuery = {
     startDate: string | null;
     goalFinishDate: string | null;
     finishDate: string | null;
+    rating: number | null;
     sessions: Array<{
       __typename: "Session";
       date: string | null;
@@ -291,6 +300,7 @@ export type OnCreateBookSubscription = {
   startDate: string | null;
   goalFinishDate: string | null;
   finishDate: string | null;
+  rating: number | null;
   sessions: Array<{
     __typename: "Session";
     date: string | null;
@@ -315,6 +325,7 @@ export type OnUpdateBookSubscription = {
   startDate: string | null;
   goalFinishDate: string | null;
   finishDate: string | null;
+  rating: number | null;
   sessions: Array<{
     __typename: "Session";
     date: string | null;
@@ -339,6 +350,7 @@ export type OnDeleteBookSubscription = {
   startDate: string | null;
   goalFinishDate: string | null;
   finishDate: string | null;
+  rating: number | null;
   sessions: Array<{
     __typename: "Session";
     date: string | null;
@@ -372,6 +384,7 @@ export class APIService {
           startDate
           goalFinishDate
           finishDate
+          rating
           sessions {
             __typename
             date
@@ -412,6 +425,7 @@ export class APIService {
           startDate
           goalFinishDate
           finishDate
+          rating
           sessions {
             __typename
             date
@@ -452,6 +466,7 @@ export class APIService {
           startDate
           goalFinishDate
           finishDate
+          rating
           sessions {
             __typename
             date
@@ -489,6 +504,7 @@ export class APIService {
           startDate
           goalFinishDate
           finishDate
+          rating
           sessions {
             __typename
             date
@@ -529,6 +545,7 @@ export class APIService {
             startDate
             goalFinishDate
             finishDate
+            rating
             sessions {
               __typename
               date
@@ -575,6 +592,7 @@ export class APIService {
           startDate
           goalFinishDate
           finishDate
+          rating
           sessions {
             __typename
             date
@@ -607,6 +625,7 @@ export class APIService {
           startDate
           goalFinishDate
           finishDate
+          rating
           sessions {
             __typename
             date
@@ -639,6 +658,7 @@ export class APIService {
           startDate
           goalFinishDate
           finishDate
+          rating
           sessions {
             __typename
             date

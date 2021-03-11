@@ -13,6 +13,7 @@ subscription OnCreateBook {
     startDate
     goalFinishDate
     finishDate
+    rating
     sessions {
       date
       startPage
@@ -36,6 +37,7 @@ subscription OnUpdateBook {
     startDate
     goalFinishDate
     finishDate
+    rating
     sessions {
       date
       startPage
@@ -59,6 +61,7 @@ subscription OnDeleteBook {
     startDate
     goalFinishDate
     finishDate
+    rating
     sessions {
       date
       startPage

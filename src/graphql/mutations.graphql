@@ -16,6 +16,7 @@ mutation CreateBook(
     startDate
     goalFinishDate
     finishDate
+    rating
     sessions {
       date
       startPage
@@ -42,6 +43,7 @@ mutation UpdateBook(
     startDate
     goalFinishDate
     finishDate
+    rating
     sessions {
       date
       startPage
@@ -68,6 +70,7 @@ mutation DeleteBook(
     startDate
     goalFinishDate
     finishDate
+    rating
     sessions {
       date
       startPage

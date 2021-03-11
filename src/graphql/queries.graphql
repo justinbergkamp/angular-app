@@ -13,6 +13,7 @@ query GetBook($id: ID!) {
     startDate
     goalFinishDate
     finishDate
+    rating
     sessions {
       date
       startPage
@@ -41,6 +42,7 @@ query ListBooks(
       startDate
       goalFinishDate
       finishDate
+      rating
       sessions {
         date
         startPage

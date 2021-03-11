@@ -49,6 +49,7 @@ import { StarRatingComponent } from './star-rating/star-rating.component';
 import { LibraryGridCardComponent } from './library/library-grid/library-grid-card/library-grid-card.component';
 import { UpdateDialogComponent } from './update-dialog/update-dialog.component';
 import { DeleteBookComponent } from './delete-book/delete-book.component';
+import { DoneDialogComponent } from './done-dialog/done-dialog.component';
 
 
 
@@ -69,7 +70,8 @@ import { DeleteBookComponent } from './delete-book/delete-book.component';
     StarRatingComponent,
     LibraryGridCardComponent,
     UpdateDialogComponent,
-    DeleteBookComponent
+    DeleteBookComponent,
+    DoneDialogComponent
   ],
   imports: [
     BrowserModule,

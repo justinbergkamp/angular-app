@@ -17,5 +17,6 @@ type Book @model {
   startDate: String
   goalFinishDate : String
   finishDate: String
+  rating: Int
   sessions: [Session]
 }
