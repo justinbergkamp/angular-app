@@ -1,82 +1,28 @@
 
+<mat-tab-group mat-align-tabs="center">
+  <mat-tab label="Backlog">
+    <app-library-grid [allBooks]="backlogBooks"></app-library-grid>
+  </mat-tab>
+  <mat-tab label="Queue">
+    <app-library-grid [allBooks]="queuedBooks"></app-library-grid>
 
-<!-- <amplify-authenticator>
-<div>
-Restaurants App
-<amplify-sign-out></amplify-sign-out>
-</div>
-</amplify-authenticator> -->
+  </mat-tab>
+  <mat-tab label="Done">
+    <app-library-grid [allBooks]="completedBooks"></app-library-grid>
 
+  </mat-tab>
+</mat-tab-group>
 
-<div class="library">
+<button mat-stroked-button color="accent" (click)="addBook()">Add Book</button>
 
-    <div class="queue">
+<p>test</p>
 
-        <h2>My Books</h2>
-
-        <form class="example-form">
-            <mat-form-field class="example-full-width">
-              <mat-label>Search Title</mat-label>
-              <input type="text"
-                    placeholder="Title"
-                    aria-label="Number"
-                    matInput
-                    [formControl]="myControl"
-                    [matAutocomplete]="auto">
-              <mat-autocomplete #auto="matAutocomplete">
-                <!-- <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-                  {{option}}
-                </mat-option> -->
-              </mat-autocomplete>
-            </mat-form-field>
-        </form>
-        <mat-button-toggle-group #group="matButtonToggleGroup" (change)="onStatusFilterChange(group.value)" multiple="true"
-          [(ngModel)]="myFlagForButtonToggle">
-          <mat-button-toggle *ngFor="let item of endpointToggleOptions;" [value]="item">{{item}}</mat-button-toggle>
-        </mat-button-toggle-group>
-
-        <div class="queue-container">
-          <div *ngFor="let book of books" (click)="onSelect(book)" >
-              <mat-card class="example-card">
-              <mat-card-header>
-                <!-- <div mat-card-avatar class="example-header-image"></div> -->
-                <mat-card-title class="test">{{book.title}}</mat-card-title>
-                <mat-card-subtitle class="test">{{book.author}}</mat-card-subtitle>
-              </mat-card-header>
-              <mat-card-content>
-              <p >
-                {{book.description}}
-              </p>
-
-              <mat-chip-list aria-label="Tag selection">
-                <div *ngFor="let tag of book.tags" >
-                  <mat-chip (click)="onTag(tag)"  [ngStyle]="{'background-color': tagInformation.get(tag).color}">
-                    {{tagInformation.get(tag).nickname}}
-                  </mat-chip>
-                </div>
-              </mat-chip-list>
-
-            </mat-card-content>
-            <mat-card-actions>
-              <button mat-button (click)="addToQueue(book)">Add to Queue</button>
-              <button mat-button (click)="deleteBook(book)">Delete</button>
-            </mat-card-actions>
-          </mat-card>
-          </div>
-        </div>
-
-        <button mat-stroked-button color="accent" (click)="addBook()">Add Book</button>
-      </div>
-
-
-    <div *ngIf="mode!=='none'">
-      <div class="forms" *ngIf="mode==='add'">
-        <app-add-book></app-add-book>
-      </div>
-
-      <div class="forms" *ngIf="mode==='details'">
-        <app-book-detail [book]="selectedBook" [mode]="'details'"></app-book-detail>
-      </div>
-    </div>
-
+<!-- <div *ngIf="mode!=='none'">
+  <div class="forms" *ngIf="mode==='add'">
+    <app-add-book></app-add-book>
   </div>
+
+  <div class="forms" *ngIf="mode==='details'">
+    <app-book-detail [book]="selectedBook" [mode]="'details'"></app-book-detail>
+  </div>
+</div> -->

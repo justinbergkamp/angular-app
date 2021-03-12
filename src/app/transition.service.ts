@@ -52,6 +52,7 @@ export class TransitionService {
     updatedBook.sessions = [];
     updatedBook.pageNumber = 0;
     updatedBook.startDate = '';
+    updatedBook.goalFinishDate = '';
     updatedBook.status = 1;
     updatedBook = _.omit(updatedBook, ['__typename', 'createdAt', 'updatedAt']);
     this.api.UpdateBook(updatedBook).then(event => {
@@ -61,6 +62,47 @@ export class TransitionService {
     .catch(e => {
       console.log('error updating book...', e);
     });
-
   }
+
+  updateBook(book:Book, id:string, status:number, mode:String){
+    let updatedBook : any ;
+    updatedBook = book;
+    updatedBook.id = id;
+    updatedBook.status = status;
+    updatedBook = _.omit(updatedBook, ['__typename', 'createdAt', 'updatedAt']);
+
+    switch (status) {
+      case 0:
+          console.log("Updating a backlog book");
+          break;
+      case 1:
+          console.log("Updating a backlog book");
+          break;
+      case 2:
+          console.log("Updating a current book");
+          updatedBook = this.convert(updatedBook);
+          break;
+      case 3:
+          console.log("Updating a backlog book");
+          break;
+      case 4:
+          console.log("Updating a backlog book");
+          break;
+      default:
+          console.log("No such day exists!");
+          break;
+      }
+
+
+    console.log(updatedBook);
+
+     this.api.UpdateBook(updatedBook).then(event => {
+       console.log('item updated!');
+       this.onUpdate.emit("done");
+     })
+     .catch(e => {
+       console.log('error updating book...', e);
+     });
+  }
+
 }

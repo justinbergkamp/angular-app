@@ -11,6 +11,7 @@ subscription OnCreateBook {
     tags
     queue_pos
     startDate
+    goalFinishDate
     finishDate
     sessions {
       date
@@ -33,6 +34,7 @@ subscription OnUpdateBook {
     tags
     queue_pos
     startDate
+    goalFinishDate
     finishDate
     sessions {
       date
@@ -55,6 +57,7 @@ subscription OnDeleteBook {
     tags
     queue_pos
     startDate
+    goalFinishDate
     finishDate
     sessions {
       date

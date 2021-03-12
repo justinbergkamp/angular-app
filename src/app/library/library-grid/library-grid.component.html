@@ -1,0 +1,21 @@
+<div class="library-grid-container">
+
+    <mat-button-toggle-group #group="matButtonToggleGroup" (change)="onStatusFilterChange(group.value)" multiple="true"
+      [(ngModel)]="tagFilterToggle">
+      <mat-button-toggle *ngFor="let tag of tagOptions;" [value]="tag">{{tag}}</mat-button-toggle>
+    </mat-button-toggle-group>
+
+    <div class="book-container">
+
+      <!-- <cdk-virtual-scroll-viewport itemSize="50" class="example-viewport">
+        <div *cdkVirtualFor="let book of books">
+          <app-library-grid-card [book]="book" [status]="book.status"></app-library-grid-card>
+        </div>
+      </cdk-virtual-scroll-viewport> -->
+
+      <div *ngFor="let book of books" (click)="onSelect(book)" >
+        <app-library-grid-card [book]="book" [status]="book.status"></app-library-grid-card>
+      </div>
+    </div>
+
+</div>

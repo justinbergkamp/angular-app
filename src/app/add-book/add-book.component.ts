@@ -48,24 +48,13 @@ export class AddBookComponent implements OnInit {
   }
 
 
-  ngOnInit(): void {
-    this.api.ListBooks().then(event => {
-      this.books = event.items;
-    });
-
-    this.api.OnCreateBookListener.subscribe( (event: any) => {
-      const newBook = event.value.data.onCreateBook;
-      this.books = [newBook, ...this.books];
-      this.books.sort((a, b) => a.queue_pos < b.queue_pos ? -1 : a.queue_pos > b.queue_pos ? 1 : 0)
-
-    });
-  }
+  ngOnInit(): void {}
 
 
   public onCreate(book: Book) {
-    book.queue_pos = this.books.length+1;
     book.status = 0;
     book.tags = this.currentTags;
+
     this.api.CreateBook(book).then(event => {
       console.log('item created!');
       this.createForm.reset();
@@ -88,7 +77,6 @@ export class AddBookComponent implements OnInit {
     if (input) {
       input.value = '';
     }
-
     this.createForm.controls.tags.setValue(null);
   }
 

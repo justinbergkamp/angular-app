@@ -27,6 +27,9 @@ import { MatCarouselModule } from '@ngbmodule/material-carousel';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatDialogModule} from '@angular/material/dialog';
 import {ScrollingModule} from '@angular/cdk/scrolling';
+import {MatTabsModule} from '@angular/material/tabs';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+
 
 
 import {DragDropModule} from '@angular/cdk/drag-drop';
@@ -40,6 +43,11 @@ import { CurrentBookComponent } from './current-book/current-book.component';
 import { SessionDialogComponent } from './session-dialog/session-dialog.component';
 import { TransitionDialogComponent } from './transition-dialog/transition-dialog.component';
 import { CarouselComponent } from './carousel/carousel.component';
+import { LibraryGridComponent } from './library/library-grid/library-grid.component';
+import { StarRatingComponent } from './star-rating/star-rating.component';
+import { LibraryGridCardComponent } from './library/library-grid/library-grid-card/library-grid-card.component';
+import { UpdateDialogComponent } from './update-dialog/update-dialog.component';
+import { DeleteBookComponent } from './delete-book/delete-book.component';
 
 
 
@@ -55,7 +63,12 @@ import { CarouselComponent } from './carousel/carousel.component';
     CurrentBookComponent,
     SessionDialogComponent,
     TransitionDialogComponent,
-    CarouselComponent
+    CarouselComponent,
+    LibraryGridComponent,
+    StarRatingComponent,
+    LibraryGridCardComponent,
+    UpdateDialogComponent,
+    DeleteBookComponent
   ],
   imports: [
     BrowserModule,
@@ -81,6 +94,8 @@ import { CarouselComponent } from './carousel/carousel.component';
     MatDividerModule,
     MatDialogModule,
     ScrollingModule,
+    MatTabsModule,
+    MatSnackBarModule,
     MatCarouselModule.forRoot()
 
   ],

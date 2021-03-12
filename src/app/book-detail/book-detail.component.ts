@@ -10,6 +10,7 @@ import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
 import * as _ from 'lodash';
 import { TransitionService } from '../transition.service';
+import { FormService } from '../form.service';
 
 
 @Component({
@@ -45,29 +46,28 @@ export class BookDetailComponent implements OnInit {
   @ViewChild('auto') matAutocomplete: MatAutocomplete;
 
 
-  constructor(private api: APIService, private fb: FormBuilder, private transitionService : TransitionService) {
+  constructor(private api: APIService, private fb: FormBuilder, private transitionService : TransitionService, private formService : FormService ) {
 
-    this.updateForm = this.fb.group({
-      'title': ['', Validators.required],
-      'author': ['', Validators.required],
-      'description': ['', Validators.required],
-      'pages': ['', Validators.required],
-      'pageNumber': ['', Validators.required],
-      'tags': ['', Validators.required],
-      'status': ['', Validators.required],
-      'startDate': ['', Validators.required],
-      'finishDate': ['', Validators.required]
-    });
-
-    this.filteredTags = this.updateForm.controls.tags.valueChanges.pipe(
-            startWith(null),
-            map((tag: string | null) => tag ? this._filter(tag) : this.allTags.slice()));
 
   }
 
-  ngOnInit(): void {  }
+  ngOnInit(): void {}
 
   ngOnChanges(changes: SimpleChanges) {
+
+    if(!this.updateForm || this.updateForm == undefined){
+      if(this.mode == 'details'){
+        this.updateForm = this.formService.composeForm(""+this.book.status);
+      }
+      if(this.mode != 'details'){
+        this.updateForm = this.formService.composeForm(""+this.mode);
+      }
+
+      this.filteredTags = this.updateForm.controls.tags.valueChanges.pipe(
+          startWith(null),
+          map((tag: string | null) => tag ? this._filter(tag) : this.allTags.slice()));
+
+    }
 
     this.updateForm.patchValue({
       title: this.book.title,
@@ -77,6 +77,7 @@ export class BookDetailComponent implements OnInit {
       pages: this.book.pages,
       tags: this.book.tags,
       startDate: this.book.startDate,
+      goalFinishDate: this.book.goalFinishDate,
       finishDate: this.book.finishDate});
 
     this.currentTags = this.book.tags;
@@ -98,24 +99,12 @@ export class BookDetailComponent implements OnInit {
 
 
   updateBook(book: Book){
-
-   let updatedBook : any ;
-   updatedBook = book;
-   updatedBook.id = this.book.id;
-   updatedBook.status = this.book.status;
-   updatedBook = _.omit(updatedBook, ['__typename', 'createdAt', 'updatedAt']);
-   updatedBook = this.transitionService.convert(updatedBook);
-
-   console.log(updatedBook);
-
-    this.api.UpdateBook(updatedBook).then(event => {
-      console.log('item updated!');
-      this.onUpdate.emit("done");
-    })
-    .catch(e => {
-      console.log('error updating book...', e);
-    });
-
+    console.log(book);
+    try {
+      this.transitionService.updateBook(book, this.book.id, this.book.status, this.mode);
+    } catch (error) {
+      console.log('error updating book...', error);
+    }
   }
 
   //Tag toggle buttons

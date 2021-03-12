@@ -20,6 +20,7 @@ export type CreateBookInput = {
   tags?: Array<string | null> | null;
   queue_pos?: number | null;
   startDate?: string | null;
+  goalFinishDate?: string | null;
   finishDate?: string | null;
   sessions?: Array<SessionInput | null> | null;
 };
@@ -40,6 +41,7 @@ export type ModelBookConditionInput = {
   tags?: ModelStringInput | null;
   queue_pos?: ModelIntInput | null;
   startDate?: ModelStringInput | null;
+  goalFinishDate?: ModelStringInput | null;
   finishDate?: ModelStringInput | null;
   and?: Array<ModelBookConditionInput | null> | null;
   or?: Array<ModelBookConditionInput | null> | null;
@@ -108,6 +110,7 @@ export type UpdateBookInput = {
   tags?: Array<string | null> | null;
   queue_pos?: number | null;
   startDate?: string | null;
+  goalFinishDate?: string | null;
   finishDate?: string | null;
   sessions?: Array<SessionInput | null> | null;
 };
@@ -127,6 +130,7 @@ export type ModelBookFilterInput = {
   tags?: ModelStringInput | null;
   queue_pos?: ModelIntInput | null;
   startDate?: ModelStringInput | null;
+  goalFinishDate?: ModelStringInput | null;
   finishDate?: ModelStringInput | null;
   and?: Array<ModelBookFilterInput | null> | null;
   or?: Array<ModelBookFilterInput | null> | null;
@@ -161,6 +165,7 @@ export type CreateBookMutation = {
   tags: Array<string | null> | null;
   queue_pos: number | null;
   startDate: string | null;
+  goalFinishDate: string | null;
   finishDate: string | null;
   sessions: Array<{
     __typename: "Session";
@@ -184,6 +189,7 @@ export type UpdateBookMutation = {
   tags: Array<string | null> | null;
   queue_pos: number | null;
   startDate: string | null;
+  goalFinishDate: string | null;
   finishDate: string | null;
   sessions: Array<{
     __typename: "Session";
@@ -207,6 +213,7 @@ export type DeleteBookMutation = {
   tags: Array<string | null> | null;
   queue_pos: number | null;
   startDate: string | null;
+  goalFinishDate: string | null;
   finishDate: string | null;
   sessions: Array<{
     __typename: "Session";
@@ -230,6 +237,7 @@ export type GetBookQuery = {
   tags: Array<string | null> | null;
   queue_pos: number | null;
   startDate: string | null;
+  goalFinishDate: string | null;
   finishDate: string | null;
   sessions: Array<{
     __typename: "Session";
@@ -255,6 +263,7 @@ export type ListBooksQuery = {
     tags: Array<string | null> | null;
     queue_pos: number | null;
     startDate: string | null;
+    goalFinishDate: string | null;
     finishDate: string | null;
     sessions: Array<{
       __typename: "Session";
@@ -280,6 +289,7 @@ export type OnCreateBookSubscription = {
   tags: Array<string | null> | null;
   queue_pos: number | null;
   startDate: string | null;
+  goalFinishDate: string | null;
   finishDate: string | null;
   sessions: Array<{
     __typename: "Session";
@@ -303,6 +313,7 @@ export type OnUpdateBookSubscription = {
   tags: Array<string | null> | null;
   queue_pos: number | null;
   startDate: string | null;
+  goalFinishDate: string | null;
   finishDate: string | null;
   sessions: Array<{
     __typename: "Session";
@@ -326,6 +337,7 @@ export type OnDeleteBookSubscription = {
   tags: Array<string | null> | null;
   queue_pos: number | null;
   startDate: string | null;
+  goalFinishDate: string | null;
   finishDate: string | null;
   sessions: Array<{
     __typename: "Session";
@@ -358,6 +370,7 @@ export class APIService {
           tags
           queue_pos
           startDate
+          goalFinishDate
           finishDate
           sessions {
             __typename
@@ -397,6 +410,7 @@ export class APIService {
           tags
           queue_pos
           startDate
+          goalFinishDate
           finishDate
           sessions {
             __typename
@@ -436,6 +450,7 @@ export class APIService {
           tags
           queue_pos
           startDate
+          goalFinishDate
           finishDate
           sessions {
             __typename
@@ -472,6 +487,7 @@ export class APIService {
           tags
           queue_pos
           startDate
+          goalFinishDate
           finishDate
           sessions {
             __typename
@@ -511,6 +527,7 @@ export class APIService {
             tags
             queue_pos
             startDate
+            goalFinishDate
             finishDate
             sessions {
               __typename
@@ -556,6 +573,7 @@ export class APIService {
           tags
           queue_pos
           startDate
+          goalFinishDate
           finishDate
           sessions {
             __typename
@@ -587,6 +605,7 @@ export class APIService {
           tags
           queue_pos
           startDate
+          goalFinishDate
           finishDate
           sessions {
             __typename
@@ -618,6 +637,7 @@ export class APIService {
           tags
           queue_pos
           startDate
+          goalFinishDate
           finishDate
           sessions {
             __typename
