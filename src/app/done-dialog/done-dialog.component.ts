@@ -7,10 +7,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DoneDialogComponent implements OnInit {
 
-  constructor(private fb: FormBuilder) {
-    this.doneForm = this.fb.group({
-      'finishDate': ['', Validators.required],
-    });
+  constructor() {
+    // this.doneForm = this.fb.group({
+    //   'finishDate': ['', Validators.required],
+    // });
   }
 
   ngOnInit(): void {

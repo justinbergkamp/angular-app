@@ -19,7 +19,7 @@ export class UpdateDialogComponent implements OnInit {
   book: Book;
   onAdd = new EventEmitter();
 
-  // TODO: Can either use the event emitter method or listen for an update like we do below 
+  // TODO: Can either use the event emitter method or listen for an update like we do below  
   @ViewChild(EditBookComponent) editBook: EditBookComponent;
 
 

@@ -38,7 +38,7 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
 
 import { LibraryComponent } from './library/library.component';
 import { BookDetailComponent } from './book-detail/book-detail.component';
-import { AddBookComponent } from './add-book/add-book.component';
+import { AddBookComponent } from './_book-components/add-book/add-book.component';
 import { QueueComponent } from './queue/queue.component';
 import { CurrentBookComponent } from './current-book/current-book.component';
 import { SessionDialogComponent } from './session-dialog/session-dialog.component';
@@ -48,7 +48,7 @@ import { LibraryGridComponent } from './library/library-grid/library-grid.compon
 import { StarRatingComponent } from './star-rating/star-rating.component';
 import { LibraryGridCardComponent } from './library/library-grid/library-grid-card/library-grid-card.component';
 import { UpdateDialogComponent } from './update-dialog/update-dialog.component';
-import { DeleteBookComponent } from './delete-book/delete-book.component';
+import { DeleteBookComponent } from './_book-components/delete-book/delete-book.component';
 import { DoneDialogComponent } from './done-dialog/done-dialog.component';
 import { EditBookComponent } from './_book-components/edit-book/edit-book.component';
 import { UpdateBookComponent } from './_book-components/update-book/update-book.component';

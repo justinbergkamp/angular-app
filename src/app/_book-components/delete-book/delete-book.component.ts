@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { APIService } from '../API.service';
-import { Book, CurrentBook } from '../../types/book';
+import { APIService } from 'src/app/API.service';
+import { Book, CurrentBook } from 'src/types/book';
 
 @Component({
   selector: 'app-delete-book',

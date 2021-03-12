@@ -1,7 +1,7 @@
 import { Injectable, Output, EventEmitter } from '@angular/core';
-import { Book, CurrentBook } from '../types/book';
+import { Book, CurrentBook } from 'src/types/book';
 import * as _ from 'lodash';
-import { APIService } from './API.service';
+import { APIService } from 'src/app/API.service';
 
 @Injectable({
   providedIn: 'root'
@@ -64,7 +64,7 @@ export class TransitionService {
     });
   }
 
-  updateBook(book:Book, id:string, status:number, mode:String){
+  updateBook(book:Book, id:string, status:number){
     let updatedBook : any ;
     updatedBook = book;
     updatedBook.id = id;

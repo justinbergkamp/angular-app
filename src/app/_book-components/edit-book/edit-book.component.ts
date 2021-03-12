@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, SimpleChanges } from '@angular/core';
+import { Component, OnInit, Input, Output, SimpleChanges , ViewChild, ElementRef, EventEmitter} from '@angular/core';
 import { Book } from 'src/types/book';
 import { TransitionService } from 'src/app/_services/transition.service';
 import { FormService } from 'src/app/_services/form.service';
@@ -24,6 +24,7 @@ export class EditBookComponent implements OnInit {
 
   // TODO: Move the status options to an enum in the types
   statusOptions: Array<String> = ["Backlog" , "Ready",  "Current", "Done"];
+  currentStatus : String = this.statusOptions[0];
 
 
   //Info needed for tags
@@ -41,14 +42,14 @@ export class EditBookComponent implements OnInit {
   @ViewChild('auto') matAutocomplete: MatAutocomplete;
 
 
-  constructor() { }
+  constructor(private formService : FormService, private transitionService : TransitionService) { }
 
   ngOnInit(): void {}
 
   ngOnChanges(changes: SimpleChanges) {
-    this.updateForm = this.formService.composeForm(""+this.book.status);
+    this.editForm = this.formService.composeForm(""+this.book.status);
 
-    this.filteredTags = this.updateForm.controls.tags.valueChanges.pipe(
+    this.filteredTags = this.editForm.controls.tags.valueChanges.pipe(
         startWith(null),
         map((tag: string | null) => tag ? this._filter(tag) : this.allTags.slice()));
 
@@ -64,9 +65,9 @@ export class EditBookComponent implements OnInit {
 
   }
 
-  patchFormValues():{
+  patchFormValues():void{
     // TODO: I think this can be cleaned with either NgModel or Dynamic Forms
-    this.updateForm.patchValue({
+    this.editForm.patchValue({
       title: this.book.title,
       author: this.book.author,
       status: this.book.status,
@@ -108,7 +109,7 @@ export class EditBookComponent implements OnInit {
       input.value = '';
     }
 
-    this.updateForm.controls.tags.setValue(null);
+    this.editForm.controls.tags.setValue(null);
   }
 
   remove(tag: string): void {
@@ -122,7 +123,7 @@ export class EditBookComponent implements OnInit {
   selected(event: MatAutocompleteSelectedEvent): void {
     this.currentTags.push(event.option.viewValue);
     this.tagInput.nativeElement.value = '';
-    this.updateForm.controls.tags.setValue(null);
+    this.editForm.controls.tags.setValue(null);
   }
 
   private _filter(value: string): string[] {

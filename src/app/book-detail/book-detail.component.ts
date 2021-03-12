@@ -10,7 +10,7 @@ import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
 import * as _ from 'lodash';
 import { TransitionService } from 'src/app/_services/transition.service';
-import { FormService } from '../form.service';
+import { FormService } from 'src/app/_services/form.service';
 
 
 @Component({
@@ -101,7 +101,7 @@ export class BookDetailComponent implements OnInit {
   updateBook(book: Book){
     console.log(book);
     try {
-      this.transitionService.updateBook(book, this.book.id, this.book.status, this.mode);
+      this.transitionService.updateBook(book, this.book.id, this.book.status);
     } catch (error) {
       console.log('error updating book...', error);
     }

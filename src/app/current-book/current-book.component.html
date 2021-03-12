@@ -3,7 +3,7 @@
     <h3>Queue</h3>
     <mat-divider class="separator" ></mat-divider>
     <div class="queue" *ngIf="queuedBooks">
-        <div *ngFor="let queueBook of queuedBooks" class="queued-books" (click)="openTransitionDialog(queueBook,2)">
+        <div *ngFor="let queueBook of queuedBooks" class="queued-books" (click)="openUpdateDialog(queueBook,2)">
             <div >
               {{queueBook.title}}
             </div>
@@ -24,7 +24,7 @@
         <button  mat-flat-button  (click)="transition(3)">
           Move to Done
         </button>
-        <mat-icon aria-hidden="false" (click)="openDetails()" aria-label="Example home icon">edit</mat-icon>
+        <mat-icon aria-hidden="false" (click)="openEditDetails()" aria-label="Example home icon">edit</mat-icon>
 
       </div>
 

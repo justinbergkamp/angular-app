@@ -5,7 +5,8 @@ import { APIService } from '../API.service';
 import { TransitionService } from 'src/app/_services/transition.service';
 
 import { SessionDialogComponent } from '../session-dialog/session-dialog.component';
-import { TransitionDialogComponent } from '../transition-dialog/transition-dialog.component';
+
+import { UpdateDialogComponent } from '../update-dialog/update-dialog.component';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import * as _ from 'lodash';
 
@@ -132,11 +133,11 @@ export class CurrentBookComponent implements OnInit {
 
   }
 
-  openDetails(){
+  openEditDetails(){
     this.date = new Date();
-    const dialogRef = this.dialog.open(TransitionDialogComponent, {
+    const dialogRef = this.dialog.open(UpdateDialogComponent, {
       width: '500px',
-      data: {book: this.selectedBook, status:'details'}
+      data: {book: this.selectedBook, action:'edit'}
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -144,11 +145,11 @@ export class CurrentBookComponent implements OnInit {
     });
   }
 
-  openTransitionDialog(book: Book, status: number): void {
+  openUpdateDialog(book: Book, status: number): void {
     this.date = new Date();
-    const dialogRef = this.dialog.open(TransitionDialogComponent, {
+    const dialogRef = this.dialog.open(UpdateDialogComponent, {
       width: '500px',
-      data: {book: book, status:status}
+      data: {book: book, action:'transition'}
     });
 
     dialogRef.afterClosed().subscribe(result => {
