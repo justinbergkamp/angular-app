@@ -1,38 +1,33 @@
-import { Book } from '../../types/book';
-import { Component, OnInit, Output,  Input, ViewChild, ElementRef, EventEmitter } from '@angular/core';
-import { APIService } from '../API.service';
-import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
-import { SimpleChanges } from '@angular/core';
+import { Component, OnInit, Input, Output, SimpleChanges } from '@angular/core';
+import { Book } from 'src/types/book';
+import { TransitionService } from 'src/app/_services/transition.service';
+import { FormService } from 'src/app/_services/form.service';
+import { FormGroup } from '@angular/forms';
+
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import {MatAutocompleteSelectedEvent, MatAutocomplete} from '@angular/material/autocomplete';
 import {MatChipInputEvent} from '@angular/material/chips';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
-import * as _ from 'lodash';
-import { TransitionService } from 'src/app/_services/transition.service';
-import { FormService } from '../form.service';
-
 
 @Component({
-  selector: 'app-book-detail',
-  templateUrl: './book-detail.component.html',
-  styleUrls: ['./book-detail.component.css']
+  selector: 'app-edit-book',
+  templateUrl: './edit-book.component.html',
+  styleUrls: ['./edit-book.component.css']
 })
-
-// TODO: Refactor tags to separate tags component?
-export class BookDetailComponent implements OnInit {
-
+export class EditBookComponent implements OnInit {
 
   @Input() book: Book;
-  @Input() mode: String;
   @Output() onUpdate = new EventEmitter();
 
+  public editForm: FormGroup;
 
+  // TODO: Move the status options to an enum in the types
   statusOptions: Array<String> = ["Backlog" , "Ready",  "Current", "Done"];
-  public updateForm: FormGroup;
-  currentStatus : String = this.statusOptions[0];
 
- // information needed for the tags
+
+  //Info needed for tags
+  // TODO: Move to tag component
   visible = true;
   selectable = true;
   removable = true;
@@ -46,29 +41,31 @@ export class BookDetailComponent implements OnInit {
   @ViewChild('auto') matAutocomplete: MatAutocomplete;
 
 
-  constructor(private api: APIService, private fb: FormBuilder, private transitionService : TransitionService, private formService : FormService ) {
-
-
-  }
+  constructor() { }
 
   ngOnInit(): void {}
 
   ngOnChanges(changes: SimpleChanges) {
+    this.updateForm = this.formService.composeForm(""+this.book.status);
 
-    if(!this.updateForm || this.updateForm == undefined){
-      if(this.mode == 'details'){
-        this.updateForm = this.formService.composeForm(""+this.book.status);
-      }
-      if(this.mode != 'details'){
-        this.updateForm = this.formService.composeForm(""+this.mode);
-      }
+    this.filteredTags = this.updateForm.controls.tags.valueChanges.pipe(
+        startWith(null),
+        map((tag: string | null) => tag ? this._filter(tag) : this.allTags.slice()));
 
-      this.filteredTags = this.updateForm.controls.tags.valueChanges.pipe(
-          startWith(null),
-          map((tag: string | null) => tag ? this._filter(tag) : this.allTags.slice()));
+    this.patchFormValues();
 
+    this.currentTags = this.book.tags;
+    if (this.currentTags == null) {
+      this.currentTags = [];
     }
 
+    this.currentStatus = this.statusOptions[this.book.status];
+
+
+  }
+
+  patchFormValues():{
+    // TODO: I think this can be cleaned with either NgModel or Dynamic Forms
     this.updateForm.patchValue({
       title: this.book.title,
       author: this.book.author,
@@ -80,28 +77,11 @@ export class BookDetailComponent implements OnInit {
       goalFinishDate: this.book.goalFinishDate,
       finishDate: this.book.finishDate});
 
-    this.currentTags = this.book.tags;
-    if (this.currentTags == null) {
-      this.currentTags = [];
-    }
-
-    this.currentStatus = this.statusOptions[this.book.status];
-
-    console.log(this.currentStatus);
-    console.log(this.mode);
-
-    if(this.mode != "details"){
-      this.book.status = +this.mode ;
-      this.currentStatus = this.statusOptions[this.book.status];
-    }
-
-}
-
+  }
 
   updateBook(book: Book){
-    console.log(book);
     try {
-      this.transitionService.updateBook(book, this.book.id, this.book.status, this.mode);
+      this.transitionService.updateBook(book, this.book.id, this.book.status);
     } catch (error) {
       console.log('error updating book...', error);
     }
@@ -149,4 +129,6 @@ export class BookDetailComponent implements OnInit {
     const filterValue = value.toString().toLowerCase();
     return this.allTags.filter(tag => tag.toLowerCase().indexOf(filterValue) === 0);
   }
+
+
 }

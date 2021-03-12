@@ -13,6 +13,17 @@ export class FormService {
     return updateForm;
   }
 
+  // TODO: Use dynamic form formulation
+  composeAddForm(){
+    let createForm = this.fb.group({
+      'title': ['', Validators.required],
+      'description': ['', Validators.required],
+      'author': ['', Validators.required],
+      'tags': [''],
+      'status': ['', Validators.required]
+    });
+  }
+
   composeCurrentForm(){
     let updateForm = this.fb.group({
       'title': ['', Validators.required],

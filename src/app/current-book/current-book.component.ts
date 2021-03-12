@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild, EventEmitter, ChangeDetectionStrategy } f
 import { Book, CurrentBook } from '../../types/book';
 import { Session } from '../../types/session';
 import { APIService } from '../API.service';
-import { TransitionService } from '../transition.service';
+import { TransitionService } from 'src/app/_services/transition.service';
 
 import { SessionDialogComponent } from '../session-dialog/session-dialog.component';
 import { TransitionDialogComponent } from '../transition-dialog/transition-dialog.component';

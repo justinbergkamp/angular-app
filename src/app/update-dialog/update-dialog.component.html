@@ -1,8 +1,23 @@
 <!-- <app-library-grid-card [book]="book" [status]="book.status"></app-library-grid-card> -->
-<div *ngIf="action === 'add'">
-    <app-add-book></app-add-book>
+
+
+<div mat-dialog-content>
+  <div class="dialog-body">
+
+    <div *ngIf="action === 'add'">
+        <app-add-book></app-add-book>
+    </div>
+
+    <div *ngIf="action === 'delete'">
+        <app-delete-book [book]='book'></app-delete-book>
+    </div>
+
+    <div *ngIf="action === 'edit'">
+      <app-edit-book (onUpdate)="onUpdate()" [book]="book"></app-edit-book>
+    </div>
+  </div>
 </div>
 
-<div *ngIf="action === 'delete'">
-    <app-delete-book [book]='book'></app-delete-book>
+<div mat-dialog-actions>
+  <button mat-button (click)="closeDialog()">Cancel</button>
 </div>

@@ -50,6 +50,8 @@ import { LibraryGridCardComponent } from './library/library-grid/library-grid-ca
 import { UpdateDialogComponent } from './update-dialog/update-dialog.component';
 import { DeleteBookComponent } from './delete-book/delete-book.component';
 import { DoneDialogComponent } from './done-dialog/done-dialog.component';
+import { EditBookComponent } from './_book-components/edit-book/edit-book.component';
+import { UpdateBookComponent } from './_book-components/update-book/update-book.component';
 
 
 
@@ -71,7 +73,9 @@ import { DoneDialogComponent } from './done-dialog/done-dialog.component';
     LibraryGridCardComponent,
     UpdateDialogComponent,
     DeleteBookComponent,
-    DoneDialogComponent
+    DoneDialogComponent,
+    EditBookComponent,
+    UpdateBookComponent
   ],
   imports: [
     BrowserModule,
