@@ -56,15 +56,14 @@ export class LibraryGridComponent implements OnInit {
     if (val !=''){
       for(let filter of val){
 
-        let filteredBooks = this.books.filter(book => book.tags.includes(filter));
-
+        let filteredBooks = this.allBooks.filter(book => book.tags.includes(filter));
         selectedBooks = selectedBooks.concat(filteredBooks);
 
       }
     }else{
       selectedBooks = this.allBooks;
     }
-    this.books = selectedBooks;
+    this.books = [... new Set(selectedBooks)];
   }
 
   onSelect(book: Book): void {
@@ -80,10 +79,10 @@ export class LibraryGridComponent implements OnInit {
 
 
   onChanges(): void {
-    console.log("test");
-
+    // Legacy code for searching
     this.search.valueChanges.subscribe(val => {
       let filteredBooks = [];
+      console.log(this.allBooks);
       filteredBooks = this.allBooks.filter(book => book.title.toLowerCase().includes(val));
       this.books = filteredBooks;
     });
