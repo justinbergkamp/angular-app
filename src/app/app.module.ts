@@ -52,6 +52,11 @@ import { DeleteBookComponent } from './_book-components/delete-book/delete-book.
 import { DoneDialogComponent } from './done-dialog/done-dialog.component';
 import { EditBookComponent } from './_book-components/edit-book/edit-book.component';
 import { UpdateBookComponent } from './_book-components/update-book/update-book.component';
+import { AddFormComponent } from './_form-components/add-form/add-form.component';
+import { BacklogFormComponent } from './_form-components/backlog-form/backlog-form.component';
+import { QueueFormComponent } from './_form-components/queue-form/queue-form.component';
+import { CurrentFormComponent } from './_form-components/current-form/current-form.component';
+import { DoneFormComponent } from './_form-components/done-form/done-form.component';
 
 
 
@@ -75,7 +80,12 @@ import { UpdateBookComponent } from './_book-components/update-book/update-book.
     DeleteBookComponent,
     DoneDialogComponent,
     EditBookComponent,
-    UpdateBookComponent
+    UpdateBookComponent,
+    AddFormComponent,
+    BacklogFormComponent,
+    QueueFormComponent,
+    CurrentFormComponent,
+    DoneFormComponent
   ],
   imports: [
     BrowserModule,
