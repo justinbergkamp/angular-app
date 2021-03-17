@@ -3,6 +3,7 @@ import { Book } from '../../../../types/book';
 import { APIService } from '../../../API.service';
 import { UpdateDialogComponent } from '../../../update-dialog/update-dialog.component';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { TransitionService } from 'src/app/_services/transition.service';
 
 @Component({
   selector: 'app-library-grid-card',
@@ -23,10 +24,11 @@ export class LibraryGridCardComponent implements OnInit {
           ["Self-Improvement", {color: "#7ccc43" , nickname : "SI"}]
       ]);
 
-  constructor(private api: APIService, public dialog: MatDialog) { }
+  constructor(private api: APIService, public dialog: MatDialog, private transitionService : TransitionService) { }
 
   ngOnInit(): void {
   }
+
 
   addToQueue(book : Book): void {
     // book.status = 1;
@@ -46,6 +48,15 @@ export class LibraryGridCardComponent implements OnInit {
           sub.unsubscribe();
         });
     });
+  }
+
+  changeStarRating(rating){
+    this.book.rating = rating;
+    try {
+      this.transitionService.updateBook(this.book, this.book.id, this.book.status);
+    } catch (error) {
+      console.log('error updating book...', error);
+    }
   }
 
   onTag(tag : string):void{

@@ -28,7 +28,7 @@
 
     </mat-card-header>
     <mat-card-content>
-      <mat-star-rating [rating]='4' [starCount]= '5' [color]='primary'></mat-star-rating>
+      <mat-star-rating (ratingUpdated)="changeStarRating($event)" [rating]='book.rating' [starCount]= '5' [color]='primary'></mat-star-rating>
 
 
     </mat-card-content>

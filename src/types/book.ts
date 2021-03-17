@@ -13,7 +13,8 @@ export type Book = {
   pageNumber: number,
   startDate: string,
   goalFinishDate: string,
-  finishDate: string
+  finishDate: string,
+  rating,
   sessions: Array<Session>
 
 };

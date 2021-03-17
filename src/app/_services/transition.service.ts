@@ -71,6 +71,11 @@ export class TransitionService {
     updatedBook.status = status;
     updatedBook = _.omit(updatedBook, ['__typename', 'createdAt', 'updatedAt']);
 
+    for (var index in updatedBook.sessions) {
+      let newSesh = _.omit(updatedBook.sessions[index], ['__typename']);
+      updatedBook.sessions[index] = newSesh;
+    }
+
     switch (status) {
       case 0:
           console.log("Updating a backlog book");
