@@ -24,6 +24,13 @@ export class FormService {
     });
   }
 
+  composePartialForm(status: string){
+    let updateForm = this.fb.group({
+      'finishDate': ['', Validators.required]
+    });
+    return updateForm
+  }
+
   composeCurrentForm(){
     let updateForm = this.fb.group({
       'title': ['', Validators.required],

@@ -145,11 +145,11 @@ export class CurrentBookComponent implements OnInit {
     });
   }
 
-  openUpdateDialog(book: Book, status: number): void {
+  openUpdateDialog(status: number): void {
     this.date = new Date();
     const dialogRef = this.dialog.open(UpdateDialogComponent, {
       width: '500px',
-      data: {book: book, action:'transition'}
+      data: {book: this.selectedBook, action:'update'}
     });
 
     dialogRef.afterClosed().subscribe(result => {

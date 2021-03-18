@@ -15,6 +15,12 @@
     <div *ngIf="action === 'edit'">
       <app-edit-book (onUpdate)="onUpdate()" [book]="book"></app-edit-book>
     </div>
+
+    <div *ngIf="action === 'update'">
+      <app-update-book (onUpdate)="onUpdate()" [book]="book" [newStatus]="book.status+1"></app-update-book>
+    </div>
+
+
   </div>
 </div>
 

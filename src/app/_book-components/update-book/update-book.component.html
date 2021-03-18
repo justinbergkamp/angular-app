@@ -1,1 +1,28 @@
-<p>update-book works!</p>
+
+<div class="outer-container" *ngIf="book">
+  <div class="container">
+    <h2>Move {{book.title}} to {{newStatus}}</h2>
+    <form autocomplete="off" [formGroup]="updateForm" (ngSubmit)="updateBook(updateForm.value)">
+
+      <div *ngIf="newStatus > 2">
+        <mat-form-field appearance="fill">
+          <mat-label>Finish Date</mat-label>
+          <input matInput formControlName="finishDate" [matDatepicker]="picker">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </div>
+
+      <div *ngIf="newStatus > 2">
+          <mat-label>Rating</mat-label>
+          <mat-star-rating (ratingUpdated)="changeStarRating($event)" [rating]='book.rating' [starCount]= '5' [color]='primary'></mat-star-rating>
+      </div>
+
+
+    <div class="actions">
+      <button mat-stroked-button color="primary"  [disabled]="updateForm.invalid" type="submit">Move to {{newStatus}}</button>
+    </div>
+
+  </form>
+  </div>
+</div>
